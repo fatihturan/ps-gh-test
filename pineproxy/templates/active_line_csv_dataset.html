@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    
+</head>
+
+<div class="container pt-3">
+    <div class="col-md-12 content-section hovered-tweet" style="margin-top:20px;">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <h4><li  {% if message.tags %} class=" {{ message.tags }} text-center" {% endif %}> {{ message }} </li></h4>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="col-md-7">
+            <form method="POST" action="{% url 'change_active_line_csv_status' %}">
+            <h4>Select csv</h4>
+            {% for file_name in all_csv_files %}
+                <div class="radio">
+                    <label><input class="m-1" type="radio" name="optradio" value="{{file_name}}">{{file_name}}</label>
+                </div>        
+            {% endfor %}
+            <select class="form-control" name="select_sport_name" required>
+                {% for name in sports_name %}
+                    <option value="{{name}}" >{{name}}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" class="btn btn-warning mt-3">
+            </form>
+        </div>
+       {% comment %} <div class="col-md-5 content-section">
+        <h5 class="text-success text-center">Activated CSV</h5>
+        <ul>
+            {% for name in activate_zip %}
+            <h6><li><small class="text-warning">Default Zip </small>{{name}}</li></h6>
+            {% endfor %}
+        </ul>
+    </div>  {% endcomment %}
+    </div>
+    
+</div>
+
+
+{% endblock content %}

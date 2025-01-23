@@ -1,0 +1,500 @@
+
+img {
+    max-width: 100%;
+}
+
+p {
+    line-height: 23px;    /* within paragraph */
+    margin-bottom: 23px; /* between paragraphs */
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    font-weight:300;
+    letter-spacing:-0.000em;
+   }
+
+ol{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    font-weight:200;
+    letter-spacing:-0.000em;
+}
+
+table{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    font-weight:200;
+    letter-spacing:-0.000em;
+}
+
+ul{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    font-weight:200;
+    letter-spacing:-0.000em;
+}
+
+.all-home-posts{
+    padding:5px;
+    max-width: 860px!important;
+
+}
+
+.all-content{
+        max-width: 860px;
+        margin: auto !important;
+        float: none !important;
+}
+
+.button-next{
+    float: right;
+}
+
+.button-prev{
+    float: left;
+}
+
+.chart-div-1{
+    display: inline-block;
+    position: relative;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.chart-div-2{
+    margin-top: 135%;
+}
+
+.chart-div-3{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white;
+}
+.comment-author{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing:-0.000em;
+}
+
+.comment-box{
+    width:100%;
+}
+
+.comment-content{
+    font-size:16px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.comments-section{
+    width:100%;
+
+}
+
+.comment-single{
+    padding-top: 12px;
+    padding-bottom: 34px;
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    margin-bottom: 8px;
+    background: #f0f2f5;
+    border-radius:4px;
+
+}
+
+.comment-single p{
+        margin-bottom: 10px!important;
+}
+
+.full-post-summary{
+    padding: 10px 25px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    margin-bottom: 8px;
+    background:#fff;
+    border-radius:4px;
+}
+
+/*  Hall of fame will be feature that highlights top posts
+    Once implemented, change all-home-posts max-width to be 720px
+    and change col-lg-12 to col-lg-8
+*/
+
+.hall-of-fame{
+    max-width: 360px!important
+}
+
+.likes-comments{
+    float: left;
+    font-family: 'Open Sans', sans-serif;
+    font-size:15px;
+}
+
+.likes-comments-date-home{
+    font-family: 'Open Sans', sans-serif;
+}
+
+.likes-comments-date-detail{
+    font-family: 'Merriweaither', sans-serif;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 10px;
+}
+
+.likes-comments-img{
+    width:25px;
+}
+
+.new-post{
+    padding:5px;
+    max-width: 860px!important
+}
+
+.pine-avatar{
+    position:relative;
+    width:30px;
+    white-space:nowrap;
+    border-radius:1000px;
+    vertical-align:bottom
+}
+
+.pine-avatar i{
+    position:absolute;
+    right:-7px;
+    bottom:-7px;
+    width:8px;
+    height:8px;
+    border-radius:100%
+}
+
+.pine-avatar img{
+
+    padding-left:0px!important;
+    width:29px!important;
+    height:29px!important;
+    border:1px solid #DDE2E2;
+    border-radius:1000px;
+    object-fit: cover;
+}
+
+.pine-avatar-online i{background-color:#16D39A}
+
+.pine-avatar-off i{background-color:#1B2942}
+
+.pine-avatar-busy i{background-color:#FF7588}
+
+.pine-avatar-away i{background-color:#FFA87D}
+
+.post-author{
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing:-0.000em;
+    margin-right: 5px;
+}
+
+.post-comments-title{
+    font-family: 'Roboto', sans-serif;
+    font-size:30px;
+    opacity: 0.8;
+    font-weight:200;
+    letter-spacing:-0.000em;
+}
+
+.post-content{
+    padding-top: 10px;
+}
+
+.post-date-detail{
+    float: right;
+    padding-top: 5px;
+    opacity: 0.5;
+    font-family: 'Open Sans', sans-serif;
+    font-size:15px;
+}
+
+.post-date-home{
+    float: right;
+    opacity: 0.5;
+    font-family: 'Open Sans', sans-serif;
+    font-size:15px;
+}
+
+.post-image{
+    object-fit: cover;
+    height: 100px;
+    width: 110px
+
+}
+
+.post-image-div{
+    float: right;
+    clear: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    vertical-align: center!important
+
+}
+
+.post-sentence{
+    font-family: 'Roboto', sans-serif;
+    padding-top: 10px;
+    font-weight:200;
+    letter-spacing:-0.000em;
+}
+
+.post-title-home{
+    font-family: 'Roboto', sans-serif;
+    font-size:26px;
+    font-weight:400;
+    letter-spacing:-0.000em;
+}
+
+.post-title-detail{
+    font-family: 'Roboto', sans-serif;
+    font-size:26px;
+    line-height:33px!important;
+    font-weight:400;
+    letter-spacing:-0.000em;
+    margin-bottom:5px;
+}
+
+.profile-icon{
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+    border:1px solid #DDE2E2;
+}
+
+.share-social{
+   position: relative;
+   z-index: 9999;
+}
+
+.standard-text{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    line-height: 23px;
+    font-weight:200px!important;
+    letter-spacing:-0.000em;
+}
+
+.summary-and-pic{
+    padding-bottom: 10px;
+}
+
+.terms-text{
+    font-family: 'Roboto', sans-serif;
+    font-size:12px;
+    font-weight:200;
+    letter-spacing:-0.000em;
+}
+
+.terms-title{
+    font-family: 'Roboto', sans-serif;
+    font-size:20px;
+    font-weight:400;
+    letter-spacing:-0.000em;
+}
+
+.thumbnail-container {
+  width: calc(1100px * 0.10);
+  height: calc(1000px * 0.10);
+  display: inline-block;
+  overflow: hidden;
+  position: relative;
+}
+
+/* This is a masking container for the zoomed iframe element */
+.thumbnail {
+  -ms-zoom: 0.10;
+  -moz-transform: scale(0.10);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.10);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.10);
+  -webkit-transform-origin: 0 0;
+}
+
+/* This is our screen sizing */
+.thumbnail, .thumbnail iframe {
+  width: 1100px;
+  height: 1000px;
+}
+
+/* This facilitates the fade-in transition instead of flicker. It also helps us maintain the illusion that this is an image, since some webpages will have a preloading animation or wait for some images to download */
+.thumbnail iframe {
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
+
+/* This pseudo element masks the iframe, so that mouse wheel scrolling and clicking do not affect the simulated "screenshot" */
+.thumbnail:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.top-buffer{
+
+    padding-top:28px;
+
+}
+
+.user-post{
+    padding: 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    margin-bottom: 8px;
+    background:#fff;
+    border-radius:4px;
+}
+
+.user-post-and-comments{
+    padding: 5px;
+    max-width: 860px!important
+}
+
+/*css for desktop */
+@media screen and (min-width: 767px) {
+
+    p{
+        line-height: 28px;    /* within paragraph */
+        margin-bottom: 28px; /* between paragraphs */
+        font-family: 'Roboto', sans-serif;
+        font-size:18px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+   }
+
+   ol{
+        font-family: 'Roboto', sans-serif;
+        font-size:19px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+    }
+
+    table{
+        font-family: 'Roboto', sans-serif;
+        font-size:19px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+    }
+
+    ul{
+        font-family: 'Roboto', sans-serif;
+        font-size:19px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+    }
+
+    .chart-div-2{
+        margin-top: 70%;
+    }
+
+    .comment-author{
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing:-0.000em;
+    }
+    .comment-content{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 300;
+        font-size:16px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        letter-spacing:-0.000em;
+    }
+
+    .post-author{
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        letter-spacing:-0.000em;
+        margin-right: 5px;
+    }
+    .post-comments-title{
+        font-family: 'Roboto', sans-serif;
+        font-size:38px;
+        font-weight:300;
+        letter-spacing:-0.000em;
+        opacity: 0.8;
+    }
+
+    .post-sentence{
+        font-family: 'Roboto', sans-serif;
+        font-size:16px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+    }
+    .post-title-home{
+        font-family: 'Roboto', sans-serif;
+        font-size:26px;
+        font-weight:300;
+        letter-spacing:-0.000em;
+    }
+
+    .post-title-detail{
+        font-family: 'Roboto', sans-serif;
+        font-size:44px;
+        line-height:54px!important;
+        font-weight:300;
+        letter-spacing:-0.000em;
+    }
+
+    .post-image{
+        object-fit: cover;
+        height: 60px;
+        width: 80px
+    }
+
+    .standard-text{
+        font-family: 'Roboto', sans-serif;
+        font-size:16.5px;
+        line-height:24px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+    }
+
+    .terms-text{
+        font-family: 'Roboto', sans-serif;
+        font-size:15px;
+        font-weight:200;
+        letter-spacing:-0.000em;
+    }
+
+    .terms-title{
+        font-family: 'Roboto', sans-serif;
+        font-size:23px;
+        font-weight:300;
+        letter-spacing:-0.000em;
+    }
+
+    .thumbnail-container {
+        height: calc(600px * 0.10);
+        width: calc(800px * 0.10);
+
+    }
+
+    /* This is our screen sizing */
+    .thumbnail, .thumbnail iframe {
+      height: 600px;
+      width: 1200px;
+    }
+
+    .user-post{
+        padding: 10px 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+        margin-bottom: 8px;
+        background:#fff;
+        border-radius:4px;
+    }
+
+}

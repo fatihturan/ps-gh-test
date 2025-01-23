@@ -1,0 +1,2035 @@
+
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+{% load social_share %}
+
+<head>
+    
+    <title>Pine Sports | The Best Sports Analytics and AI Modeling Platform on the Internet.</title>
+
+    <meta name="description" content="The best sports analytics and AI modeling platform on the internet.  View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, futures, player props and more bets."/>
+    <meta name="keywords" content="sports, analytics, artificial intelligence, ai, modeling, betting, fantasy, picks, spread, overs, unders, s, props, futumoneylineres, bets, nba, nfl, nhl, mlb, basketball, hockey, football, baseball, soccer, cricket, tennis">
+    <link rel="canonical" href="https://www.pine-sports.com/"/>
+
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="Pine Sports" />
+	<meta property="og:image" content="{% static 'images/PineSportsLogoSmall.svg' %}" />
+
+    <meta name="twitter:site" content="@pine_ai_sports"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Pine Sports | The Best Sports Analytics and AI Modeling Platform on the Internet."/>
+    <meta name="twitter:description" content="The best sports analytics and AI modeling platform on the internet.  View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, futures, and more bets."/>
+    <meta name="twitter:image" content="{% static 'images/PineSportsLogoSmall.svg' %}"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet"  media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"  media="screen" onload="this.media='all'">
+
+    <!-- Slick Carousel CS and JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <link rel="icon" href="{% static 'images/icons/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/icons/apple-touch-icon.png' %}">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet"  media="screen" onload="this.media='all'">
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet"  media="screen" onload="this.media='all'">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '137862831678866');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=137862831678866&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+</head>
+
+<style>
+
+    iframe{
+        max-width:100%;
+       /* max-height:50vw; */
+    }
+
+    .square-box {
+      position: relative;
+      padding-bottom: 70%; /* 1:1 */
+      height: 0;
+      width: 100%;
+      overflow: hidden;
+      border-radius:10px;
+      z-index:1;
+    }
+
+    .user-avatar{
+        position:relative;
+        width:115px;
+        white-space:nowrap;
+        border-radius:1000px;
+        vertical-align:bottom
+    }
+
+    .user-avatar img{
+        padding-left:0px!important;
+        width:114px!important;
+        height:114px!important;
+        border:1px solid #DDE2E2;
+        border-radius:1000px;
+        object-fit: cover;
+    }
+
+    .member-since{
+        font-family: 'Roboto', sans-serif;
+        font-weight:300;
+        letter-spacing:-0.000em;
+        margin-bottom:7px;
+        font-size:13px;
+    }
+
+    .bio{
+        font-family: 'Roboto', sans-serif;
+        font-weight:300;
+        letter-spacing:-0.000em;
+        font-size:14px;
+    }
+
+    .twitter-trophies{
+        font-family: 'Roboto', sans-serif;
+        font-weight:300;
+        letter-spacing:-0.000em;
+        font-size:13px;
+    }
+
+    .profile-likes{
+        width:17px;
+    }
+
+    .widescreen {
+      position: absolute;
+	  height: 0;
+      left: -45.88%;
+      right: -45.88%;
+    }
+
+    .widescreen .mute {
+        color:white;
+        position: absolute;
+        left:25%;
+        top: 9px;
+        z-index: 10;
+     }
+
+    .read-time{
+        opacity: 0.6;
+        font-size:14px;
+    }
+
+    .embdscl0{
+        display:none!important;
+    }
+
+    .embedly-twitter{
+        max-height:520px!important;
+        padding-bottom: 50px!important;
+        overflow:hidden!important;
+    }
+
+    .embedly-video{
+        height:250px!important;
+        overflow:hidden!important;
+    }
+
+    .embedly-article{
+        height:460px!important;
+        overflow:hidden!important;
+    }
+
+    .button_padding{
+        padding-left:7px;
+        padding-top:5px;
+    }
+
+    .fantasy-site-no-cheatsheet{
+        margin-top:40px
+    }
+
+    .fantasy-box{
+        min-height:285px;
+        border:1px solid rgba(0,0,0,.7);
+        border-radius:20px;
+        padding:10px;
+        margin-top:15px;
+        margin-right:5px;
+        margin-left:5px;
+    }
+
+    .follow_button{
+        font-family: 'Roboto', sans-serif;
+        font-size:14px;
+        width:100px;
+        border: solid 1px rgba(1,1,1,.7);
+        border-radius: 25px;
+        color: rgba(1,1,1,.7);
+        background-color: transparent;
+        margin: auto;
+        padding-top:3px;
+        padding-bottom:2px;
+    }
+
+    .follow_button:hover{
+        background-color: #eee;
+    }
+
+    .unfollow_button{
+        font-family: 'Roboto', sans-serif;
+        font-size:14px;
+        font-weight: 400;
+        width:100px;
+        border: none;
+        border-radius: 25px;
+        color: white;
+        background-color: rgba(1,1,1,.7);
+        margin: auto;
+        padding-top:3px;
+        padding-bottom:2px;
+    }
+
+    .original_analysis{
+        padding-left:4px;
+        padding-right:6px;
+        padding-top:2.3px;
+        padding-bottom:2.3px;
+        color: #274970!important;
+        border: 1px solid #274970;
+        border-radius: 8px;
+        margin-right: 5px;
+        margin-left: 8px;
+        white-space: nowrap;
+        line-height:27px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .original_content{
+        padding-left:5px;
+        padding-right:6px;
+        padding-top:2px;
+        padding-bottom:2px;
+        color: #274970!important;
+        border: 1px solid #274970;
+        border-radius: 8px;
+        margin-right: 5px;
+        margin-left: 8px;
+        white-space: nowrap;
+        line-height:27px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+    }
+
+    .profile_padding{
+        padding-top:1px;
+    }
+
+    .post-sport{
+        margin-top:-3px;
+        margin-bottom:-16px;
+        margin-left:1px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing:-0.000em;
+        color: #959595;
+    }
+
+    .explore-predict-button{
+        border:1px solid #274970;
+        border-radius:18px;
+        padding-top:6px;
+        padding-bottom:4px;
+        padding-left:15px;
+        padding-right:15px;
+        line-height:38px;
+    }
+
+    .explore-predict-button:hover{
+        background-color: #edf2f9;
+    }
+
+    .fantasy-image{
+        height:85px;
+        width:300px;
+        object-fit:contain;
+    }
+
+    .lds-spinner {
+      color: official;
+      display: inline-block;
+      position: relative;
+      width: 40px;
+      height: 40px;
+    }
+
+    .lds-spinner div {
+      transform-origin: 18px 18px;
+      animation: lds-spinner .8s infinite;
+    }
+
+    .lds-spinner div:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 17px;
+      width: 3px;
+      height: 10px;
+      border-radius: 32%;
+      background: #274970;
+    }
+
+    .lds-spinner div:nth-child(1) {
+      transform: rotate(0deg);
+      animation-delay: -0.7s;
+    }
+    .lds-spinner div:nth-child(2) {
+      transform: rotate(45deg);
+      animation-delay: -0.6s;
+    }
+    .lds-spinner div:nth-child(3) {
+      transform: rotate(90deg);
+      animation-delay: -0.5s;
+    }
+    .lds-spinner div:nth-child(4) {
+      transform: rotate(135deg);
+      animation-delay: -0.4s;
+    }
+    .lds-spinner div:nth-child(5) {
+      transform: rotate(180deg);
+      animation-delay: -0.3s;
+    }
+    .lds-spinner div:nth-child(6) {
+      transform: rotate(225deg);
+      animation-delay: -0.2s;
+    }
+    .lds-spinner div:nth-child(7) {
+      transform: rotate(270deg);
+      animation-delay: -0.1s;
+    }
+    .lds-spinner div:nth-child(8) {
+      transform: rotate(315deg);
+      animation-delay: 0.0s;
+    }
+
+
+    @keyframes lds-spinner {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Social dropdown content (hidden by default) */
+    .social-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 150px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    /* Links inside the social dropdown */
+    .social-dropdown-content a {
+        color: rgba(0,0,0,.7);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of social dropdown links on hover */
+    .social-dropdown-content a:hover {
+        background-color: #f1f1f1
+        }
+
+    /* Show the social dropdown menu on hover */
+    .social-dropdown:hover .social-dropdown-content {
+        display: block;
+    }
+
+    .hall-of-fame{
+        position: -webkit-sticky;
+        position: sticky;
+        top: 103px;
+        max-width: 380px!important;
+        min-width: 380px!important;
+    }
+
+    .hof-sort-tab{
+        width:103px!important;
+    }
+
+    table {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        color:rgba(0,0,0,.7);
+        border-collapse: separate!important;
+        border-spacing: 0;
+        min-width: 330px;
+        max-width:100%;
+        border-radius:15px;
+    }
+
+    table tr td:first-of-type {
+       border-left: 1px solid #DDD;
+    }
+
+    table tr td:last-of-type {
+       border-right: 1px solid #DDD;
+    }
+
+    table tr:first-of-type td:not(:first-child):not(:last-child){
+      border-top: 1px solid #DDD;
+    }
+
+    table tr:first-of-type th:not(:first-child):not(:last-child){
+      border-top: 1px solid #DDD;
+    }
+
+    table tr:last-of-type td:not(:first-child):not(:last-child){
+      border-bottom: 1px solid #DDD;
+    }
+
+    table tr:first-of-type th:first-child {
+        border-top: 1px solid #DDD;
+        border-top-left-radius: 15px;
+        padding-left:10px;
+    }
+
+    table tr:first-of-type th:last-child {
+        border-top: 1px solid #DDD;
+        border-top-right-radius: 15px;
+        padding-right:10px;
+    }
+
+    table tr:last-of-type td:last-child {
+        border-right: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-bottom-right-radius: 15px;
+    }
+
+    table tr:last-of-type td:first-child {
+        border-left: 1px solid #DDD;
+        border-bottom:  1px solid #DDD;
+        border-bottom-left-radius: 15px;
+    }
+
+    tr{
+        text-align:center!important;
+    }
+
+    th{
+        text-align:center!important;
+        font-weight: 600;
+        background-color: #fafbfc;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+    td{
+        background-color: #ffffff;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+
+    td a{
+        color:#284970;
+    }
+
+    select{
+        border-radius: 20px;
+        font-size: 20px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        padding-left: 12px;
+        padding-right: 12px;
+        color: rgba(0,0,0,.7);
+        border: 2px solid #DDDDDD;
+    }
+
+    .all-content-user{
+        max-width:660px;
+        margin: auto !important;
+        float: none !important;
+    }
+
+    .tool-button{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 8px;
+        padding-bottom: 2px;
+        border: 1px solid rgba(0,0,0,.7);
+        border-radius: 18px;
+        width: 90%;
+        margin-bottom: 7px;
+        display: inline-block;
+        text-align: center;
+    }
+
+    .tool-button:hover{
+        background-color: #eeeeef;
+        font-weight: 500!important;
+    }
+
+    .first-image{
+        width:100%;
+        max-height: 30vh;
+        object-fit:cover;
+        margin-bottom:14px;
+        border-radius:10px;
+    }
+
+    .first-image-projection{
+        width:100%;
+        max-height: 50vh;
+        object-fit:contain;
+        margin-bottom:14px;
+        border-radius:10px;
+    }
+
+    .slick-prev:before{
+        color:rgba(0,0,0,.7)!important;
+    }
+
+    .slick-next:before{
+        color:rgba(0,0,0,.7)!important;
+    }
+
+    .follow-suggestion{
+        height: 155px;
+        border: 1px solid rgba(0,0,0,.7);
+        border-radius: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 2px;
+        padding-bottom: 2px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 5px;
+    }
+
+    .follow-profile{
+        margin-top:5px;
+        height:70px;
+        width:70px;
+        object-fit:cover;
+        border-radius:1000px;
+    }
+
+    .follow-member{
+        display: inline-block;
+        margin-top:2px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 300 !important;
+        letter-spacing: 0.000em;
+        color: rgba(0,0,0,.7);
+    }
+
+    .slick-next {
+      right: -21px;
+    }
+
+    .slick-prev {
+      left: -21px;
+    }
+
+    .who-to-follow{
+        border-top:none;
+    }
+
+    .prop-chart-text{
+        margin-top:5px;
+        margin-bottom:5px;
+        font-size:14px;
+        color:#959595;
+    }
+
+    .user-name{
+        font-family: 'Open Sans', sans-serif;
+        font-size: {{user_name_font_size}}px;
+        font-weight: 600;
+        letter-spacing: 0.000em;
+        color: rgba(0,0,0,.9);
+    }
+
+    @media screen and (max-width: 992px) {
+        .all-content{
+            max-width:660px;
+        }
+    }
+    @media screen and (min-width: 1200px) {
+        .all-content{
+            max-width:1130px;
+        }
+    }
+
+    @media screen and (min-width: 767px) {
+
+        .button_padding{
+            padding-left:12px;
+            padding-top:5px;
+        }
+
+        .read-time{
+            opacity: 0.6;
+            font-size:16px;
+        }
+
+        .member-since{
+            font-family: 'Roboto', sans-serif;
+            font-size:13px;
+            font-weight:300;
+            letter-spacing:-0.000em;
+            margin-bottom:10px;
+        }
+
+        .bio{
+            font-family: 'Roboto', sans-serif;
+            font-size:16px;
+            font-weight:300;
+            letter-spacing:-0.000em;
+        }
+
+        .fantasy-box{
+            min-height:353px;
+        }
+
+        .twitter-trophies{
+            font-family: 'Roboto', sans-serif;
+            font-size:14px;
+            font-weight:300;
+            letter-spacing:-0.000em;
+        }
+
+        .profile-likes{
+            width:20px;
+        }
+
+        .user-avatar{
+            position:relative;
+            width:125px;
+            white-space:nowrap;
+            border-radius:1000px;
+            vertical-align:bottom;
+        }
+
+        .user-avatar img{
+            padding-left:0px!important;
+            width:124px!important;
+            height:124px!important;
+            border:1px solid #DDE2E2;
+            border-radius:1000px;
+            object-fit: cover;
+        }
+
+        .follow-member{
+            display: inline-block;
+            margin-top:2px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 15px;
+            line-height: 24px;
+            font-weight: 300 !important;
+            letter-spacing: 0.000em;
+            color: rgba(0,0,0,.7);
+        }
+
+        .prop-chart-text{
+            margin-top:5px;
+            font-size:16px;
+            color:#959595;
+        }
+
+        .user-name{
+            font-family: 'Open Sans', sans-serif;
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 0.000em;
+            color: rgba(0,0,0,.9);
+        }
+
+        .fantasy-image{
+            height:150px;
+            width:400px;
+            object-fit:contain;
+        }
+
+        @media screen and (max-height: 800px) {
+
+            .leaderboard-table{
+                max-height:630px;
+                overflow-y: hidden;
+            }
+
+            .leaderboard-table:hover{
+                overflow-y: scroll;
+            }
+    }
+
+        @media screen and (max-height: 750px) {
+
+            .leaderboard-table{
+                max-height:580px;
+                overflow-y: hidden;
+            }
+
+            .leaderboard-table:hover{
+                overflow-y: scroll;
+            }
+    }
+
+        @media screen and (max-height: 700px) {
+
+            .leaderboard-table{
+                max-height:530px;
+                overflow-y: hidden;
+            }
+
+            .leaderboard-table:hover{
+                overflow-y: scroll;
+            }
+    }
+
+        @media screen and (max-height: 650px) {
+
+            .leaderboard-table{
+                max-height:480px;
+                overflow-y: hidden;
+            }
+
+            .leaderboard-table:hover{
+                overflow-y: scroll;
+            }
+    }
+
+        @media screen and (max-height: 600px) {
+
+            .leaderboard-table{
+                max-height:430px;
+                overflow-y: hidden;
+            }
+
+            .leaderboard-table:hover{
+                overflow-y: scroll;
+            }
+    }
+</style>
+
+<div class="hidden-md-up" style="margin-top:2px"></div>
+<div id="top"></div>
+<div id="top-loading" style="display:none" class="top-loading"><center><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></center></div>
+
+{% if sort == "user" or community and not found_community %}
+<div class="all-content-user row">
+{% else %}
+<div class="all-content row">
+{% endif %}
+
+    {% if sort != "user" and not community %}
+    <div class="hall-of-fame col-xl-5 col-lg-6 hidden-md-down" style="padding-right:32px">
+        <div class="row" style="margin-bottom:0px;margin-left:1px; margin-top:4px">
+            <div class="col-xs-1 sort-tab hof-sort-tab" id="trophy-leaderboard-tab" style="background-color:white; font-weight:300;" onclick="getTrophyLeaderboard()"><div class="sort-tab-2"><center>Contributors</center></div></div>
+            <div class="col-xs-1 sort-tab hof-sort-tab" id="liic-leaderboard-tab" onclick="getLIICLeaderboard()"><div class="sort-tab-2"><center>Lock It In</center></div></div>
+            <div class="col-xs-1 sort-tab hof-sort-tab" id="predict-leaderboard-tab" onclick="getPredictLeaderboard()"><div class="sort-tab-2"><center>Predict</center></div></div>
+        </div>
+        <div class="row full-post-summary leaderboard-table">
+            <div class="row summary-and-pic">
+                <div class="post-summary">
+                    <div id="trophy-leaderboard" class="post-title-home">
+                        <div style="color:black; margin-bottom:5px">
+                            <center style="color:#274970; line-height:32px; margin-bottom:8px"><img src="{% static 'images/like - blue.svg' %}?v=1" style="width:79px;margin-top:0px; margin-bottom:-8px"><span class="darkmode-flip"><br>This Week's<br>Top Contributors</span></center>
+                        </div>
+                        <div class="post-sentence standard-text" style="padding-top:0px; color:black">
+                            <center>{{trophy_leaderboard | safe}}</center>
+                        </div>
+                    </div>
+                    <div id="liic-leaderboard" class="post-title-home" style="display:none">
+                        <div style="color:black; margin-bottom:5px">
+                            <center style="color:#274970; line-height:32px"><img src="{% static 'images/crown.svg'%}?v=1" style="width:65px;margin-top:8px; margin-bottom:7px"><br><span class="darkmode-flip">Lock It In Challenge<br>Leaderboard</span></center>
+                        </div>
+                        <div class="post-sentence standard-text" style="padding-top:0px; color:black">
+                            <center>{{liic_leaderboard | safe}}</center>
+                        </div>
+                    </div>
+                    <div id="predict-leaderboard" class="post-title-home" style="display:none">
+                        <div style="color:black; margin-bottom:5px">
+                            <center style="color:#274970"><img src="{% static 'images/blue_leaderboard_home.svg'%}" style="width:52px;margin-top:8px; margin-bottom:7px"><span class="darkmode-flip"><br>Predict Leaderboard</span></center>
+                        </div>
+                        <center style="padding-bottom: 15px;">
+                            <select id="leaderboard-sport" onchange="getPredictLeaderboardChoice()">
+                                <option value="NFL">NFL</option>
+                                <option value="NBA">NBA</option>
+                                <option value="NHL">NHL</option>
+                                <option value="MLB">MLB</option>
+                            </select>
+                            <select id="leaderboard-prediction" onchange="getPredictLeaderboardChoice()">
+                                <option value="Winner">Winner</option>
+                                <option value="Spread">Spread</option>
+                                <option value="OU">Over-Under</option>
+                            </select>
+                        </center>
+                        <div id="nfl-winner" class="post-sentence standard-text" style="padding-top:0px; color:black">
+                            <center>{{nfl_winner_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nfl-ats" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nfl_ats_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nfl-ou" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nfl_ou_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nba-winner" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nba_winner_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nba-ats" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nba_ats_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nba-ou" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nba_ou_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nhl-winner" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nhl_winner_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nhl-ats" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nhl_ats_leaderboard | safe}}</center>
+                        </div>
+                        <div id="nhl-ou" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{nhl_ou_leaderboard | safe}}</center>
+                        </div>
+                        <div id="mlb-winner" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{mlb_winner_leaderboard | safe}}</center>
+                        </div>
+                        <div id="mlb-ats" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{mlb_ats_leaderboard | safe}}</center>
+                        </div>
+                        <div id="mlb-ou" class="post-sentence standard-text" style="padding-top:0px; color:black; display:none;">
+                            <center>{{mlb_ou_leaderboard | safe}}</center>
+                        </div>
+                    </div>
+                    <hr>
+                    <div id="users" style="color:rgba(0,0,0,.7); font-size:15px;padding-top:6px"><center><span class="darkmode-flip" style="width:65px; display:inline-block; color: #274970"><b counter="0">0</b></span>models built, and counting...</center></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if found_community %}
+    <div class="hall-of-fame col-xl-5 col-lg-6 hidden-md-down" style="padding-right:32px">
+        <div class="row full-post-summary leaderboard-table" style="margin-top:5px">
+            <div class="row summary-and-pic">
+                <div class="post-summary">
+                    <div id="community-leaderboard" class="post-title-home">
+                        <div style="color:black; margin-bottom:5px">
+                            <center style="color:#274970; line-height:32px; margin-bottom:8px"><img src="{% static 'images/like - blue.svg' %}?v=1" style="width:79px;margin-top:0px; margin-bottom:-8px"><br>{{community_name}} Leaderboard</center>
+                        </div>
+                        <div class="post-sentence standard-text" style="padding-top:0px; color:black">
+                            <center>{{trophy_leaderboard | safe}}</center>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+    {% if sort != "user" and not community %}
+    <div class="all-home-posts col-md-12 col-lg-6 col-xl-7" style="max-width:660px!important">
+    {% else %}
+    <div class="all-home-posts col-md-12 col-lg-12 col-xl-12" style="max-width:660px!important">
+   {% endif %}
+        {% if sort != "user" %}
+        {% if not community %}
+        <div class="row" style="margin-bottom:0px;margin-left:1px">
+            {% if sort == "top" %}
+            <div class="col-xs-1 sort-tab" style="background-color:white; font-weight:300;" onclick="window.location='/';"><div class="sort-tab-2"><center>Top</center></div></div>
+            <div class="col-xs-1 sort-tab" onclick="window.location='/new/';"><div class="sort-tab-2"><center>New</center></div></div>
+            {% if user.is_authenticated %}{% if following_count > 0 %} <div class="col-xs-2 sort-tab"><div class="sort-tab-2"><a href="{% url 'stories:blog-home-following' %}">Following</a></div></div> {% endif %}{% endif %}
+            {% elif sort == "new" %}
+            <div class="col-xs-1 sort-tab" onclick="window.location='/';"><div class="sort-tab-2"><center>Top</center></div></div>
+            <div class="col-xs-1 sort-tab" style="background-color:white; font-weight:300;" onclick="window.location='/new/';"><div class="sort-tab-2"><center>New</center></div></div>
+            {% if user.is_authenticated %}{% if following_count > 0 %} <div class="col-xs-2 sort-tab"><div class="sort-tab-2"><a href="{% url 'stories:blog-home-following' %}">Following</a></div></div> {% endif %}{% endif %}
+            {% else %}
+            <div class="col-xs-1 sort-tab" onclick="window.location='/';"><div class="sort-tab-2"><center>Top</center></div></div>
+            <div class="col-xs-1 sort-tab" onclick="window.location='/new/';"><div class="sort-tab-2"><center>New</center></div></div>
+            {% if user.is_authenticated %}<div class="col-xs-2 sort-tab" style="background-color:white; font-weight:300;"><div class="sort-tab-2"><a href="{% url 'stories:blog-home-following' %}">Following</a></div></div>{% endif %}
+            {% endif %}
+        </div>
+        {% endif %}
+        {% if user.is_authenticated and sort != "new" and sort != "following" %}
+        <div class="row full-post-summary">
+            <div class="row summary-and-pic">
+                <div class="post-summary">
+                    <h1 class="post-title-home">
+                        {% if community %}
+                        <div style="color:rgb(0,0,0,.9)">Welcome to the {{community_name}} Community Page{% if community_name != "Pine" %} on Pine Sports{% endif %}!</div>
+                        {% else %}
+                        <div style="color:rgb(0,0,0,.9)">Welcome to Pine Sports</div>
+                        {% endif %}
+                        <div class="post-sentence standard-text" style="color:rgb(0,0,0,.7)">
+                            {% if community %}
+                            Welcome to the {{community_name}} community page{% if community_name != "Pine" %} on Pine Sports{% endif %}!  Read the {{community_name}} community's top picks below, or dig in yourself with Pine's cutting-edge AI-powered tools and tell us what bets you like best today.<br><br>
+                            {% else %}
+                            Welcome to the best sports betting community on the planet!  Read the Pine community's top picks below, or dig in yourself with Pine's cutting-edge AI-powered tools and tell us what bets you like best today.<br><br>
+                            {% endif %}
+                            <center>
+                            {% if is_jaxon_user %}
+                            <span class="tool-button"><a href="/chat/" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Chat Sports with jaXon AI</strong></a></span>
+                            {% else %}
+                            <span class="tool-button"><a href="/subscribe/" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Chat Sports with jaXon AI</strong></a></span>
+                            {% endif %}
+                            <span class="tool-button"><a onclick="getSearchProps()" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-search-circle.svg" alt="Predict" style="width:25px; margin-right:9px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Search & Analyze Player Props</strong></a></span>
+                            <span id="search-props" style="color:#274970;line-height:30px;display:none"><br>
+                                <span class="explore-predict-button"><a href="/stats/props/NFL/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/football.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">NFL</a></span>&emsp;
+                                <span class="explore-predict-button" style="margin-left:1px"><a href="/stats/props/NBA/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/basketball.svg" alt="Predict" style="width:23px; margin-right:8px; margin-top:-4px;">NBA</a></span><br>
+                                <span class="explore-predict-button" style="padding-right:14px!important"><a href="/stats/props/NHL/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/hockey.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">NHL</a></span>&emsp;
+                                <span class="explore-predict-button"><a href="/stats/props/MLB/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/baseball.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">MLB</a></span>
+                            </span>
+                            <br>
+                            <span style="padding-top:14px" class="tool-button"><a onclick="getExploreSports()" style="margin-bottom:10px;display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-explore.svg" alt="Predict" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Explore Player & Team Stats</strong></a></span>
+                            <span id="explore-sports" style="padding-top:14px; color:#274970;line-height:30px;display:none"><br>
+                                <span class="explore-predict-button"><a href="/stats/NFL/Generating"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/football.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">NFL</a></span>&emsp;
+                                <span class="explore-predict-button" style="margin-left:1px"><a href="/stats/NBA/Generating"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/basketball.svg" alt="Predict" style="width:23px; margin-right:8px; margin-top:-4px;">NBA</a></span><br>
+                                <span class="explore-predict-button" style="padding-right:14px!important"><a href="/stats/NHL/Generating"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/hockey.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">NHL</a></span>&emsp;
+                                <span class="explore-predict-button"><a href="/stats/MLB/Generating"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/baseball.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">MLB</a></span>
+                            </span>
+                            <br>
+                            <span class="tool-button"><a onclick="getPredictSports()" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-predict.svg" alt="Predict" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Predict Winners, ATS & Totals</strong></a></span>
+
+                            <span id="predict-sports" style="color:#274970;line-height:30px;display:none"><br>
+                                <span class="explore-predict-button"><a href="/predict/NFL/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/football.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">NFL</a></span>&emsp;
+                                <span class="explore-predict-button" style="margin-left:1px"><a href="/predict/NBA/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/basketball.svg" alt="Predict" style="width:23px; margin-right:8px; margin-top:-4px;">NBA</a></span><br>
+                                <span class="explore-predict-button" style="padding-right:14px!important"><a href="/predict/NHL/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/hockey.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">NHL</a></span>&emsp;
+                                <span class="explore-predict-button"><a href="/predict/MLB/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/baseball.svg" alt="Predict" style="width:20px; margin-right:10px; margin-top:-4px">MLB</a></span>
+                            </span>
+                            <br>
+                            <span class="tool-button"><a href="/post/new/" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-write-circle.svg" alt="Publish" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Publish Your Plays & Analysis</strong></a></span>
+                            <br>
+                            {%if community %}
+                            {%if has_discord %}
+                            <span class="tool-button"><a href="{{discord_link}}" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Join the {{community_name}} Discord</strong></a></span>
+                            {% else %}
+                            <span class="tool-button"><a href="https://discord.com/invite/87YRv2J2jj" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Join the Pine Sports Discord</strong></a></span>
+                            {% endif %}
+                            {% else %}
+                            <span class="tool-button"><a href="https://discord.com/invite/87YRv2J2jj" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Join the Pine Sports Discord</strong></a></span>
+                            {% endif %}
+                        </center>
+                        </div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        {% elif sort != "new" and sort != "following" %}
+
+<div class="row full-post-summary">
+            <div class="row summary-and-pic">
+                <div class="post-summary">
+                    <h1 class="post-title-home">
+                        {% if community %}
+                        <div style="color:rgb(0,0,0,.9)">Welcome to the {{community_name}} Community Page{% if community_name != "Pine" %} on Pine Sports{% endif %}!</div>
+                        {% else %}
+                        <div style="color:rgb(0,0,0,.9)">Welcome to Pine Sports</div>
+                        {% endif %}
+                        <div class="post-sentence standard-text" style="rgb(0,0,0,.7)">
+                            {% if community %}
+                            Welcome to the {{community_name}} community page{% if community_name != "Pine" %} on Pine Sports{% endif %}!  Read the {{community_name}} community's top picks below, or dig in yourself with Pine's cutting-edge AI-powered tools and tell us what bets you like best today.<br><br>
+                            {% else %}
+                            Welcome to the best sports betting community on the planet!  Read the Pine community's top picks below, or dig in yourself with Pine's cutting-edge AI-powered tools and tell us what bets you like best today.<br><br>
+                            {% endif %}
+                            <center>
+                            {% if is_jaxon_user %}
+                            <span class="tool-button"><a href="/chat/" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Chat Sports with jaXon AI</strong></a></span>
+                            {% else %}
+                            <span class="tool-button"><a href="/subscribe/" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Chat Sports with jaXon AI</strong></a></span>
+                            {% endif %}
+                            <span class="tool-button"><a onclick="login()" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-search-circle.svg" alt="Predict" style="width:25px; margin-right:9px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Search & Analyze Player Props</strong></a></span>
+                            <br>
+                            <span style="padding-top:14px" class="tool-button"><a onclick="login()" style="margin-bottom:10px;display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-explore.svg" alt="Predict" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Explore Player & Team Stats</strong></a></span>
+
+                            <span class="tool-button"><a onclick="login()" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-predict.svg" alt="Predict" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Predict Winners, ATS, and Totals</strong></a></span>
+                            <br>
+                            <span class="tool-button"><a onclick="login()" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-write-circle.svg" alt="Publish" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Publish Your Plays & Analysis</strong></a></span>
+                            <br>
+                            {%if community %}
+                            {%if has_discord %}
+                            <span class="tool-button"><a href="{{discord_link}}" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Join the {{community_name}} Discord</strong></a></span>
+                            {% else %}
+                            <span class="tool-button"><a href="https://discord.com/invite/87YRv2J2jj" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Join the Pine Sports Discord</strong></a></span>
+                            {% endif %}
+                            {% else %}
+                            <span class="tool-button"><a href="https://discord.com/invite/87YRv2J2jj" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/black-chat-circle.svg" alt="Chat" style="width:25px; margin-right:10px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Join the Pine Sports Discord</strong></a></span>
+                            {% endif %}
+                        </center>
+                        </div>
+                    </h1>
+                </div>
+            </div>
+        </div>
+
+        {% endif %}
+
+        {% else %}
+        <div class="row">
+            <span style="float:left; margin-right:20px; margin-bottom:10px;" class="user-avatar">
+                <img src="{{optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' alt="'avatar'">
+                {% if user_profile == request.user.profile.user and has_bio %}
+                <div style="padding-bottom:4px"></div>
+                {% endif %}
+                {% if user.is_authenticated %}
+                {% if user_profile != request.user.profile.user %}
+                {% if not follow_status %}
+                <!-- Follow button -->
+                <div class="button_padding">
+                    <form method="POST" action="{% url 'follow_done_view' %}">
+                        {% csrf_token %}
+                        <input type="number" name="followed_user_id" hidden value="{{ user_profile.pk }}">
+                        <button class="follow_button" type="submit">Follow</button>
+                    </form>
+                </div>
+                {% else %}
+                <!-- Unfollow button -->
+                <div class="button_padding">
+                    <form method="POST" action="{% url 'unfollow_done_view' %}">
+                        {% csrf_token %}
+                        <input type="number" name="unfollowed_user_id" hidden value="{{ user_profile.pk }}">
+                        <button class="unfollow_button" type="submit">Following</button>
+                    </form>
+                </div>
+                {% endif %}
+                {% endif %}
+                {% endif %}
+            </span>
+            <div class="profile_padding">
+                <span class="user-name">{{user_profile}}</span><br>
+                <div class="member-since">Member since {{date_joined }}</div>
+                {% if has_bio %}
+                <span class="bio" style="display:inline-block; padding-top:0px; padding-bottom:10px"> {{bio}}</span><br>
+                {% endif %}
+                {% if user_profile == request.user.profile.user or not user.is_authenticated %}
+                <span class="twitter-trophies"><img class="profile-likes" src="{% static 'images/black-like - clicked.svg'%}" alt="Like Clicked"> {{likes_and_comment_likes}}</span>
+                {% if has_twitter %}
+                &emsp;<span class="twitter-trophies" style="display:inline-block; padding-top:0px; padding-bottom:5px"><a href="https://www.twitter.com/{{twitter_handle}}"><img class="profile-likes" src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-share-twitter.svg" alt="Like Clicked"> {{twitter_handle}}</a></span>
+                {% else %}
+                <span class="twitter-trophies" style="display:inline-block; padding-top:0px; padding-bottom:5px"> Trophies</span>
+                {% endif %}
+                {% else %}
+                <span class="twitter-trophies"><img class="profile-likes" src="{% static 'images/black-like - clicked.svg'%}" alt="Like Clicked"> {{likes_and_comment_likes}} Trophies</span> <br>
+                {% if has_twitter %}
+                <span class="twitter-trophies" style="display:inline-block; padding-top:5px; padding-bottom:5px"><a href="https://www.twitter.com/{{twitter_handle}}"><img class="profile-likes" src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-share-twitter.svg" alt="Like Clicked"> {{twitter_handle}}</a></span>
+                {% endif %}
+                {% endif %}
+                 <br>
+                <!-- <span class="post-sentence">{{ user_profile.profile.follower_count }} Followers</span>
+                <span class="post-sentence">{{ user_profile.profile.following_count }} Following</span> -->
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="infinite-container">
+            {% if not posts %} <!-- If not any posts -->
+            <div class="text-center" style="color: #676767; margin-top:65px; margin-bottom:400px;">
+
+                    <p>No Stories Yet...</p>
+                    <img src="{% static 'images/stories_gray.svg'%}" alt="No Stories Yet" style="width:75px">
+            </div>
+
+            {% else %}
+
+            {% if found_community %}
+
+            <div class="row full-post-summary standard-text hidden-md-up">
+                <span class="post-title-home">{{community_name}} Leaderboard</span>
+                <div class="who-to-follow-mobile">
+                    {% for member in trophy_leaderboard_pd.itertuples %}
+                    <div class="follow-suggestion" style="height:178px">
+                        <center>
+                            <a href="https://www.pine-sports.com/user/{{member.member}}"><img class="follow-profile" src="{{member.optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' alt="'avatar'"><span class="follow-member">{{member.rank}}. {{member.member}}</span></a>
+                            <br>{{member.wins}}-{{member.losses}}
+                            <div class="button_padding">
+                                {% if not member.follow_status %}
+                                <form method="POST" action="{% url 'follow_done_view' %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="followed_user_id" hidden value="{{ member.member.pk }}">
+                                    <button class="follow_button" style="margin-top: 5px;" type="submit">Follow</button>
+                                </form>
+                                {% else %}
+                                <button class="unfollow_button" style="margin-top: 5px;" type="submit">Following</button>
+                                {% endif %}
+                            </div>
+                        </center>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% endif %}
+
+            {% for post in posts %}
+            <div class="row full-post-summary infinite-item">
+                <div class="row summary-and-pic">
+                    <div class="post-summary">
+                        <h1 class="post-title-home">
+                            <a href="{% url 'stories:post-detail' post.id post.slug %}">{{ post.title }}</a>
+                        </h1>
+
+
+                        <div class="post-sport">
+
+                            {%if "NBA" in post.related_sport.name %}
+                            <span class="post-sport" style="display: inline-block; padding-top: 1px">Basketball</span>
+                            {% elif "MLB" in post.related_sport.name %}
+                            Baseball
+                            {% elif "NFL" in post.related_sport.name %}
+                            Football
+                            {% elif "NHL" in post.related_sport.name %}
+                            Hockey
+                            {% elif "UFC" in post.related_sport.name %}
+                            Mixed Martial Arts
+                            {% elif "PGA" in post.related_sport.name %}
+                            Golf
+                            {% else %}
+                            {{post.related_sport.name}}
+                            {%  endif %}
+                            {% if post.author.username == 'pine' %}
+                            <span class="ml-4 original_content"><img src="{% static 'images/pin.svg'%}" alt='pin' style="width:12px; margin-bottom:3px"> Pinned Post</span>
+                            {% elif post.first_sentence != "" and post.first_sentence and post.has_charts %}
+                            <span class="ml-4 original_analysis"><img src="{% static 'images/blue-oa.svg'%}" alt='original analysis' style="width:12px; margin-bottom:3px">  Original Analysis</span>
+                            {%  elif post.first_sentence != "" and post.first_sentence %}
+                            <span class="ml-4 original_content">Original Content</span>
+                            {%  endif %}
+                        </div><br>
+                        <h8>
+                            <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="{{ post.author.profile.optimized_image_url }}"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="{% url 'stories:user-posts' post.author %}">{{ post.author }}</a>
+                            {% if post.author == user or is_moderator %}
+                            <small class="ml-4">
+                                <a class="ml-4"
+                                   href="{% url 'stories:post-update' post.id post.slug %}"><img src="{% static 'images/black-edit.svg'%}" alt='edit' style="width:20px; margin-bottom:4px" title="Edit"></a>
+                                <a class="ml-4"
+                                   href="{% url 'stories:post-delete' post.id post.slug %}"><img src="{% static 'images/black-delete.svg'%}" alt='delete' style="width:22px; margin-bottom:2px" title="Delete"></a>
+                            </small>
+                            {%  endif %}
+                        </h8>
+
+                        <div class="post-sentence standard-text">
+                            <span class="mb-4">
+                                {% if post.first_sentence != "" and post.first_sentence != "\n" %}
+
+                                <div class="" style="margin-bottom: 10px!important"><a href="{% url 'stories:post-detail' post.id post.slug %}">
+                                    {% if post.has_image %}
+                                    {% if "projection" in post.first_image.lower or "chart" in post.first_image_classes.lower %}
+                                    <img class="{{post.first_image_classes}}" src="{{post.first_image}}" alt='post image' loading="lazy" class="first-image-projection" onerror="this.style.display='none'"/>
+                                    {% else %}
+                                    <img class="{{post.first_image_classes}}" src="{{post.first_image}}" alt='post image' loading="lazy" class="first-image" onerror="this.style.display='none'"/>
+                                    {% endif %}
+                                    {% elif post.has_charts %}
+                                    <div style="margin-bottom: 10px" class="hidden-md-up"><iframe loading="lazy" title="{{post.title_string}}" style="width: 100%!important; max-height:118vw!important; height:118vw!important"; src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe></div>
+                                    <div style="margin-bottom: 10px" class="hidden-sm-down"><iframe loading="lazy" title="{{post.title_string}}" style="width: 100%!important; max-height:540px!important; height:540px!important"; src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe></div>
+                                    {% endif %}
+                                    {{ post.first_paragraph|safe|truncatewords_html:post.paragraph_cutoff }}
+                                    {% if post.first_paragraph_count < post.word_count and post.first_paragraph_count <= post.paragraph_cutoff  %}
+                                    <span style="display: block; margin-bottom:14px;"></span><center style="margin-bottom:-3px"><span class="read-time">Read more | {{post.read_minutes}} min read</span></center><span style="display: block; margin-bottom:12px;"></span>
+                                    {% endif %}
+                                </a></div>
+                                {% elif post.has_image %}
+                                <div class=""><a href="{% url 'stories:post-detail' post.id post.slug %}">
+                                    <img class="{{post.first_image_classes}}" src="{{post.first_image}}" alt='post image' loading="lazy" style="width: 100%!important; max-height: 120vw!important; object-fit: cover; border-radius:10px;" onerror="this.style.display='none'"/>
+                                </a></div>
+                                {% elif post.has_iframes %}
+                                <div class="hidden-sm-down">
+                                    <iframe style="width:660px!important; height:370px!important; border-radius:10px; max-height:52vw!important; z-index: 1"; src="{{post.first_iframe_src}}?hd=1&loop=1&playsinline=1" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                                </div>
+                                <div style="margin-bottom: 10px" class="hidden-md-up"><div class="square-box"><div class="widescreen"><div class="mute"><a style="color:white" onclick="mute('{{post.id}}')"><img id="{{post.id}} image" src="{% static 'images/mute.svg'%}" alt='mute' class="likes-comments-img"></a></div><iframe id="{{post.id}} iframe" style="width: 100%!important; height:70vw!important; max-height:100vw!important; position: absolute"; src="{{post.first_iframe_src}}?hd=1&controls=0&loop=1&playsinline=1&mute=1&muted=1" title="{{post.title_string}}" frameborder="0" onload="this.style.opacity = 1"></iframe></div></div></div>
+                                {% elif post.has_charts %}
+                                <div style="margin-bottom: 10px" class="hidden-md-up"><iframe loading="lazy" title="{{post.title_string}}" style="width: 100%!important; max-height:118vw!important; height:118vw!important"; src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe></div>
+                                <div style="margin-bottom: 10px" class="hidden-sm-down"><iframe loading="lazy" title="{{post.title_string}}" style="width: 100%!important; max-height:540px!important; height:540px!important"; src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe></div>
+                                {% elif post.has_embedly %}
+                                {% if post.first_embedly_domain == "twitter" %}
+                                <div class="embedly-twitter">{{ post.content|remove_ps|safe }}</div>
+                                {% elif post.first_embedly_domain == "youtube" %}
+                                <div class="embedly-video">{{ post.content|remove_ps|safe }}</div>
+                                {% elif post.first_embedly_domain == "streamable" %}
+                                <div class="hembedly-video">{{ post.content|remove_ps|safe }}</div>
+                                {% else %}
+                                <div class="embedly-article">{{ post.content|remove_ps|safe }}</div>
+                                {% endif %}
+                                {% endif %}
+                        </span>
+                        </div>
+
+                    </div>
+                </div>
+                <hr class="hidden-md-up" style="margin-right:-15px; margin-left:-15px;margin-top:-4px;margin-bottom:20px">
+                <hr class="hidden-sm-down" style="margin-right:-15px; margin-left:-15px;margin-top:2px;margin-bottom:20px">
+                <div class="row likes-comments-date-home">
+                    <div class="likes-comments">
+                        <form action="{% url 'stories:like_post' post.pk %}" method="POST">
+                            {% csrf_token %}
+
+
+                            {% if request.user in post.likes.all %}
+
+                            <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                                <img src="{% static 'images/black-like - clicked.svg'%}" alt='like clicked' class="likes-comments-img" title="Like">
+                                {{post.likes.count}}
+                            </a>
+
+
+                            {% elif user.is_authenticated %}
+
+                            <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                                <img src="{% static 'images/black-like - not clicked.svg'%}" alt='like not clicked' class="likes-comments-img" title="Like">
+                                {{post.likes.count}}
+                            </a>
+
+                            {% else %}
+
+                            <a href="{% url 'stories:post-detail' post.id post.slug %}">
+                                <img src="{% static 'images/black-like - not clicked.svg'%}" alt='like not clicked' class="likes-comments-img" title="Like">
+                                {{post.likes.count}}
+                            </a>
+
+                            {% endif %}
+
+                            <a href="{% url 'stories:post-detail' post.id post.slug %}"><img src="{% static 'images/black-comment.svg'%}" alt='comments' class="likes-comments-img">
+                                {{post.number_of_comments}}
+                            </a>
+
+                            <span class="social-dropdown">
+                                <img onclick="myFunction()" src="{% static 'images/black-share.svg'%}" alt='share' style='width:25px;margin-left:1px'>
+                                <div class="social-dropdown-content">
+                                    {% post_to_facebook post.get_absolute_url "<img src='https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-share-facebook.svg' alt='Facebook share' name='fb_share' class='img-responsive mr-1' src='' style='width:25px;'>Facebook" %}
+                                    {% post_to_twitter "{{post.title_string}}" post.get_absolute_url "<img src='https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-share-twitter.svg' alt='Twitter share' name='twitter_share' class='img-responsive mr-1' src='' style='width:25px;'>Twitter" %}
+                                    {% post_to_reddit "{{post.title_string}}" post.get_absolute_url "<img src='https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-share-reddit.svg' alt='Reddit share' name='reddit_share' class='img-responsive mr-1' src='' style='width:25px;'>Reddit" %}
+                                </div>
+                            </span>
+
+                        </form>
+                    </div>
+                    <div class="post-date-home">
+                        {% if post.publish %}
+                        {{ post.publish | timesince | upto:','  }} ago
+                        {% else %}
+                        Draft Post
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+           {% if got_nfl_top_charts and forloop.counter0 == nfl_charts_placement and not community %}
+            <div class="row full-post-summary">
+                <div class="post-title-home">Top NFL Player Prop Searches</div>
+                <h8>
+                    <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/media/profile_pics/Screen_Shot_2021-02-27_at_4.38.17_PM.png"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="/user/pine">pine</a>
+                 </h8>
+                <div class="prop-chart-text">Here are the most popular Pine NFL player prop searches.</div>
+                <div class="top-charts">
+                    {% for chart in nfl_top_charts.itertuples %}
+                    <div><a href="{{chart.link}}" target='popup' onclick='window.open("{{chart.link}}","popup","width=810,height=1070");'><img class="prop-searches" style="border-radius:20px" src='{% static chart.filename %}'></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if got_nba_top_charts and forloop.counter0 == nba_charts_placement and not community %}
+            <div class="row full-post-summary">
+                <div class="post-title-home">Top NBA Player Prop Searches</div>
+                <h8>
+                    <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/media/profile_pics/Screen_Shot_2021-02-27_at_4.38.17_PM.png"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="/user/pine">pine</a>
+                 </h8>
+                <div class="prop-chart-text">Here are the most popular Pine NBA player prop searches.</div>
+                <div class="top-charts">
+                    {% for chart in nba_top_charts.itertuples %}
+                    <div><a href="{{chart.link}}" target='popup' onclick='window.open("{{chart.link}}","popup","width=810,height=1070");'><img class="prop-searches" style="border-radius:20px" src='{% static chart.filename %}'></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if got_nhl_top_charts and forloop.counter0 == nhl_charts_placement and not community %}
+            <div class="row full-post-summary">
+                <div class="post-title-home">Top NHL Player Prop Searches</div>
+                <h8>
+                    <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/media/profile_pics/Screen_Shot_2021-02-27_at_4.38.17_PM.png"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="/user/pine">pine</a>
+                 </h8>
+                <div class="prop-chart-text">Here are the most popular Pine NHL player prop searches.</div>
+                <div class="top-charts">
+                    {% for chart in nhl_top_charts.itertuples %}
+                    <div><a href="{{chart.link}}" target='popup' onclick='window.open("{{chart.link}}","popup","width=810,height=1070");'><img class="prop-searches" style="border-radius:20px" src='{% static chart.filename %}'></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if got_mlb_top_charts and forloop.counter0 == mlb_charts_placement and not community %}
+            <div class="row full-post-summary">
+                <div class="post-title-home">Top MLB Player Prop Searches</div>
+                <h8>
+                    <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/media/profile_pics/Screen_Shot_2021-02-27_at_4.38.17_PM.png"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="/user/pine">pine</a>
+                 </h8>
+                <div class="prop-chart-text">Here are the most popular Pine MLB player prop searches.</div>
+                <div class="top-charts">
+                    {% for chart in mlb_top_charts.itertuples %}
+                    <div><a href="{{chart.link}}" target='popup' onclick='window.open("{{chart.link}}","popup","width=810,height=1070");'><img class="prop-searches" style="fborder-radius:20px" src='{% static chart.filename %}'></a></div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% for ad in ads.itertuples %}
+            {% if forloop.parentloop.counter0 == ad.post_number %}
+            <div class="row full-post-summary"><a href="{{ad.link}}" target='popup' onclick='window.open("{{ad.link}}","popup","width=810,height=1070");'>
+                <div class="row summary-and-pic">
+                <div class="post-summary">
+                <div class="post-title-home">{{ad.title}}</div></a>
+                <h8>
+                    <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/media/profile_pics/Screen_Shot_2021-02-27_at_4.38.17_PM.png"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="/user/pine">pine</a>
+                 </h8>
+                <br><br>
+                <div>
+                    <div><a href="{{ad.link}}" target='popup' onclick='window.open("{{ad.link}}","popup","width=810,height=1070");'><img style="border-radius:20px" src='{% static ad.image %}'></a></div>
+                </div>
+            </div>
+            </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% if forloop.counter0 == fantasy_counter and not community and sort == "top" %}
+            <div class="row full-post-summary">
+                <div class="post-title-home">Top Fantasy Sites</div>
+                <h8>
+                    <img
+                                    class="profile-icon rounded-circle"
+                                    style="margin-right: 10px"
+                                    src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/media/profile_pics/Screen_Shot_2021-02-27_at_4.38.17_PM.png"
+                                    alt="author avatar"
+                                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                            />
+                            <a class="post-author" href="/user/pine">pine</a>
+                 </h8>
+                <div class="prop-chart-text">Pine's got you covered with sign-up bonuses and prop sheets for all of the most popular fantasy sites.</div>
+                <div class="top-charts">
+                    {% for site in fantasy_sites.itertuples %}
+                    <div class="fantasy-box">
+                        <center><a href="{{site.link}}" target='popup' onclick='window.open("{{site.link}}","popup");'>{% if site.has_cheatsheet %}<img class="fantasy-image" src='{% static site.image %}'>{% else %}<img class="fantasy-image fantasy-site-no-cheatsheet" src='{% static site.image %}'>{% endif %}
+                            <br>
+                            <span class="standard-text">{{site.promotion | safe}}{% if site.has_code %} <br>Just use the invite code: <strong>{{site.code}}</strong>{% endif %}</span>
+                        </a></center>
+                        <br>
+                        {% if site.has_cheatsheet %}
+                        <div class="post-sentence standard-text" style="color:rgb(0,0,0,.7)">
+                            <center>
+                            <span class="tool-button"><a onclick="getSearchProps{{site.name}}()" style="margin-bottom:10px;margin-top:5px; display:inline-block;"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/black-search-circle.svg" alt="Predict" style="display:inline; width:25px; margin-right:9px; margin-top:-4px"><strong style="color:rgba(0,0,0,.7)">Search & Analyze Player Props</strong></a></span>
+                            <span id="search-props-{{site.name}}" style="color:#274970;line-height:30px;display:none"><br>
+                                <span class="explore-predict-button"><a href="/{{site.name}}/NFL/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/football.svg" alt="Predict" style="display:inline; width:20px; margin-right:10px; margin-top:-4px">NFL</a></span>&emsp;
+                                <span class="explore-predict-button" style="margin-left:1px"><a href="/{{site.name}}/NBA/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/basketball.svg" alt="Predict" style="display:inline; width:23px; margin-right:8px; margin-top:-4px;">NBA</a></span><br>
+                                <span class="explore-predict-button" style="padding-right:14px!important"><a href="/{{site.name}}/NHL/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/hockey.svg" alt="Predict" style="display:inline; width:20px; margin-right:10px; margin-top:-4px">NHL</a></span>&emsp;
+                                <span class="explore-predict-button"><a href="/{{site.name}}/MLB/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/baseball.svg" alt="Predict" style="display:inline; width:20px; margin-right:10px; margin-top:-4px">MLB</a></span>
+                            </span>
+                             </center>
+                        </div>
+                        {%endif%}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+
+            {% if suggest_followers and user.is_authenticated and forloop.counter0 == follow_placement %}
+            <div class="row full-post-summary standard-text hidden-lg-down">
+                Popular Pine members to follow
+                <div class="who-to-follow">
+                    {% for member in members_to_follow.itertuples %}
+                    <div class="follow-suggestion">
+                        <center>
+                            <a href="https://www.pine-sports.com/user/{{member.member}}"><img class="follow-profile" src="{{member.optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' alt="'avatar'"><span class="follow-member">{{member.member}}</span></a>
+                            <div class="button_padding">
+                                <form method="POST" action="{% url 'follow_done_view' %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="followed_user_id" hidden value="{{ member.member.pk }}">
+                                    <button class="follow_button" style="margin-top: 5px;" type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </center>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row full-post-summary standard-text hidden-md-down hidden-xl-up">
+                Popular Pine members to follow
+                <div class="who-to-follow-mobile">
+                    {% for member in members_to_follow.itertuples %}
+                    <div class="follow-suggestion">
+                        <center>
+                            <a href="https://www.pine-sports.com/user/{{member.member}}"><img class="follow-profile" src="{{member.optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' alt="'avatar'"><span class="follow-member">{{member.member}}</span></a>
+                            <div class="button_padding">
+                                <form method="POST" action="{% url 'follow_done_view' %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="followed_user_id" hidden value="{{ member.member.pk }}">
+                                    <button class="follow_button" style="margin-top: 5px;" type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </center>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row full-post-summary standard-text hidden-lg-up hidden-sm-down">
+                Popular Pine members to follow
+                <div class="who-to-follow">
+                    {% for member in members_to_follow.itertuples %}
+                    <div class="follow-suggestion">
+                        <center>
+                            <a href="https://www.pine-sports.com/user/{{member.member}}"><img class="follow-profile" src="{{member.optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' alt="'avatar'"><span class="follow-member">{{member.member}}</span></a>
+                            <div class="button_padding">
+                                <form method="POST" action="{% url 'follow_done_view' %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="followed_user_id" hidden value="{{ member.member.pk }}">
+                                    <button class="follow_button" style="margin-top: 5px;" type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </center>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="row full-post-summary standard-text hidden-md-up">
+                Popular Pine members to follow
+                <div class="who-to-follow-mobile">
+                    {% for member in members_to_follow.itertuples %}
+                    <div class="follow-suggestion">
+                        <center>
+                            <a href="https://www.pine-sports.com/user/{{member.member}}"><img class="follow-profile" src="{{member.optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' alt="'avatar'"><span class="follow-member">{{member.member}}</span></a>
+                            <div class="button_padding">
+                                <form method="POST" action="{% url 'follow_done_view' %}">
+                                    {% csrf_token %}
+                                    <input type="number" name="followed_user_id" hidden value="{{ member.member.pk }}">
+                                    <button class="follow_button" style="margin-top: 5px;" type="submit">Follow</button>
+                                </form>
+                            </div>
+                        </center>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %} <!-- if not posts -->
+        </div>
+
+        {% if page_obj.has_next %}
+        <div class="loading">
+            <center><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></center>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="infinite-more-link" style="color:white; display:none">Next</a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+{% block script %}
+
+<script>
+
+    $('.who-to-follow').slick({
+      infinite: false,
+      slidesToShow: 3,
+      slidesToScroll: 1
+    });
+
+    $('.who-to-follow-mobile').slick({
+      infinite: false,
+      slidesToShow: 2,
+      slidesToScroll: 2
+    });
+
+    $('.top-charts').slick({
+      infinite: true,
+      lazyLoad: 'ondemand',
+      slidesToShow: 1,
+      slidesToScroll: 1
+    });
+    $('.discord-leaderboard-mobile').slick({
+      infinite: false,
+      slidesToShow: 3,
+      slidesToScroll: 1
+    });
+
+
+</script>
+
+<script type="text/javascript">
+    function likedislike (id, value) {
+        var id = id;
+        var value = value;
+        var url = "{% url 'stories:postlikepreference' %}";
+        console.log(url);
+        $.ajax({
+        url: url,
+        type: "GET",
+        data: {
+        
+          "id": id,
+          "value": value,
+        //   "csrfmiddlewaretoken": "{{ csrf_token }}"
+
+        },
+        success: function (data) {
+            console.log(data.html)
+            var result = data.html;
+            $('#L-'+id).html(result);
+          
+        }
+      });
+
+    }
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="{% static 'blog/js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/infinite.min.js' %}" type="text/javascript"></script>
+
+<script>
+
+    var explore_expanded = 0;
+    var predict_expanded = 0;
+    var prop_expanded = 0;
+
+    {% if sort != "user" and not community %}
+    function update_users_count() {
+        $('#users b').animate({
+            counter: {{model_count}}
+        }, {
+            duration: 6000,
+            easing: 'swing',
+            step: function(now) {
+                $(this).text(Math.ceil(now).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+            },
+            complete: update_users_count
+        });
+    };
+
+    update_users_count();
+    {% endif %}
+
+    function getTrophyLeaderboard(){
+        document.getElementById('predict-leaderboard').style.display="none";
+        document.getElementById('predict-leaderboard-tab').style.backgroundColor = "#fafbfc";
+        document.getElementById('liic-leaderboard').style.display="none";
+        document.getElementById('liic-leaderboard-tab').style.backgroundColor = "#fafbfc";
+        document.getElementById('trophy-leaderboard').style.display="inline";
+        document.getElementById('trophy-leaderboard-tab').style.backgroundColor = "white";
+    }
+
+    function getLIICLeaderboard(){
+        document.getElementById('trophy-leaderboard').style.display="none";
+        document.getElementById('trophy-leaderboard-tab').style.backgroundColor = "#fafbfc";
+        document.getElementById('predict-leaderboard').style.display="none";
+        document.getElementById('predict-leaderboard-tab').style.backgroundColor = "#fafbfc";
+        document.getElementById('liic-leaderboard').style.display="inline";
+        document.getElementById('liic-leaderboard-tab').style.backgroundColor = "white";
+    }
+
+    function getPredictLeaderboard(){
+        document.getElementById('trophy-leaderboard').style.display="none";
+        document.getElementById('trophy-leaderboard-tab').style.backgroundColor = "#fafbfc";
+        document.getElementById('predict-leaderboard').style.display="inline";
+        document.getElementById('predict-leaderboard-tab').style.backgroundColor = "white";
+        document.getElementById('liic-leaderboard').style.display="none";
+        document.getElementById('liic-leaderboard-tab').style.backgroundColor = "#fafbfc";
+
+    }
+
+    function getPredictLeaderboardChoice(){
+
+        var e = document.getElementById("leaderboard-sport");
+        var sport = e.options[e.selectedIndex].text;
+        var e = document.getElementById("leaderboard-prediction");
+        var prediction = e.options[e.selectedIndex].text;
+
+        if (sport == "NFL" && prediction == "Winner"){
+            document.getElementById('nfl-winner').style.display="inline";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NFL" && prediction == "Spread"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="inline";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NFL" && prediction == "Over-Under"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="inline";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NBA" && prediction == "Winner"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="inline";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NBA" && prediction == "Spread"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="inline";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NBA" && prediction == "Over-Under"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="inline";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NHL" && prediction == "Winner"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="inline";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NHL" && prediction == "Spread"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="inline";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "NHL" && prediction == "Over-Under"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="inline";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "MLB" && prediction == "Winner"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="inline";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "MLB" && prediction == "Spread"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="inline";
+            document.getElementById('mlb-ou').style.display="none";
+        }
+
+        if (sport == "MLB" && prediction == "Over-Under"){
+            document.getElementById('nfl-winner').style.display="none";
+            document.getElementById('nfl-ats').style.display="none";
+            document.getElementById('nfl-ou').style.display="none";
+
+            document.getElementById('nba-winner').style.display="none";
+            document.getElementById('nba-ats').style.display="none";
+            document.getElementById('nba-ou').style.display="none";
+
+            document.getElementById('nhl-winner').style.display="none";
+            document.getElementById('nhl-ats').style.display="none";
+            document.getElementById('nhl-ou').style.display="none";
+
+            document.getElementById('mlb-winner').style.display="none";
+            document.getElementById('mlb-ats').style.display="none";
+            document.getElementById('mlb-ou').style.display="inline";
+        }
+    }
+
+    function getExploreSports(){
+        if (explore_expanded == 0){
+            document.getElementById('explore-sports').style.display="inline";
+            explore_expanded = 1;
+        }
+        else{
+            document.getElementById('explore-sports').style.display="none";
+            explore_expanded = 0;
+        }
+    }
+
+    function getPredictSports(){
+        if (predict_expanded == 0){
+            document.getElementById('predict-sports').style.display="inline";
+            predict_expanded = 1;
+        }
+        else{
+            document.getElementById('predict-sports').style.display="none";
+            predict_expanded = 0;
+        }
+    }
+
+    function getSearchProps(){
+        if (prop_expanded == 0){
+            document.getElementById('search-props').style.display="inline";
+            prop_expanded = 1;
+        }
+        else{
+            document.getElementById('search-props').style.display="none";
+            prop_expanded = 0;
+        }
+    }
+
+    {% for site in fantasy_sites.itertuples %}
+
+    var prop_expanded_{{site.name}} = 0;
+
+    function getSearchProps{{site.name}}(){
+        if (prop_expanded_{{site.name}} == 0){
+            document.getElementById('search-props-{{site.name}}').style.display="inline";
+            prop_expanded_{{site.name}} = 1;
+        }
+        else{
+            document.getElementById('search-props-{{site.name}}').style.display="none";
+            prop_expanded_{{site.name}} = 0;
+        }
+    }
+    {% endfor %}
+
+    {% if not user.is_authenticated %}
+
+    //setTimeout(function(){
+    //   alert('Log in for free access to the best sports analytics and AI modeling tools on the internet.');
+    //}, 8000);
+
+    {% endif %}
+
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+
+        offset: 'bottom-in-view',
+
+        onBeforePageLoad: function () {
+            $('.loading').show();
+        },
+        onAfterPageLoad: function () {
+            $('.loading').hide();
+        }
+
+    });
+
+    //stops video by refreshing iframe
+    function stop(title){
+        title_iframe = title.concat(" iframe");
+        document.getElementById(title_iframe).src = document.getElementById(title_iframe).src
+    }
+
+    //this variable stores a video title if it is unmuted
+    var unmuted = "";
+    let unmuted_boolean = false;
+
+    //this mutes and unmutes videos
+    function mute(title){
+
+        //gets the title of the iframe and mute image
+        title_iframe = title.concat(" iframe");
+        title_image = title.concat(" image");
+
+        //gets the source of the iframe, checks if its muted or unmuted
+        var src = document.getElementById(title_iframe).src;
+        var muted = src.split("muted=");
+        var link = src.split("?")
+
+        //debug
+        //alert(muted[1]);
+        //alert(link[0]);
+        //alert(unmuted)
+
+        //if muted, first check if there are any other videos unmuted, if so, mute that video, then unmute the selected video
+        if (muted[1]=="1"){
+
+            if (unmuted == ""){
+                unmuted = title;
+            }
+            else{
+                unmuted_iframe = unmuted.concat(" iframe");
+                unmuted_image = unmuted.concat(" image");
+
+                var unmuted_src = document.getElementById(unmuted_iframe).src;
+                var unmuted_link = unmuted_src.split("?")
+
+                document.getElementById(unmuted_iframe).src = unmuted_link[0].concat("?hd=1&controls=0&loop=1&playsinline=1&mute=1&muted=1");
+                document.getElementById(unmuted_image).src = "{% static 'images/mute.svg'%}";
+
+                unmuted = title;
+            }
+
+            document.getElementById(title_iframe).src = link[0].concat("?hd=1&controls=0&loop=1&playsinline=1&mute=0&muted=0");
+            document.getElementById(title_image).src = "{% static 'images/unmute.svg'%}";
+            unmuted_boolean = true;
+        }
+
+        //if unmuted, then mute the video
+        else{
+            document.getElementById(title_iframe).src = link[0].concat("?hd=1&controls=0&loop=1&playsinline=1&mute=1&muted=1");
+            document.getElementById(title_image).src = "{% static 'images/mute.svg'%}";
+            unmuted = "";
+            unmuted_boolean = false;
+        }
+
+    }
+
+    function isInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+
+        );
+    }
+
+    //var past_first_post = false;
+    var past_first_post = true;
+    document.addEventListener('scroll', function () {
+        if (unmuted_boolean){
+            unmuted_iframe = unmuted.concat(" iframe");
+            rect = document.getElementById(unmuted_iframe).getBoundingClientRect();
+            if ((rect.bottom < 0) || (rect.top > document.documentElement.clientHeight)) {
+                stop(unmuted);
+            }
+        }
+        top_div = document.getElementById("top").getBoundingClientRect();
+
+        if ($(window).width() < 690) {
+
+            if (top_div.top > 120){
+                document.getElementById("top-loading").style.display = "inline";
+                $('.top-loading').show();
+                location.reload();
+             }
+        }
+    }, {
+        passive: true
+    });
+
+</script>
+
+{% endblock %}

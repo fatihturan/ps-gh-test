@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<html lang="en">
+<style>
+
+
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #1f1f1f;
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .logo {
+      height: 35px;
+    }
+
+    .menu-icon {
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 20px;
+      width: 30px;
+      margin-right: 25px;
+    }
+
+    .menu-icon span {
+      width: 100%;
+      height: 2px;
+      background-color: white;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-icon.open span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+
+    .menu-icon.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-icon.open span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    .menu-dropdown {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #1f1f1f;
+      padding: 10px;
+      display: none;
+      margin-right: 25px;
+    }
+
+    .menu-dropdown.open {
+      display: block;
+    }
+
+    .menu-dropdown a {
+      display: block;
+      color: white;
+      text-decoration: none;
+      padding: 5px 0;
+    }
+
+    .nested-menu {
+      padding-left: 20px;
+    }
+
+    .nested-menu a {
+      font-size: 0.9em;
+    }
+
+</style>
+
+  <div class="header">
+    <img class="logo" src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/pine_logo_new_white.png" alt="Pine Sports Logo">
+    <div class="menu-icon" id="menuIcon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-dropdown" id="menuDropdown">
+      <a href="https://pine-sports.com/">News</a>
+      <!-- <a href="https://pine-sports.com/trends/">Trends</a> -->
+      <a href="#" id="playerPropSheets">Player Prop Sheets</a>
+      <div class="nested-menu" id="playerPropSheetsMenu" style="display: none;">
+        <a href="https://www.pine-sports.com/stats/props/NFL/">NFL</a>
+        <a href="https://www.pine-sports.com/stats/props/NBA/">NBA</a>
+        <a href="https://www.pine-sports.com/stats/props/NHL/">NHL</a>
+        <a href="https://www.pine-sports.com/stats/props/MLB/">MLB</a>
+      </div>
+      <a href="#" id="gamePredictions">Game Predictions</a>
+      <div class="nested-menu" id="gamePredictionsMenu" style="display: none;">
+        <a href="https://www.pine-sports.com/predict/NFL/">NFL</a>
+        <a href="https://www.pine-sports.com/predict/NBA/">NBA</a>
+        <a href="https://www.pine-sports.com/predict/NHL/">NHL</a>
+        <a href="https://www.pine-sports.com/predict/MLB/">MLB</a>
+      </div>
+      <a href="#" id="historicalGameData">Historical Game Data</a>
+      <div class="nested-menu" id="historicalGameDataMenu" style="display: none;">
+        <a href="https://www.pine-sports.com/stats/NFL/Generating">NFL</a>
+        <a href="https://www.pine-sports.com/stats/NBA/Generating">NBA</a>
+        <a href="https://www.pine-sports.com/stats/NHL/Generating">NHL</a>
+        <a href="https://www.pine-sports.com/stats/MLB/Generating">MLB</a>
+      </div>
+      <a href="https://www.pine-sports.com/help/">Help</a>
+      <a href="https://www.pine-sports.com/settings/">Settings</a>
+      {% if user.is_authenticated %}
+      <a href="https://www.pine-sports.com/logout/">Logout</a>
+      {% else %}
+      <a href="https://www.pine-sports.com/login/">Login</a>
+      {% endif %}
+
+    </div>
+  </div>
+
+<script>
+    const menuIcon = document.getElementById('menuIcon');
+    const menuDropdown = document.getElementById('menuDropdown');
+
+
+    // Toggle menu dropdown
+    menuIcon.addEventListener('click', () => {
+      menuIcon.classList.toggle('open');
+      menuDropdown.classList.toggle('open');
+    });
+
+    //Nested menu dropdowns
+    document.addEventListener('DOMContentLoaded', function() {
+      const playerPropSheets = document.getElementById('playerPropSheets');
+      const playerPropSheetsMenu = document.getElementById('playerPropSheetsMenu');
+      const gamePredictions = document.getElementById('gamePredictions');
+      const gamePredictionsMenu = document.getElementById('gamePredictionsMenu');
+      const historicalGameData = document.getElementById('historicalGameData');
+      const historicalGameDataMenu = document.getElementById('historicalGameDataMenu');
+
+      playerPropSheets.addEventListener('click', function(e) {
+        e.preventDefault();
+        playerPropSheetsMenu.style.display = playerPropSheetsMenu.style.display === 'none' ? 'block' : 'none';
+      });
+
+      gamePredictions.addEventListener('click', function(e) {
+        e.preventDefault();
+        gamePredictionsMenu.style.display = gamePredictionsMenu.style.display === 'none' ? 'block' : 'none';
+      });
+
+      historicalGameData.addEventListener('click', function(e) {
+        e.preventDefault();
+        historicalGameDataMenu.style.display = historicalGameDataMenu.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+</script>

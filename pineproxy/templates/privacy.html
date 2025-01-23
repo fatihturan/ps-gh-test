@@ -1,0 +1,131 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<style>
+
+    ul {
+        list-style-type: disc!important; /* This will show the default bullet points */
+        margin-left: 20px; /* Adds space between the bullets and the text */
+        padding-left: 0; /* Adjust the padding as needed */
+        line-height: 28px;
+        margin-bottom: 28px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 17px;
+        font-weight: 300;
+        letter-spacing: 0.000em;
+        color: rgba(0,0,0,.7);
+    }
+
+    h2 {
+        margin-bottom:28px;
+    }
+
+</style>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+<div class="all-content">
+
+    <div class="user-post-and-comments">
+
+        <div class="user-post row">
+            <div class="post-title-detail"><center>Privacy Policy</center></div>
+
+            <h2>1. Introduction</h2>
+            <p>Welcome to Pine Sports (“Pine Sports Inc.,” "SharpSports Inc.", “we,” “us,” or “our”). This Privacy Policy describes how we collect, use, and disclose information from users who access or use our website and services (the "Service"). By using our Service, you agree to the collection and use of information in accordance with this policy.</p>
+
+            <h2>2. Information We Collect</h2>
+            <p>We collect several types of information, including:</p>
+            <ul>
+                <li><strong>Personal Data:</strong> This may include your name, email address, phone number, billing information, and any other data you provide us.</li>
+                <li><strong>Usage Data:</strong> This includes your IP address, browser type, pages visited, time spent on the Service, and other related analytics.</li>
+                <li><strong>Cookies:</strong> Small files stored on your device to track preferences and enhance the user experience.</li>
+            </ul>
+
+            <h2>3. How We Use Your Information</h2>
+            <p>Pine Sports uses the collected data for various purposes, including:</p>
+            <ul>
+                <li>Providing and maintaining the Service</li>
+                <li>Improving user experience and customer service</li>
+                <li>Sending periodic newsletters, marketing, or promotional materials</li>
+                <li>Complying with legal obligations</li>
+            </ul>
+
+            <h2>4. Sharing of Your Personal Information</h2>
+            <p>We do not sell, trade, or rent your personal information to third parties. However, we may share your information with:</p>
+            <ul>
+                <li>Service providers to process data and assist us in delivering the Service</li>
+                <li>Third-party partners to help us with advertising and marketing efforts</li>
+                <li>Law enforcement agencies if required by law</li>
+            </ul>
+
+            <h2>5. Cookies and Tracking Technologies</h2>
+            <p>We use cookies and similar technologies to track activity on our Service and hold certain information. You can instruct your browser to refuse all cookies or indicate when a cookie is being sent. However, if you do not accept cookies, some parts of our Service may not function properly.</p>
+
+            <h2>6. Security of Your Data</h2>
+            <p>The security of your personal data is important to us. We use commercially acceptable methods to protect your data, but remember that no method of transmission over the internet is 100% secure.</p>
+
+            <h2>7. Data Retention</h2>
+            <p>We will retain your personal data only as long as is necessary for the purposes set out in this Privacy Policy. We will retain and use your data to comply with legal obligations, resolve disputes, and enforce agreements.</p>
+
+            <h2>8. Your Data Protection Rights</h2>
+            <p>Depending on your location, you may have the following rights regarding your personal data:</p>
+            <ul>
+                <li>The right to access, update, or delete the information we have on you</li>
+                <li>The right to object to our processing of your personal data</li>
+                <li>The right to withdraw consent for us to process your data</li>
+            </ul>
+
+            <h2>9. Links to Other Sites</h2>
+            <p>Our Service may contain links to third-party sites that are not operated by us. We advise you to review the privacy policy of every site you visit. We have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party websites or services.</p>
+
+            <h2>10. Children's Privacy</h2>
+            <p>Our Service is not intended for individuals under the age of 18. We do not knowingly collect personal data from children under 18. If we discover that a child has provided us with personal information, we will delete that data as quickly as possible.</p>
+
+            <h2>11. Changes to This Privacy Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page. You are advised to review this Privacy Policy periodically for any changes.</p>
+
+            <h2>12. Contact Us</h2>
+            <p>If you have any questions or concerns about this Privacy Policy, you can contact us at:</p>
+            <ul>
+                <li>Email: <a href="mailto:support@pinesports.com">support@pinesports.com</a></li>
+                <li>Address: Pine Sports, Inc., [Insert Address]</li>
+            </ul>
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock content %}

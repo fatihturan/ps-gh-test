@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    
+</head>
+
+<div class="container pt-3">
+    <div class="col-md-12 content-section hovered-tweet" style="margin-top:20px;">
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <h4><li  {% if message.tags %} class=" {{ message.tags }} text-center" {% endif %}> {{ message }} </li></h4>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <div class="col-md-8">
+            <form method="POST" action="{% url 'beta_code' %}">
+            <h4>Beta Code Generator</h4>
+                <div class="">
+                    <label>How many codes do you need?</label>
+                    <input class="m-1" type="number" name="number_of_code">
+                </div>
+            <input type="submit" class="btn btn-warning mt-3">
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+
+{% endblock content %}

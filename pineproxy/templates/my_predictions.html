@@ -1,0 +1,241 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-textdirection="ltr" class="loading">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" media="screen" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" media="print" onload="this.media='all'">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '137862831678866');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=137862831678866&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+</head>
+
+<style>
+
+    table {
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        font-weight: 400;
+        color:#284970;
+        max-width:vw;
+        border-collapse: separate!important;
+        border-spacing: 0;
+        border-radius:16px;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    table tr td:first-of-type {
+       border-left: 1px solid #DDD;
+    }
+
+    table tr td:last-of-type {
+       border-right: 1px solid #DDD;
+    }
+
+    table tr:first-of-type td:not(:first-child):not(:last-child){
+      border-top: 1px solid #DDD;
+    }
+
+    table tr:first-of-type th:not(:first-child):not(:last-child){
+      border-top: 1px solid #DDD;
+    }
+
+    table tr:last-of-type td:not(:first-child):not(:last-child){
+      border-bottom: 1px solid #DDD;
+    }
+
+    table tr:first-of-type th:first-child {
+        border-top: 1px solid #DDD;
+        border-top-left-radius: 15px;
+        padding-left:10px;
+    }
+
+    table tr:first-of-type th:last-child {
+        border-top: 1px solid #DDD;
+        border-top-right-radius: 15px;
+        padding-right:10px;
+    }
+
+    table tr:last-of-type td:last-child {
+        border-right: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-bottom-right-radius: 15px;
+    }
+
+    table tr:last-of-type td:first-child {
+        border-left: 1px solid #DDD;
+        border-bottom:  1px solid #DDD;
+        border-bottom-left-radius: 15px;
+    }
+
+    tr{
+        text-align:center!important;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    th{
+        text-align:center!important;
+        font-weight: 600;
+        background-color: #fafbfc;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    td{
+        background-color: #ffffff;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    .title{
+        font-family: 'Raleway', sans-serif;
+        font-size: 85px;
+        font-weight: 700;
+        color:#284970;
+    }
+
+    @media screen and (max-width: 800px) {
+        table {
+            font-size: 7px;
+        }
+        .title{
+            font-size: 45px;
+        }
+    }
+</style>
+
+{% include "blog/darkmode.html" %}
+{# <div>{% include "banner.html" %}</div> #}
+
+<body data-open="click" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns">
+<div style="background-color:#ffffff;width:100%;height:100%; padding-right:10px; padding-left:10px; margin-top:-15px">
+    <p style="padding-top:30px"><img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;" class="brand-logo" align="left">
+        <a href="https://www.paypal.me/PineSports" target="_blank"><img alt="Tip Jar" src="{% static 'images/tipjar2.svg' %}" style="height:35px;" class="brand-logo" align="right"></a>
+        <img src="{% static 'images/camera.svg'%}?v=1" onclick="print()" style="height:22px; cursor: pointer; margin-top:5px" align="right">
+    </p>
+    <div id="predictions" style="background-color:#ffffff;padding-right:30px; padding-left:30px; padding-top: 15px; padding-bottom:10px">
+        {% if success %}
+        <br><center><span class="title darkmode-flip">My Predictions</span><br><div class="hidden-sm-down"></div>
+        <span class="hidden-sm-down">{{todays_predictions | safe}}</span>
+        <span class="hidden-md-up">{{todays_predictions_mobile | safe}}</span></center>
+        <br>
+        {% else %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p style="color: #404E67;"><center>Sorry, there are no games to predict right now.  Please try again later.</center></p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        {% endif %}
+    </div>
+</div>
+
+
+
+</body>
+
+
+
+<!-- filesaver -->
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+
+<!-- dom-to-image -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
+<!-- Screenshot Script -->
+<script>
+
+function print()
+{
+    var scale = 5;
+    var domNode = document.getElementById('predictions')
+    domtoimage.toBlob(domNode, {
+        width: domNode.clientWidth * scale,
+        height: domNode.clientHeight * scale,
+        style: {
+            transform: 'scale('+scale+')',
+            transformOrigin: 'top left'
+        }
+    }).then(function (blob)
+    {
+        window.saveAs(blob, "MyPredictions.png");
+    });
+}
+</script>

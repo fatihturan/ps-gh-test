@@ -1,0 +1,149 @@
+{% extends "blog/base_explore.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '137862831678866');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=137862831678866&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <style>
+
+        body{
+            overflow-x:hidden !important;
+            background: #fff !important;
+        }
+
+        .jumbotron{
+            background: #1a304a;
+            color: #fff;
+            border-radius:0px !important;
+        }
+
+        .hover:hover{
+            transform: scale(4);
+            transition: .4 ease;
+
+        }
+
+        @media screen and (max-width: 1300px) {
+            .img-responsive {
+                display: none;
+            }
+
+            .p{
+            margin-right:0% !important;
+            }
+
+            h1{
+            margin-right:0% !important;
+            font-size:57px !important;
+            }
+
+            .fr-view {
+            word-wrap: break-word;
+            padding-right: 0px !important;
+            padding-left: 0px !important;
+            }
+        }
+
+    </style>
+
+    <title>Pine Sports - Getting Started</title>
+
+</head>
+
+<body>
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+
+        <h1 style="font-family: 'Roboto', sans-serif; line-height:1.15!important; font-weight:500; font-size: 63px;color:#fff;">The most advanced sports analytics platform on the internet</h1><br>
+
+
+        <div style="margin-right:100px">
+            <a href="https://www.pine-sports.com/" style="float:right;margin-left:50px"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.amazonaws.com/static/images/graph-icon.svg" style="width:400px;margin-top:-120px; margin-left:5%;" class="img-responsive" alt="/"></a>
+
+            <span style="font-family: 'Roboto', sans-serif; font-weight:300; font-size: 21px;">Pine gives you access to the latest information on sports betting and fantasy across the internet through <b>Stories</b>, and to a professional hedge-fund level sports analytics platform we call <b>Explore</b>.</span><br>
+
+            <a class="btn btn-primary btn-lg" href="https://www.pine-sports.com/register/" role="button" style="color: #FFFFFFF!important; background:#4ec48f!important; font-family: 'Roboto', sans-serif; font-size:25px;border-color:#4ec48f!important;margin-top:25px">Get on the Explore Waitlist</a>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row" style="margin-left:0px!important; margin-right:0px!important; padding:10px !important;">
+        <div class="col-md-12">
+            <h2 style="text-align:center;font-family: 'Roboto', sans-serif; font-size:50px!important;color:#274970">Explore</h2><br>
+            <p style="font-family: 'Roboto'; font-size:21px;font-weight:300;color:#274970;">Explore spreads, scores, and other stats to help predict games or player performance with just a couple of clicks. <a href="https://www.pine-sports.com/register/"><b style="color:#274970">Sign up</b></a> to start using Explore today.</p>
+        </div>
+
+        <div class="col-md-12">
+                        <p style="font-family: 'Roboto', sans-serif;
+      font-size: 28px;font-weight:500;color:#4fc48f;text-align: center;padding-top:35px;color:#274970">Key Insights With a Few Clicks</p>
+            <img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/dashboard.png" style="width: 85%; margin-left:8%;">
+        </div>
+
+        <div class="col-md-12">
+            <p style="font-family: 'Roboto', sans-serif;
+         font-size: 28px;font-weight:500;color:#4fc48f;text-align: center; padding-top:50px; color: #274970">Understand Deep Relationships Quickly</p>
+            <img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/correlate.png" style="width: 85%; margin-left:8%;">
+        </div>
+
+        <div class="col-md-12">
+            <p style="font-family: 'Roboto', sans-serif;
+        font-size: 28px;font-weight:500;color:#4fc48f;text-align: center; padding-top:50px;color:#274970">Visualize Your Insights Like the Pros</p>
+            <img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/visualize.png" style="width: 85%; margin-left:8%;">
+        </div>
+
+        <div class="col-md-12">
+            <h2 style="text-align:center;font-family: 'Roboto', sans-serif; font-size:50px!important;color:#274970;padding-top:50px;">Stories</h2><br>
+            <p style="font-family: 'Roboto'; font-size:21px;font-weight:300;color:#274970">Stories is your source for the latest sports news and information that lets you easily share the latest sports and fantasy news. You can also easily share the charts you make in Explore in your own story and earn trophies people give to you.</p>
+
+        </div>
+        <div class="col-md-12">
+            <p style="font-family: 'Roboto', sans-serif; font-size: 28px;font-weight:500;color:#4fc48f;text-align: center; padding-top:35px;color:#274970">Actionable Information That Matters</p>
+            <img/><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/brandon.png" style="width: 90%;margin-right:-14%;margin-top:5px;float:right;padding-bottom:55px;"><img/>
+            <a href="https://www.pine-sports.com/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/embiid-iphone.png" style="width: 26%;margin-top:5px; margin-left:-7%;padding-bottom:55px;"></a>
+        </div>
+
+        <div class="col-md-12">
+            <p style="font-family: 'Roboto', sans-serif;font-size: 28px;font-weight:500;color:#4fc48f;text-align: center; padding-top:5px;color: #274970">Contributed by People like You</p>
+
+            <img/><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/stories-cpu.png" style="width: 90%;margin-right:-14%;margin-top:5px;float:right;padding-bottom:55px;"><img/>
+            <a href="https://www.pine-sports.com/"><img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/stories.png" style="width: 30.6%;margin-top:5px; margin-left:-8%;padding-bottom:55px;"></a><img/>
+
+        </div>
+            <br>
+            <p style="text-align:center;"><a class="btn btn-primary btn-lg" href="https://www.pine-sports.com/register/" role="button" style="background:#4ec48f!important; font-family: 'Roboto', sans-serif; font-size:25px; border-color:#4ec48f!important;">Get on the Waitlist Now</a></p>
+
+
+        <hr>
+    </div> <!-- /container -->
+</body>
+</html>
+{% endblock %}

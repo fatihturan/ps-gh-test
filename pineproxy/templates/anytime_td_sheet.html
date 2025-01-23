@@ -1,0 +1,619 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-textdirection="ltr" class="loading">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <meta name="description" content="Elevate your {{sport_name}} anytime touchdown betting game with real-time player prop stats, lines, and projections. Bet smart with our data-driven insights from the last 10 games.">
+    <meta name="keywords" content="{{sport_name}} anytime touchdown betting, player props, betting stats, over under trends, betting projections, real-time {{sport_name}} stats, {{sport_type}} betting insights">
+    <meta property="og:title" content="{{sport_name}} Anytime Touchdown Props - Data-Driven Betting Insights">
+    <meta property="og:description" content="Access the latest {{sport_name}} anytime touchdown prop bets, stats, and expert projections. Make informed bets with our comprehensive {{sport_name}} betting analytics.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.pine-sports.com/stats/NFL/TDs/">
+    <meta property="og:image" content="{{sport_image}}">
+    <meta property="og:site_name" content="Pine Sports">
+    <meta name="twitter:card" content="{{sport_image}}">
+    <meta name="twitter:description" content="Master {{sport_name}} anytime touchdown betting with detailed player prop stats and projections. Your one-stop source for accurate betting analytics.">
+    <meta name="twitter:title" content="Pine Sports {{sport_name}} Anytime Touchdown Player Prop Sheet">
+    <meta name="twitter:image" content="{{sport_image}}">
+    <meta name="twitter:site" content="@PineSports_AI">
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '137862831678866');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=137862831678866&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+</head>
+
+<style>
+     .consistency-banner{
+           height:50px;
+        }
+    table {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+        color:rgba(0,0,0,.7);
+        max-width:vw;
+        border-collapse: separate!important;
+        border-spacing: 0;
+        border-radius:16px;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    table tr td:first-of-type {
+       border-left: 1px solid #DDD;
+    }
+
+    table tr td:last-of-type {
+       border-right: 1px solid #DDD;
+    }
+
+    table tr:first-of-type td:not(:first-child):not(:last-child){
+      border-top: 1px solid #DDD;
+    }
+
+    table tr:first-of-type th:not(:first-child):not(:last-child){
+      border-top: 1px solid #DDD;
+    }
+
+    table tr:last-of-type td:not(:first-child):not(:last-child){
+      border-bottom: 1px solid #DDD;
+    }
+
+    table tr:first-of-type th:first-child {
+        border-top: 1px solid #DDD;
+        border-top-left-radius: 15px;
+        padding-left:10px;
+    }
+
+    table tr:first-of-type th:last-child {
+        border-top: 1px solid #DDD;
+        border-top-right-radius: 15px;
+        padding-right:10px;
+    }
+
+    table tr:last-of-type td:last-child {
+        border-right: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-bottom-right-radius: 15px;
+    }
+
+    table tr:last-of-type td:first-child {
+        border-left: 1px solid #DDD;
+        border-bottom:  1px solid #DDD;
+        border-bottom-left-radius: 15px;
+    }
+
+    tr{
+        text-align:center!important;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    th{
+        text-align:center!important;
+        font-weight: 600;
+        background-color: #fafbfc;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    td{
+        background-color: #ffffff;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+        border-color: #DDD;
+        border-top: 1px solid #DDD;
+        border-bottom: 1px solid #DDD;
+        border-left: 1px solid #DDD;
+        border-right: 1px solid #DDD;
+    }
+
+    .title{
+        font-family: 'Raleway', sans-serif;
+        font-size: 85px;
+        font-weight: 700;
+        color:#284970;
+    }
+
+    input:active{
+        border: 1px solid #ddd!important;
+        box-shadow:none!important;
+        outline-offset: 0px!important;
+        outline: none!important;
+    }
+
+    input:focus{
+        border: 1px solid #ddd!important;
+        box-shadow:none!important;
+        outline-offset: 0px!important;
+        outline: none!important;
+    }
+
+    #myInput {
+      background-image: url('{% static 'images/searchicon.png' %}');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 80%;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 12px;
+      border-radius:20px;
+      max-width:600px;
+    }
+
+    #myInput:active{
+        border: 1px solid #ddd!important;
+    }
+
+    #myInput:focus{
+        border: 1px solid #ddd!important;
+    }
+
+    #myInputMobile {
+      background-image: url('{% static 'images/searchicon.png' %}');
+      background-position: 10px 10px;
+      background-repeat: no-repeat;
+      width: 80%;
+      padding: 12px 20px 12px 40px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      border-radius:20px;
+      margin-top:20px;
+    }
+
+    .game-select-list{
+        color: black;
+        font-weight: 400;
+        text-align: left;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        overflow: hidden;
+        background-color: #ffffff;
+        font-size: 14px;
+        max-width:30%;
+    }
+
+    select{
+        color: #274970;
+        font-weight: 400;
+        text-align:center;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+        display:inline-block;
+        overflow:hidden;
+    }
+
+    select:focus{
+        border: 1px solid #ddd!important;
+        background-color: #ffffff;
+    }
+
+    .update-moneyline{
+        border: 1px solid #274970;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-radius: 18px;
+        margin-top: 12px;
+        display: inline-block;
+    }
+    .update-moneyline:hover{
+        background-color: #edf9f3;
+    }
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover, html .ui-button.ui-state-disabled:active {
+        border-radius:10px;
+    }
+
+    .blue-button{
+        font-weight: 400!important;
+        color: #274970;
+        border: 1px solid #274970;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 2px;
+        padding-bottom: 1px;
+        border-radius: 18px;
+        display: inline-block;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .blue-button:hover{
+        color: #274970;
+        background-color:#edf2f9;
+        font-weight: 500!important;
+    }
+
+    .red-button{
+        font-weight: 400!important;
+        /* color: #EA3333; */
+        color: #274970;
+        /*  border: 1px solid #EA3333; */
+        border: 1px solid #274970;
+        padding-left: 12px;
+        padding-right: 12px;
+        padding-top: 2px;
+        padding-bottom: 1px;
+        border-radius: 18px;
+        display: inline-block;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .red-button:hover{
+        /* background-color:#fceaea; */
+        color: #274970;
+        background-color:#edf2f9;
+        font-weight: 500!important;
+    }
+
+    .green-button{
+        font-weight: 400!important;
+        color: #4EC48F;
+        border: 1px solid #4EC48F;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 2px;
+        padding-bottom: 1px;
+        border-radius: 18px;
+        display: inline-block;
+        margin-top: 2px;
+        margin-bottom: 2px;
+    }
+
+    .green-button:hover{
+        color: #4EC48F;
+        background-color: #edf9f3;
+        font-weight: 500!important;
+    }
+
+    .small-font-description{
+        font-size:11px;
+    }
+
+    @media screen and (max-width: 800px) {
+        table {
+            font-size: 10px;
+        }
+        .title{
+            font-size: 40px;
+        }
+        .game-select-list{
+            font-size:11px;
+            border-radius: 5px;
+        }
+
+        .red-button{
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .green-button{
+            padding-left: 13px;
+            padding-right: 13px;
+        }
+    }
+</style>
+{% include "blog/darkmode.html" %}
+<body data-open="click" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns">
+    {% if is_jaxon_user %}
+    <div></div>
+  {% else %}
+    <div class="consistency-banner">{% include "banner.html" %}</div>
+  {% endif %}
+    <div style="background-color:#ffffff;width:100%;height:100%; padding-right:10px; padding-left:10px; margin-top:-15px">
+    <p style="padding-top:30px">
+        <a href="https://www.pine-sports.com"><img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;" class="brand-logo" align="left">
+        <a href="https://www.paypal.me/PineSports" target="_blank"><img alt="Tip Jar" src="{% static 'images/tipjar2.svg' %}" style="height:50px;" class="brand-logo" align="right"></a>
+    </p>
+    <div id="props" style="background-color:#ffffff; padding-top:30px; padding-bottom:10px">
+        {% if success %}
+        <br><center><span class="title"><span class="hidden-md-down">NFL Anytime TD Props</span><span class="hidden-sm-up">NFL Anytime TDs</span></span><br><div class="hidden-sm-down"></div>
+            <span class="hidden-md-down">Analyze every NFL anytime touchdown bet with recent performances and projections based on a player's last 10-games.<br>It's your secret weapon for selecting the best anytime touchdown props — enhanced with real-time data to elevate your game.<br><br></span>
+
+        <center class="hidden-sm-down">
+            This list is ordered by
+            <select class="game-select-list" style="max-width:100%; text-align:center" class="form-control" name="sort_select" id="sort-select" onChange="getSort()">
+                {% if sort == "Over" %}
+                <option value="Over">the Over Count</option>
+                <option value="Projection">the Robot's projection</option>
+                <option value="Robot">what the Robot likes best</option>
+                {% elif sort == "Projection" %}
+                <option value="Projection">the Robot's projection</option>
+                <option value="Robot">what the Robot likes best</option>
+                <option value="Over">the Over Count</option>
+                {% else %}
+                <option value="Robot">what the Robot likes best</option>
+                <option value="Over">the Over Count</option>
+                <option value="Projection">the Robot's projection</option>
+                {% endif %}
+            </select>
+            based on the past 10 games.
+            <br>Don't forget to see how <a href="https://www.espn.com/{{sport_name_lower}}/injuries" target="popup" onclick="window.open('https://www.espn.com/{{sport_name_lower}}/injuries','popup','width=950,height=1070');" style="color:#4EC48F; font-weight:500">injuries</a> may also affect a player's performance.</a>
+        </center>
+        <center class="hidden-md-up small-font-description">
+            Ordered by the Robot's favorites based on the past 10 games.
+            <br>Don't forget to see how <a href="https://www.espn.com/{{sport_name_lower}}/injuries" target="popup" onclick="window.open('https://www.espn.com/{{sport_name_lower}}/injuries','popup','width=950,height=1070');" style="color:#4EC48F; font-weight:500">injuries</a> may also affect a player's performance.</a>
+        </center>
+        <center class="hidden-sm-down"><input type="text" id="myInput" onkeyup="getFilter()" placeholder="Type in a player name" title="Type in a team, player name, or prop..." style="margin-top:50px"></center>
+        <center class="hidden-md-up"><input type="text" id="myInputMobile" onkeyup="getFilterMobile()" placeholder="Type in a player name" title="Type in a search term..."></center>
+        <center class="hidden-sm-down" style="margin-bottom:10px">
+            <select class="game-select-list" class="form-control" name="game_select" id="game-select" onChange="getFilter()">
+                <option value="Game">All Games</option>
+                {% for game in games %}
+                <option value="{{game}}">{{game}}</option>
+                {% endfor %}
+            </select>
+            <select class="game-select-list" class="form-control" name="projection_select" id="projection-select" onChange="getFilter()">
+                <option value="Projection">All Projections</option>
+                <option value="Likes">Likes</option>
+                <option value="Dislikes">Dislikes</option>
+            </select>
+            <br><br>
+            <div class="row">
+                <div class="col-xl-3"></div>
+                <div class="col-md-4 col-lg-4 col-xl-2" style="min-width:200px">
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-2" style="min-width:200px">
+                    <center><p style="margin-bottom:5px">
+                        <label for="over-amount" style="color:rgba(0,0,0,.9)">Moneyline:</label><br>
+                        <input type="text" id="over-amount" readonly style="border:0; text-align:center; max-width:90px" onChange="getFilter()">
+                    </p></center>
+                    <div id="over-moneyline" style="max-width:200px"></div>
+                </div>
+                <div class="col-md-4 col-lg-4 col-xl-2" style="min-width:200px">
+                </div>
+                <div class="col-xl-3"></div>
+            </div>
+        </center>
+
+        <center class="hidden-md-up" style="margin-bottom:10px">
+            <select class="game-select-list" class="form-control" name="game_select" id="game-select-mobile" onChange="getFilterMobile()">
+                <option value="Game">All Games</option>
+                {% for game in games %}
+                <option value="{{game}}">{{game}}</option>
+                {% endfor %}
+            </select>
+            <select class="game-select-list" class="form-control" name="projection_select" id="projection-select-mobile" onChange="getFilterMobile()">
+                <option value="Projection">All Projections</option>
+                <option value="Likes">Likes</option>
+                <option value="Dislikes">Dislikes</option>
+            </select>
+        </center>
+        <span class="hidden-sm-down">{{todays_props | safe}}</span>
+        <span class="hidden-md-up">{{todays_props_mobile | safe}}</span></center>
+        <br><br>
+        {% else %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <p style="color: #404E67;"><center>Sorry, there are no props available right now.  Please try again later.</center></p>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        {% endif %}
+    </div>
+</div>
+</body>
+
+
+
+<!-- filesaver -->
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+
+<!-- dom-to-image -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
+
+<script>
+
+function getSort(){
+    var sort = document.getElementById("sort-select").value;
+
+    var url = '/stats/NFL/TDs/' + sort + '/';
+    window.location.href = decodeURI(url);
+}
+function getFilter() {
+
+
+  // Declare variables
+  var player, game, prop, projection, filter, table, tr, td, i, txtValue, min_over_ml, max_over_ml;
+
+  var over_ml_range =document.getElementById("over-amount").value.split(" to ");
+  min_over_ml = parseInt(over_ml_range[0]);
+  max_over_ml = parseInt(over_ml_range[1]);
+
+  player = document.getElementById("myInput");
+  player_filter = player.value.toUpperCase();
+  game = document.getElementById("game-select");
+  game_filter = game.value.toUpperCase();
+
+  projection = document.getElementById("projection-select");
+  projection_filter = projection.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td_game = tr[i].getElementsByTagName("td")[0];
+    td_over_ml = tr[i].getElementsByTagName("td")[2];
+    td_projection = tr[i].getElementsByTagName("td")[tr[i].getElementsByTagName("td").length-1];
+
+    td = tr[i].getElementsByTagName("td");
+    var foundName = false
+    if (player_filter == "") {
+        foundName = true;
+    }
+    else{
+        for (j = 0; j < td.length; j++) {
+          if (!foundName) {
+            txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toUpperCase().indexOf(player_filter) > -1) {
+              foundName = true;
+            }
+          }
+        }
+    }
+    if (td_game && td_projection) {
+      txtValue_game = td_game.textContent || td_game.innerText;
+      txtValue_projection = td_projection.textContent || td_projection.innerText;
+      txtValue_over_ml = td_over_ml.textContent || td_over_ml.innerText;
+
+      int_over_ml = parseInt(txtValue_over_ml)
+
+      if (((txtValue_game.toUpperCase().indexOf(game_filter) > -1) || game_filter == "GAME") && ((txtValue_projection.toUpperCase() == projection_filter) || projection_filter == "PROJECTION") && foundName && (int_over_ml >= min_over_ml) && (int_over_ml <= max_over_ml)){
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+function getFilterMobile() {
+  // Declare variables
+  var player, game, projection, filter, table, tr, td, i, txtValue;
+  player = document.getElementById("myInputMobile");
+  player_filter = player.value.toUpperCase();
+  game = document.getElementById("game-select-mobile");
+  game_filter = game.value.toUpperCase();
+
+  projection = document.getElementById("projection-select-mobile");
+  projection_filter = projection.value.toUpperCase();
+  table = document.getElementById("myTableMobile");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td_game = tr[i].getElementsByTagName("td")[0];
+    td_projection = tr[i].getElementsByTagName("td")[tr[i].getElementsByTagName("td").length-1];
+
+    td = tr[i].getElementsByTagName("td");
+    var foundName = false
+    if (player_filter == "") {
+        foundName = true;
+    }
+    else{
+        for (j = 0; j < td.length; j++) {
+          if (!foundName) {
+            txtValue = td[j].textContent || td[j].innerText;
+            if (txtValue.toUpperCase().indexOf(player_filter) > -1) {
+              foundName = true;
+            }
+          }
+        }
+    }
+    if (td_game && td_projection) {
+      txtValue_game = td_game.textContent || td_game.innerText;
+      txtValue_projection = td_projection.textContent || td_projection.innerText;
+      if (((txtValue_game.toUpperCase().indexOf(game_filter) > -1) || game_filter == "GAME") && ((txtValue_projection.toUpperCase() == projection_filter) || projection_filter == "PROJECTION") && foundName){
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
+
+
+<script>
+$( function() {
+$( "#over-moneyline" ).slider({
+  range: true,
+  min: {{min_ml}},
+  max: {{max_ml}},
+  values: [ {{min_ml}}, {{max_ml}} ],
+  slide: function( event, ui ) {
+    $( "#over-amount" ).val(ui.values[ 0 ] + " to " + ui.values[ 1 ] );
+    getFilter();
+  }
+});
+$( "#over-amount" ).val($( "#over-moneyline" ).slider( "values", 0 ) +
+  " to " + $( "#over-moneyline" ).slider( "values", 1 ) );
+} );
+</script>

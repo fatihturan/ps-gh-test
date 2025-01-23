@@ -1,0 +1,9 @@
+{% autoescape off %}  
+Hi {{ user.username }},  
+Please click on the link to confirm your registration,
+http://{{ domain }}{% url 'activate' uidb64=uid token=token %}
+
+Once you've confirmed your registration, please check out the help page at http://www.pine-sports.com/help/ to learn more about the Pine-Sports community and everything we have to offer!
+
+You’re receiving this email because you recently created a new Pine-Sports account. If this wasn’t you, please ignore this email.
+{% endautoescape %}

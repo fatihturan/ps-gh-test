@@ -1,0 +1,113 @@
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" media="screen" onload="this.media='all'"> -->
+    <!-- BEGIN VENDOR CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/feather/style.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/app.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+
+    <!-- Start Custom CSS-->
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom-stories.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/new-style-2022-05-02.css' %}">
+
+    <!-- END Custom CSS-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+
+    <!-- Froala CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@3.1.0/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+</head>
+
+<style>
+
+    .explore-home-table{
+        width: 50.0000%;
+        border:solid #274970 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 30px;
+        padding-bottom: 45px;
+    }
+    .table-title{
+        font-family: 'Raleway',sans-serif;
+        }
+</style>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+
+<div class="all-content">
+
+    <div class="user-post-and-comments">
+
+        <div class="user-post row">
+            <div class="table-title"><center>Welcome to Explore</center></div>
+            <div class="post-content terms-text">
+                <div class="post-content terms-text">
+                        <center>You now have access the best sports analytics tools on the internet.</center><br>
+                </div>
+                <div class="post-content terms-text">
+                    <table style="width: 100%; border-spacing:5px!important;">
+                        <tbody>
+                        <tr>
+                            <td class="explore-home-table">
+                                <div class="post-content terms-title" style="text-align: center;"><a href="/dtale/main/{{user_id}}_1"><u>Game Stats</u></a></div>
+                                <div class="post-content terms-text" style="text-align: center;">Games Stats gives you everything you need to know about every NBA game played in the last 5 years.</div>
+                            </td>
+                            <td class="explore-home-table">
+                                <div class="post-content terms-title" style="text-align: center;"><a href="/dtale/main/{{user_id}}_2"><u>Team Stats</u></a></div>
+                                <div class="post-content terms-text" style="text-align: center;">Team Stats gives you 5 years of team-focused data, to let you better understand how each team is trending.</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="explore-home-table">
+                                <div class="post-content terms-title" style="text-align: center;"><a href="/dtale/main/{{user_id}}_3"><u>Player Stats</u></a></div>
+                                <div class="post-content terms-text" style="text-align: center;">Player Stats gives you 5 years of player-focused data, to let you better understand how each player is trending.</div>
+                            </td>
+                            <td class="explore-home-table">
+                                <div class="post-content terms-title" style="text-align: center;"><a href="/dtale/main/{{user_id}}_4"><u>Daily Fantasy Stats</u></a></div>
+                                <div class="post-content terms-text" style="text-align: center;">Daily Fantasy Stats gives you 5 years of daily fantasy data, to let you pick the best fantasy team possible.</div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br>
+                    <center>Check out our <a href="{% url 'help-iframe' %}"><u>help</u></a> page to learn more about how to take advantage of everything Explore has to offer.</center>
+                    <br>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

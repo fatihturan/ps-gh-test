@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    
+</head>
+
+<div class="container pt-3">
+    <div class="col-md-12 content-section hovered-tweet" style="margin-top:20px;">
+        <div class="col-md-8">
+                <div class="col-md-9">
+                    <ol>
+                    <h6>Beta Users ({{beta_users|length}})</h6>
+                        {% for dict_item in beta_users %}
+                            <li> UserName: {{dict_item.user}} | Beta Code: {{dict_item.beta_code}} </li>
+                        {% endfor %}
+                    <ol>
+                </div>
+                <h6>Unused invite codes ({{beta_codes|length}})</h6>
+                <div class="col-md-3">
+                    <ol>
+                    {% for i in beta_codes %}
+                        <li>{{i}}</li>
+                    {% endfor %}
+                </div>
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock content %}

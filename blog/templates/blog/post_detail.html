@@ -1,0 +1,585 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load social_share %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load my_tags %}
+
+
+<head>
+
+    <title>{{post.title}}</title>
+    <meta name="description" property="og:description" content="{{post.first_sentence}}">
+    <meta name="keywords" content="sports, betting, fantasy, analytics, artificial intelligence, ai, modeling, {{post.related_sport.name}}">
+
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{post.title}} - Pine Sports" />
+    <meta property="og:url" content="{{post.get_absolute_url}}" />
+    <meta property="og:site_name" content="Pine Sports" />
+    <meta property="article:published_time" content="{{post.publish}}" />
+    {% if post.has_image %}
+    <meta property="og:image" content="{{post.first_image}}" />
+    {% endif %}
+    <meta name="twitter:label1" content="Written by" />
+    <meta name="twitter:data1" content="{{post.author_string}}" />
+    <meta name="twitter:label2" content="Est. reading time" />
+    <meta name="twitter:data2" content="{{post.read_minutes}} minutes" />
+
+    <meta name="twitter:site" content="@pine_ai_sports"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="{{post.title}}"/>
+    <meta name="twitter:description" content="{{post.first_sentence}}"/>
+
+    {% if post.has_image %}
+    <meta name="twitter:image" content="{{post.first_image}}"/>
+    {% else %}
+    <meta name="twitter:image" content="{{post.sport_image}}"/>
+    {% endif %}
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+</head>
+
+<style>
+
+    iframe{
+        max-width:100%!important;
+       /* max-height:50vw; */
+    }
+
+    /* Social dropdown content (hidden by default) */
+    .social-dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 150px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 10;
+    }
+
+    /* Links inside the social dropdown */
+    .social-dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+    /* Change color of social dropdown links on hover */
+    .social-dropdown-content a:hover {
+        background-color: #f1f1f1
+        }
+
+    /* Show the social dropdown menu on hover */
+    .social-dropdown:hover .social-dropdown-content {
+        display: block;
+    }
+
+    .btn-outline-primary:hover{
+        color:#4EC48F!important
+    }
+
+    .embdscl0{
+        visibility:hidden!important;
+    }
+
+    .embedly-twitter{
+        max-height:520px!important;
+        padding-bottom: 50px!important;
+        overflow:hidden!important;
+    }
+
+    .embedly-video{
+        height:250px!important;
+        overflow:hidden!important;
+    }
+
+    .embedly-article{
+        height:450px!important;
+        overflow:hidden!important;
+    }
+
+    .original_analysis{
+        padding-left:4px;
+        padding-right:5px;
+        padding-top:2px;
+        padding-bottom:2.5px;
+        color: #274970;
+        border: 1px solid #274970;
+        border-radius: 8px;
+        margin-right: 5px;
+        white-space: nowrap;
+        line-height:27px;
+    }
+
+    .original_content{
+        padding-left:5px;
+        padding-right:6px;
+        padding-top:3px;
+        padding-bottom:3.5px;
+        color: #274970;
+        border: 1px solid #274970;
+        border-radius: 8px;
+        margin-right: 5px;
+        white-space: nowrap;
+        line-height:27px;
+    }
+
+    .post-sport{
+        margin-top:-3px;
+        margin-bottom:-16px;
+        margin-left:1px;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        letter-spacing:-0.000em;
+        color: #959595;
+    }
+
+    .lds-spinner {
+      color: official;
+      display: inline-block;
+      position: relative;
+      width: 40px;
+      height: 40px;
+    }
+
+    .lds-spinner div {
+      transform-origin: 18px 18px;
+      animation: lds-spinner .8s infinite;
+    }
+
+    .lds-spinner div:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 17px;
+      width: 3px;
+      height: 10px;
+      border-radius: 32%;
+      background: #274970;
+    }git
+
+    .lds-spinner div:nth-child(1) {
+      transform: rotate(0deg);
+      animation-delay: -0.7s;
+    }
+    .lds-spinner div:nth-child(2) {
+      transform: rotate(45deg);
+      animation-delay: -0.6s;
+    }
+    .lds-spinner div:nth-child(3) {
+      transform: rotate(90deg);
+      animation-delay: -0.5s;
+    }
+    .lds-spinner div:nth-child(4) {
+      transform: rotate(135deg);
+      animation-delay: -0.4s;
+    }
+    .lds-spinner div:nth-child(5) {
+      transform: rotate(180deg);
+      animation-delay: -0.3s;
+    }
+    .lds-spinner div:nth-child(6) {
+      transform: rotate(225deg);
+      animation-delay: -0.2s;
+    }
+    .lds-spinner div:nth-child(7) {
+      transform: rotate(270deg);
+      animation-delay: -0.1s;
+    }
+    .lds-spinner div:nth-child(8) {
+      transform: rotate(315deg);
+      animation-delay: 0.0s;
+    }
+
+
+    @keyframes lds-spinner {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+</style>
+
+{% if not post.draft or post.author == user or is_moderator%}
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+<div id="top"></div>
+<div id="top-loading" style="display:none" class="top-loading"><center><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></center></div>
+
+<div class="all-content" style="max-width:680px!important">
+
+    <div class="user-post-and-comments" style="max-width:680px!important">
+
+        <div class="user-post row">
+
+            <div class="post-title-detail">{{ post.title }}</div>
+
+            {%if "NBA" in post.related_sport.name %}
+            <span class="post-sport" style="display: inline-block; padding-top: 1px">Basketball</span>
+            {% elif "MLB" in post.related_sport.name %}
+            Baseball
+            {% elif "NFL" in post.related_sport.name %}
+            Football
+            {% elif "NHL" in post.related_sport.name %}
+            Hockey
+            {% elif "UFC" in post.related_sport.name %}
+            Mixed Martial Arts
+            {% elif "PGA" in post.related_sport.name %}
+            Golf
+            {% else %}
+            {{post.related_sport.name}}
+            {%  endif %}
+
+            {% if post.author.username == 'pine' %}
+            <small class="ml-4 original_content"><img src="{% static 'images/pin.svg'%}" alt="pin" style="width:12px; margin-bottom:3px"> Pinned Post</small>
+            {% elif post.first_sentence != "" and post.first_sentence and post.has_charts %}
+            <small class="ml-4 original_analysis"><img src="{% static 'images/blue-oa.svg'%}" alt="original analysis" style="width:12px; margin-bottom:3px">  Original Analysis</small>
+            {%  elif post.first_sentence != "" and post.first_sentence %}
+            <small class="ml-4 original_content">Original Content</small>
+            {%  endif %}
+            <br>
+            <img
+                    class="profile-icon rounded-circle"
+                    style="margin-right: 10px"
+                    src="{{ post.author.profile.image_url }}?v=2"
+                    alt="author avatar"
+                    onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+            >
+
+            <a style="display:inline-block;margin-top:5px" class="post-author" href="{% url 'stories:user-posts' post.author %}">
+                {{ post.author }}
+            </a>
+
+            {% if post.author == user %}
+            <a class="ml-4" href="{% url 'stories:post-update' post.id post.slug %}"><img src="{% static 'images/black-edit.svg'%}" alt="edit" style="width:20px" title="Edit" class="img-responsive"></a>
+            <a class="ml-4" href="{% url 'stories:post-delete' post.id post.slug %}"><img src="{% static 'images/black-delete.svg'%}" alt="delete" style="width:22px" title="Delete" class="img-responsive"></a>
+            {%  endif %}
+            <br>
+            <div class="post-content standard-text">
+                {% if post.first_sentence != "" and post.first_sentence != "\n" %}
+                {{ post.optimized_content|safe }}
+                {% if post.word_count >= 50 %}
+                {{ advertisement | safe }}
+                {% endif %}
+                {% elif post.has_embedly %}
+
+                {% if post.embedly_source == "twitter" %}
+                <div class="hidden-md-up embedly-twitter">{{ post.optimized_content|remove_ps|safe }}</div>
+                {% elif post.embedly_source == "youtube" %}
+                <div class="hidden-md-up embedly-video">{{ post.optimized_content|remove_ps|safe }}</div>
+                {% elif post.embedly_source == "streamable" %}
+                <div class="hidden-md-up embedly-video">{{ post.optimized_content|remove_ps|safe }}</div>
+                {% else %}
+                <div class="hidden-md-up embedly-article">{{ post.optimized_content|remove_ps|safe }}</div>
+                {% endif %}
+
+                <div class="hidden-sm-down">{{ post.optimized_content|remove_ps|safe }}</div>
+
+                {% elif post.has_image %}
+                {{ post.optimized_content|safe }}
+
+                {% elif post.has_iframes %}
+                <iframe style="width:660px!important; height:359px!important; border-radius:10px; max-height:52vw!important; z-index: 1"; src="{{post.first_iframe_src}}?hd=1&loop=1&playsinline=1" frameborder="0" onload="this.style.opacity = 1"></iframe>
+
+                {% elif post.has_charts %}
+                {{ post.optimized_content|remove_ps|safe }}
+                {% endif %}
+            </div>
+
+            <hr>
+
+            <div class="likes-comments-date-detail">
+
+                <form action="{% url 'stories:like_post' post.pk %}" method="POST">
+
+                    {% csrf_token %}
+
+                    <div class="likes-comments">
+
+                        {% if request.user in post.likes.all %}
+
+                        <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                            <img src="{% static 'images/black-like - clicked.svg'%}" alt="like clicked" class="likes-comments-img" title="Like"> {{post.likes.count}}
+                        </a>
+
+                        {% elif user.is_authenticated %}
+
+                        <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                            <img src="{% static 'images/black-like - not clicked.svg'%}" alt="like not clicked" title="Like" class="likes-comments-img"> {{post.likes.count}}
+                        </a>
+
+                        {% else %}
+
+                        <img src="{% static 'images/black-like - not clicked.svg'%}" alt="like not clicked" title="Like" class="likes-comments-img"> {{post.likes.count}}
+
+                        {% endif %}
+
+                        <img src="{% static 'images/black-comment.svg'%}" alt="comments" class="likes-comments-img">{{post.number_of_comments}}
+
+                    </div>
+
+
+                    <div class="post-date-detail">
+                        {{ post.publish | timesince | upto:',' }} ago
+                    </div>
+
+
+                </form>
+                <div class="post-twitter-handle" style="display:none">{{post.author.profile.twitter_url}}</div>
+                {% if not post.draft %}
+                <div class="social-dropdown">
+                    <img onclick="myFunction()" src="{% static 'images/black-share.svg'%}" alt='share' style='width:25px; margin-left:6px'>
+                    <div class="social-dropdown-content">
+                        {% post_to_facebook request.build_absolute_uri "<img alt='Facebook share' id='fb_share' class='img-responsive mr-1' src='' style='width:25px;'>Facebook" %}
+                        {% post_to_twitter "{{post.title_string}}" request.build_absolute_uri "<img alt='Twitter share' id='twitter_share' class='img-responsive mr-1' src='' style='width:25px;'>Twitter" %}
+                        {% post_to_reddit "{{post.title_string}}" request.build_absolute_uri "<img alt='Reddit share' id='reddit_share' class='img-responsive mr-1' src='' style='width:25px;'>Reddit" %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% if not post.draft %}
+        <div class="row">
+            <center>{{footer | safe}}</center>
+        </div>
+        <div class="post-comments-title">Comments</div>
+
+        <div class="comments-section standard-text">
+
+            {% if user.is_authenticated %}
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                <fieldset class="form-group">
+                    <div class="comment-single">
+
+                        {{ form.media }}
+                        {{ form | crispy }}
+
+                    </div>
+                    <button class="darkmode-flip btn btn-outline-primary mb-5" style="background-color: #274970!important;border-radius:14px" type="submit">Post</button>
+                </fieldset>
+            </form>
+
+            {% else %}
+
+            <div class="form-group-publish">
+
+                <div class="form-group float-right">
+                    <a href="/login/"> <button class="darkmode-flip btn btn-link" style="color:#4EC48F">Log in to comment</button></a>
+                </div>
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="comments-section standard-text">
+
+            {% for comment in comments %}
+            <div class="comment-single">
+
+                <img
+                        class="profile-icon rounded-circle"
+                        style="margin-right: 10px"
+                        src="{{ comment.author.profile.image_url }}?v=2"
+                        alt="comment profile"
+                        onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                >
+                <a class="comment-author">
+
+                    {{ comment.author }}
+
+                    {% if comment.author == user or is_moderator %}
+
+                    <a class="ml-2">
+                        <img src="{% static 'images/black-delete.svg'%}" alt="delete" style="width:22px" title="Delete" class="img-responsive delete_comment" value="{{comment.id}}">
+                    </a>
+
+                    {% endif %}
+
+                </a>
+
+                <div class="comment-content">
+                    {{ comment.content|safe }}
+                </div>
+
+                <div class="likes-comments">
+
+                    <form action="{% url 'stories:like_comment' comment.id %}" method="POST">
+
+                        {% if user.is_authenticated %}
+                        {% if request.user in comment.likes.all %}
+
+                        <a id="L-{{comment.id}}" onclick="return  Commentlikedislike( {{comment.id}},'false');">
+                            <img src="{% static 'images/black-like - clicked.svg'%}" alt="like clicked" title="Like" style="width:22px"> {{comment.likes.count}}
+                        </a>
+
+                        {% else %}
+
+                        <a id="L-{{comment.id}}" onclick="return  Commentlikedislike( {{comment.id}},'false');">
+                            <img src="{% static 'images/black-like - not clicked.svg'%}" alt="like not clicked" title="Like" style="width:22px"> {{comment.likes.count}}
+                        </a>
+
+                        {% endif %}
+                        {% else %}
+
+                        <img src="{% static 'images/black-like - not clicked.svg'%}" alt="like not clicked" style="width:22px">{{ comment.likes.count }}
+
+                        {% endif %}
+
+                    </form>
+
+                </div>
+                <div class="post-date-detail">{{ comment.date_posted | timesince | upto:',' }} ago</div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+        {% endif %}
+    </div>
+    <div class="mt-5" style="margin-bottom:10px;"> </div>
+
+</div>
+
+{% endif %}
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$('.delete_comment').on('click', function(e){
+    var confirmation = confirm("are you sure you want to remove comment?");
+    if (confirmation) {
+        var id = $(this).attr('value');
+        var url =  "{% url 'stories:comment-delete' 'test' %}";
+        url = url.replace('test', id);
+        $.ajax({
+           url: url,
+           type: "GET",
+           success: function(data){
+               location = window.location['href']
+               window.location.replace(location)
+           }
+         })
+    }
+})
+</script>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+    var fb_icon = "{% static 'images/black-share-facebook.svg' %}"
+    var twitter_icon = "{% static 'images/black-share-twitter.svg' %}"
+    var reddit_icon = "{% static 'images/black-share-reddit.svg' %}"
+    jQuery('#fb_share').attr('src',fb_icon);
+    jQuery('#twitter_share').attr('src',twitter_icon);
+    jQuery('#reddit_share').attr('src',reddit_icon);
+});
+
+</script>
+
+<script type="text/javascript">
+    function likedislike (id, value) {
+        var id = id;
+        var value = value;
+        var url = "{% url 'stories:postlikepreference' %}";
+        $.ajax({
+        url: url,
+        type: "GET",
+        data: {
+
+          "id": id,
+          "value": value,
+        //   "csrfmiddlewaretoken": "{{ csrf_token }}"
+
+        },
+        success: function (data) {
+            var result = data.html;
+            $('#L-'+id).html(result);
+
+        }
+      });
+
+    }
+</script>
+
+<script type="text/javascript">
+
+    {% if not user.is_authenticated %}
+
+    // setTimeout(function(){
+    //    alert('Log in for free access to the best sports analytics and AI modeling tools on the internet.');
+    // }, 8000);
+
+    {% endif %}
+
+    function Commentlikedislike (id, value) {
+        var id = id;
+        var value = value;
+        var url = "{% url 'stories:comment_postlikepreference' %}";
+        $.ajax({
+        url: url,
+        type: "GET",
+        data: {
+
+          "id": id,
+          "value": value,
+        //   "csrfmiddlewaretoken": "{{ csrf_token }}"
+
+        },
+        success: function (data) {
+            var result = data.html;
+            $('#L-'+id).html(result);
+
+        }
+      });
+
+    }
+
+    document.addEventListener('scroll', function () {
+
+        top_div = document.getElementById("top").getBoundingClientRect();
+
+        if ($(window).width() < 690) {
+
+            if (top_div.top > 120){
+                document.getElementById("top-loading").style.display = "inline";
+                $('.top-loading').show();
+                location.reload();
+             }
+        }
+    }, {
+        passive: true
+    });
+
+</script>
+{% endblock content %}

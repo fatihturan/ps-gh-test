@@ -1,0 +1,272 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+</head>
+
+<style>
+
+    ul {
+        list-style-type: disc!important; /* This will show the default bullet points */
+        margin-left: 20px; /* Adds space between the bullets and the text */
+        padding-left: 0; /* Adjust the padding as needed */
+        line-height: 28px;
+        margin-bottom: 28px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 17px;
+        font-weight: 300;
+        letter-spacing: 0.000em;
+        color: rgba(0,0,0,.7);
+    }
+
+    h2 {
+        margin-bottom:28px;
+    }
+
+</style>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+<div class="all-content">
+
+    <div class="user-post-and-comments">
+
+        <div class="user-post row">
+            <div class="post-title-detail"><center>Terms & Conditions</center></div>
+            <br>
+            <div class="post-content terms-text">
+                <h2>1. Introduction</h2>
+                <p>Welcome to Pine Sports (“Pine Sports Inc.", "SharpSports Inc.",” “we,” “us,” or “our”). These Terms of Service (“Terms”) govern your access and use of our website, applications, services, and tools (collectively, the “Service”). The Service includes data, analytics, recommendations, and features to assist users in sports-related decisions, including fantasy sports and betting research.</p>
+
+                <p>By accessing or using the Service, you agree to be bound by these Terms, as well as our Privacy Policy, which is incorporated by reference. If you do not agree to these Terms or the Privacy Policy, you must not use the Service.</p>
+
+                <p>Please read these Terms carefully. Pine Sports reserves the right to modify or update these Terms at any time without notice, and it is your responsibility to review these Terms periodically. Your continued use of the Service after any modifications means you accept and agree to the changes.</p>
+
+                <p>The Service is intended for use by individuals who are at least 18 years old. By accessing or using the Service, you confirm that you are of legal age to enter into this agreement.</p>
+
+                <h2>2. Ownership and Intellectual Property</h2>
+                <p>The Service, including all content, features, tools, software, data, text, graphics, images, logos, videos, user interfaces, and computer code (collectively, "Content"), is owned by Pine Sports, Inc. & SharpSports Inc., its affiliates, and licensors. The Content is protected by U.S. and international intellectual property laws, including copyright, trademark, and other proprietary rights.</p>
+
+                <p>You are granted a limited, non-exclusive, non-transferable, and revocable license to access and use the Service and Content for your personal, non-commercial use. You agree not to copy, modify, distribute, display, perform, create derivative works, or exploit the Content for any commercial purpose without prior written permission from Pine Sports.</p>
+
+                <p>Except as explicitly permitted by these Terms, no part of the Service or Content may be copied, reproduced, republished, uploaded, posted, publicly displayed, encoded, transmitted, or distributed in any way without the express written consent of Pine Sports, Inc.</p>
+
+                <p>All trademarks, logos, and service marks displayed on the Service are the property of Pine Sports or third parties who have authorized their use. You are not permitted to use any trademarks, logos, or service marks without the prior written consent of Pine Sports or the respective owners.</p>
+
+                <h2>3. Disclaimer: No Reliance on Information or AI Recommendations</h2>
+                <p>Pine Sports provides data, analytics, and recommendations through its Service, including the use of its AI model, jaXon. While the Service is designed to assist users in making informed decisions regarding sports-related activities, including fantasy sports and betting, all information and recommendations provided are for informational purposes only.</p>
+
+                <p>Neither Pine Sports nor jaXon provides personalized advice, and you should not rely on the information, analytics, or recommendations provided as professional or financial advice. The data and recommendations offered by jaXon are generated based on available information, and Pine Sports makes no guarantees regarding accuracy, reliability, or outcomes derived from using the Service.</p>
+
+                <p>You acknowledge that any decisions made based on the data, analytics, or recommendations provided by the Service are made at your own risk. Pine Sports disclaims any liability for losses or damages arising from your use of or reliance on the Service, including but not limited to sports betting decisions. Sports betting involves risk, and you assume full responsibility for your participation in such activities.</p>
+
+                <h2>4. Prohibited Uses</h2>
+                <p>You may use the Service only for lawful purposes and in accordance with these Terms. You agree not to use the Service:</p>
+
+                <ul>
+                  <li>For any revenue-generating endeavor or commercial enterprise without express permission from Pine Sports.</li>
+                  <li>In any way that violates any applicable national or international law or regulation.</li>
+                  <li>To exploit, harm, or attempt to exploit or harm minors by exposing them to inappropriate content or otherwise.</li>
+                  <li>To transmit, or procure the sending of, any advertising or promotional material, including any “junk mail,” “chain letter,” “spam,” or any other similar solicitation.</li>
+                  <li>To impersonate or attempt to impersonate Pine Sports, its employees, another user, or any other person or entity.</li>
+                  <li>In any way that infringes upon the rights of others, or in any way is illegal, threatening, fraudulent, or harmful, or in connection with any unlawful, illegal, fraudulent, or harmful purpose or activity.</li>
+                  <li>To engage in any other conduct that restricts or inhibits anyone’s use or enjoyment of the Service, or which, as determined by Pine Sports, may harm or offend us or users of the Service, or expose them to liability.</li>
+                </ul>
+
+                <p>Additionally, you agree not to:</p>
+
+                <ul>
+                  <li>Use the Service in any manner that could disable, overburden, damage, or impair the Service or interfere with any other party’s use of the Service.</li>
+                  <li>Use any robot, spider, or other automatic device, process, or means to access the Service for any purpose, including monitoring or copying any of the material on the Service.</li>
+                  <li>Use any manual process to monitor or copy any of the material on the Service or for any other unauthorized purpose without prior written consent from Pine Sports.</li>
+                  <li>Use any device, software, or routine that interferes with the proper working of the Service.</li>
+                  <li>Introduce any viruses, trojan horses, worms, logic bombs, or other material that is malicious or technologically harmful.</li>
+                  <li>Attempt to gain unauthorized access to, interfere with, damage, or disrupt any parts of the Service, the server on which the Service is stored, or any server, computer, or database connected to the Service.</li>
+                  <li>Attack the Service via a denial-of-service attack or a distributed denial-of-service attack.</li>
+                  <li>Take any action that may harm Pine Sports or damage the Service.</li>
+                  <li>Use the Service as part of any effort to compete with Pine Sports or otherwise use the Service and/or the Content for any revenue-generating endeavor or commercial enterprise.</li>
+                </ul>
+
+                <h2>5. User Obligations and Restrictions</h2>
+                <p>As a user of the Service, you agree to the following obligations and restrictions:</p>
+
+                <ul>
+                  <li>You will provide accurate, current, and complete information when creating an account or using the Service.</li>
+                  <li>You are responsible for maintaining the confidentiality of your account information, including your password, and for all activities that occur under your account.</li>
+                  <li>You agree to notify Pine Sports immediately of any unauthorized use of your account or any other breach of security.</li>
+                  <li>You will not share your account with others, and you are responsible for any use of the Service that occurs under your account, whether authorized by you or not.</li>
+                  <li>You agree that any information, data, or materials you provide in connection with the Service will not violate the rights of third parties or any applicable laws.</li>
+                  <li>You will not use the Service in a manner that could damage, disable, overburden, or impair the Service or interfere with any other party's use and enjoyment of the Service.</li>
+                </ul>
+
+                <p>Any violation of these obligations may result in the suspension or termination of your account and access to the Service. Pine Sports reserves the right to take legal action if necessary to enforce these obligations.</p>
+
+                <h2>6. Accounts</h2>
+                <p>When you create an account with Pine Sports, you agree to the following:</p>
+
+                <ul>
+                  <li>You must be at least 18 years old to create an account and use the Service. By creating an account, you represent that you are of legal age and have the authority to enter into this agreement.</li>
+                  <li>You agree to provide accurate, current, and complete information during the registration process and to update such information to keep it accurate, current, and complete.</li>
+                  <li>You are responsible for maintaining the confidentiality of your account login credentials and for all activities that occur under your account.</li>
+                  <li>You agree to notify us immediately of any unauthorized use of your account or any other breach of security.</li>
+                  <li>You may not use as a username the name of another person or entity or that is not lawfully available for use, a name or trademark subject to the rights of another person or entity without appropriate authorization, or a name that is otherwise offensive, vulgar, or obscene.</li>
+                </ul>
+
+                <p>Pine Sports reserves the right to refuse service, terminate accounts, remove or edit content, or cancel orders in its sole discretion. Inaccurate, incomplete, or outdated information may result in the immediate termination of your account.</p>
+
+                <h2>7. Free Trial</h2>
+                <p>Pine Sports may, at its sole discretion, offer a subscription to the Service with a free trial for a limited period of time ("Free Trial"). The duration of the Free Trial and the specific terms will be provided at the time of registration.</p>
+
+                <p>To sign up for a Free Trial, you may be required to enter your billing information. If you do enter your billing information, you will not be charged until the Free Trial period has expired. On the last day of the Free Trial, unless you have canceled your subscription, your account will automatically be converted to a paid subscription and the applicable fees will be charged to the payment method provided.</p>
+
+                <p>Pine Sports reserves the right to modify or terminate any Free Trial offer at any time, without notice. We may also modify these Terms of Service as they relate to Free Trial offers.</p>
+
+                <p>Restrictions on Free Trial usage include, but are not limited to:</p>
+                <ul>
+                  <li>You may not sign up for multiple Free Trials using different names, email addresses, or other identification information.</li>
+                  <li>Pine Sports reserves the right to deny Free Trial access to any individual at its sole discretion.</li>
+                </ul>
+
+                <h2>8. Purchases, Subscriptions, and Payments</h2>
+                <p>Some features of the Service may require payment or a subscription to access. If you wish to purchase a subscription or make any other purchase through the Service (“Purchase”), you may be required to provide certain information relevant to your Purchase, including your payment method, billing address, and other necessary information.</p>
+
+                <p>By providing payment information, you represent and warrant that:</p>
+                <ul>
+                  <li>You have the legal right to use the payment method(s) provided.</li>
+                  <li>The information you provide is accurate, current, and complete.</li>
+                </ul>
+
+                <p>Subscriptions to the Service are billed on a recurring and periodic basis ("Billing Cycle"). Your subscription will automatically renew at the end of each Billing Cycle unless canceled prior to the renewal. You may cancel your subscription through your account settings, but you will not be eligible for a refund for any unused portion of the current Billing Cycle.</p>
+
+                <p>We may use third-party services to facilitate payment processing. By submitting your payment information, you authorize Pine Sports to share your payment information with these third-party services, subject to their privacy policies.</p>
+
+                <p>Pine Sports reserves the right to refuse or cancel any order for any reason, including but not limited to product or service availability, errors in the description or price of the product or service, or suspected fraud or unauthorized or illegal activity.</p>
+
+                <p>All sales are final, and Pine Sports does not offer refunds except as required by law.</p>
+
+                <h2>9. Fee Changes</h2>
+                <p>Pine Sports reserves the right, in its sole discretion, to modify the subscription fees for the Service at any time. Any changes in subscription fees will become effective at the end of the then-current Billing Cycle.</p>
+
+                <p>Pine Sports will provide you with reasonable prior notice of any fee changes to give you an opportunity to terminate your subscription before such changes become effective. If you do not cancel your subscription, your continued use of the Service after the fee change constitutes your agreement to pay the modified subscription fee amount.</p>
+
+                <p>If you disagree with the fee change, you may cancel your subscription before the new fee becomes effective.</p>
+
+                <h2>10. Refunds and Cancellations</h2>
+                <p>You may cancel your subscription to Pine Sports at any time. Upon cancellation, you will continue to have access to the Service for the remainder of your current Billing Cycle. After the current Billing Cycle ends, your subscription will not be renewed, and you will no longer be charged.</p>
+
+                <p>To cancel your subscription, you can do so by logging into your account and navigating to the settings & subscription management section, or by contacting Pine Sports customer support.</p>
+
+                <p>Except where required by law, all payments made for subscriptions or other purchases are non-refundable. This includes, but is not limited to, subscriptions that are canceled before the end of the Billing Cycle.</p>
+
+                <p>If Pine Sports finds that you have violated these Terms, we reserve the right to immediately cancel your subscription without refund. Pine Sports is not responsible for any fees or charges incurred by the cancellation of your account.</p>
+
+                <h2>11. Contests, Sweepstakes, and Promotions</h2>
+                <p>Pine Sports may, from time to time, offer contests, sweepstakes, or other promotions (collectively, “Promotions”) through the Service. These Promotions may be governed by separate rules that are independent of these Terms of Service.</p>
+
+                <p>If you decide to participate in any Promotions, please review the applicable rules, as well as our Privacy Policy. If the rules for a Promotion conflict with these Terms, the specific Promotion rules will take precedence for that particular event.</p>
+
+                <p>Pine Sports reserves the right to cancel, modify, or suspend any Promotion at its sole discretion, with or without notice.</p>
+
+                <h2>12. Indemnification</h2>
+                <p>You agree to defend, indemnify, and hold harmless Pine Sports, its affiliates, licensors, and service providers, as well as their respective officers, directors, employees, agents, and contractors, from and against any and all claims, liabilities, damages, judgments, awards, losses, costs, expenses, or fees (including reasonable attorneys' fees) arising out of or relating to your violation of these Terms or your use of the Service, including but not limited to:</p>
+
+                <ul>
+                  <li>Your violation of any law or the rights of a third party.</li>
+                  <li>Your use of the Service, including any use of the Service’s content, information, services, and products other than as expressly authorized in these Terms.</li>
+                  <li>Any content you post, submit, or otherwise transmit through the Service.</li>
+                </ul>
+
+                <h2>13. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, in no event shall Pine Sports, its affiliates, licensors, or service providers, nor their respective officers, directors, employees, agents, or contractors, be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, revenue, data, use, or other intangible losses, arising out of or related to your use or inability to use the Service.</p>
+
+                <p>Pine Sports shall not be liable for any damages resulting from:</p>
+                <ul>
+                  <li>Your reliance on any information provided by the Service.</li>
+                  <li>Any interruption, suspension, or termination of the Service.</li>
+                  <li>Any errors, inaccuracies, or omissions in the content provided by the Service.</li>
+                  <li>Unauthorized access to or alteration of your transmissions or data.</li>
+                </ul>
+
+                <p>In no event shall Pine Sports' total liability to you for all claims arising from or related to the use of the Service exceed the amount paid by you, if any, for accessing the Service in the past twelve (12) months.</p>
+
+                <p>Some jurisdictions do not allow the exclusion or limitation of incidental or consequential damages, so the above limitations and exclusions may not apply to you.</p>
+
+                <h2>14. Disclaimer of Warranty</h2>
+                <p>The Service is provided on an "AS IS" and "AS AVAILABLE" basis without warranties of any kind, either express or implied. To the fullest extent permitted under applicable law, Pine Sports disclaims all warranties, express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+
+                <p>Pine Sports makes no representations or warranties that the Service will meet your requirements, or that access to the Service will be uninterrupted, timely, secure, or error-free. Pine Sports does not guarantee the accuracy, completeness, or usefulness of any content provided through the Service. You assume total responsibility for your use of the Service and any reliance you place on its content.</p>
+
+                <p>Pine Sports does not warrant that the Service is free of viruses or other harmful components. You are responsible for implementing procedures sufficient to satisfy your particular requirements for data backup and security.</p>
+
+                <p>Some jurisdictions do not allow the exclusion of certain warranties, so the above exclusions may not apply to you.</p>
+
+                <h2>15. Choice of Law and Venue</h2>
+                <p>These Terms, and any disputes arising out of or related to them, shall be governed by and construed in accordance with the laws of the State of New York, without regard to its conflict of law provisions.</p>
+
+                <p>Any legal action or proceeding arising out of or relating to these Terms or your use of the Service shall be brought exclusively in the state or federal courts located in New York, New York. You hereby consent to the personal jurisdiction of these courts and waive any objections to the venue of such courts.</p>
+
+                <p>If you access the Service from a location outside of the United States, you are responsible for compliance with all local laws.</p>
+
+                <h2>16. Termination</h2>
+                <p>Pine Sports reserves the right, in its sole discretion, to suspend or terminate your account and access to the Service at any time, with or without cause, notice, or liability, including but not limited to violations of these Terms.</p>
+
+                <p>If you wish to terminate your account, you may do so at any time by discontinuing your use of the Service and deleting your account through your account settings. Upon termination, all provisions of these Terms that by their nature should survive termination, including but not limited to ownership provisions, warranty disclaimers, indemnification, and limitations of liability, will remain in effect.</p>
+
+                <p>Upon termination of your access to the Service, whether by you or Pine Sports, your right to use the Service will immediately cease.</p>
+
+                <h2>17. Changes to the Service</h2>
+                <p>Pine Sports reserves the right to modify, update, or discontinue the Service, or any part thereof, at any time without prior notice. We may also impose limits on certain features or restrict your access to parts or all of the Service without notice or liability.</p>
+
+                <p>We will not be liable if for any reason all or any part of the Service is unavailable at any time or for any period. From time to time, we may restrict access to some parts of the Service, or the entire Service, to users, including registered users.</p>
+
+                <p>Your continued use of the Service after any such changes constitutes your acceptance of the modifications. It is your responsibility to review these Terms periodically to stay informed of any changes.</p>
+
+                <h2>18. Amendments to Terms</h2>
+                <p>Pine Sports reserves the right to modify or update these Terms at any time in its sole discretion. Any changes to these Terms will be effective immediately upon posting on the Service. It is your responsibility to review the Terms periodically for any updates or changes.</p>
+
+                <p>Your continued use of the Service after any modifications or updates to these Terms constitutes your acceptance of the new Terms. If you do not agree to the modified Terms, you must stop using the Service immediately.</p>
+
+                <h2>19. No Use by Minors</h2>
+                <p>The Service is intended only for access and use by individuals at least eighteen (18) years old. By accessing or using the Service, you warrant and represent that you are at least eighteen (18) years of age and have the full authority, right, and capacity to enter into these Terms and abide by all of the provisions hereof.</p>
+
+                <p>If you are not at least eighteen (18) years old, you are prohibited from both accessing and using the Service. Pine Sports reserves the right to terminate your access to the Service if it discovers that you have violated this age requirement.</p>
+
+                <h2>20. Acknowledgment</h2>
+                <p>By using the Service, you acknowledge that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. You also acknowledge that you are aware of and accept all disclaimers and limitations of liability provided within these Terms.</p>
+
+                <p>If you do not agree to these Terms, you must discontinue using the Service immediately.</p>
+
+                <h2>21. Contact Information</h2>
+                <p>If you have any questions about these Terms, the Service, or need assistance, please contact us at: <a href="mailto:pine@pinesports.com">pine@pinesports.com</a></p>
+                <p>We will make every effort to respond to your inquiries in a timely manner.</p>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

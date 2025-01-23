@@ -1,0 +1,384 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<html lang="en" data-textdirection="ltr" class="loading">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="The best sports analytics and AI modeling platform on the internet. View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, player props, futures, and more bets."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" media="screen" onload="this.media='all'">-->
+    <!-- BEGIN VENDOR CSS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/feather/style.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/feather/style.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/app.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/app.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'assets/css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <!-- Froala CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" media="screen" onload="this.media='all'">
+
+    <!-- Start Custom CSS-->
+    <link rel="preload" href="{% static 'css/custom-stories.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom-stories.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/main.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/new-style-2022-05-02.css' %}" media="screen" onload="this.media='all'">
+    <!-- END Custom CSS-->
+
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <!-- Chart.js script -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+
+<style>
+
+    select{
+        color: #274970;
+        font-weight: 400;
+        text-align:center;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+    }
+
+    select:focus{
+        border: 1px solid #ddd!important;
+        background-color: #ffffff;
+    }
+
+    table {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16.5px;
+        font-weight: 300;
+        border-collapse: collapse;
+        max-width:vw;
+    }
+
+    tr{
+        text-align:center!important;
+    }
+
+    th{
+        text-align:center!important;
+        font-weight: 500;
+        background-color: #fafbfc;
+        padding-left:10px;
+        padding-right:10px;
+        padding-top:7px;
+        padding-bottom:7px;
+    }
+    td{
+        background-color: #ffffff;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+
+    .projection-header{
+        font-weight: 700;
+        font-size: 24px;
+        color: rgba(0,0,0,.9);
+        border: none;
+        width: 360px;
+        border-radius: 30px;
+        font-variant: small-caps;
+    }
+
+    .projection-header-2{
+        font-weight: 700;
+        font-size: 18px;
+        color: rgba(0,0,0,.7);
+        border: none;
+        width: 360px;
+        border-radius: 30px;
+        font-variant: small-caps;
+    }
+    .all-content{
+        max-width:660px!important
+    }
+
+    .user-post-and-comments{
+        max-width:660px!important
+    }
+
+    .canvas-class{
+        height="300"
+    }
+
+    .chart-button{
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:4px;
+        padding-bottom:4px;
+        font-weight: 400;
+        color: #284970;
+        border: 1px solid #284970;
+        border-radius: 18px;
+        background-color: #fbfcfe;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .chart-button:hover{
+        background-color: #edf2f9;
+     }
+
+     .table-button{
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:4px;
+        padding-bottom:4px;
+        font-weight: 400;
+        color: #284970;
+        border: 1px solid #284970;
+        border-radius: 18px;
+        background-color: #fbfcfe;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .table-button:hover{
+        background-color: #edf2f9;
+     }
+
+    .box {
+      width: 14px;
+      height: 14px;
+    }
+
+    .green {
+      background: rgba(78, 196, 143, 1);
+      border: 1px solid rgb(78, 196, 143);
+    }
+
+    .red {
+      background: rgba(234, 51, 51, 1);
+      border: 1px solid rgb(234, 51, 51);
+    }
+
+    .blue {
+      background: rgba(39, 73, 112, 1);
+      border: 1px solid rgb(39, 73, 112);
+    }
+
+    .black {
+      background: rgba(0, 0, 0, 1);
+      border: 1px solid rgb(0, 0, 0);
+    }
+
+    .green-text{
+        color:white;
+        background-color: #4EC48F;
+        font-weight:500;
+    }
+
+    .red-text{
+        color:white;
+        background-color: #EA3333;
+        font-weight:500;
+    }
+
+    .black-text{
+        color:black;
+        background-color: white;
+        font-weight:500;
+    }
+    .blue-text{
+        color:white;
+        background-color: #274970;
+        font-weight:500;
+    }
+
+    .compare-button{
+        font-weight: 400;
+        color: white!important;
+        font-size:21px;
+        border: 1px solid #274970;
+        background-color: #274970;
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:8px;
+        padding-bottom:8px;
+        border-radius:24px;
+        width:250px;
+        cursor:pointer
+    }
+
+    .error{
+        font-size:25px;
+        font-family:Kanit;
+        color: #274970;
+        font-weight:400;
+    }
+
+    .error-button{
+        font-size: 18px;
+        color: #274970;
+        font-weight: 400;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 3px;
+        padding-bottom: 4px;
+        border-radius: 18px;
+        border: 1px solid #274970;
+        cursor:pointer;
+    }
+
+    .error-button:hover{
+        background-color: #c0d3e9;
+    }
+
+    .projection-top{
+        padding-right:0px;
+        padding-left:0px;
+        padding-top:5px;
+        padding-bottom:5px
+    }
+
+    .btb{
+        width:50%;
+    }
+
+    @media screen and (max-width: 800px) {
+        table {
+            font-size: 12px;
+        }
+
+        select{
+            border-radius: 5px;
+        }
+
+        .projection-header{
+            font-size: 20px;
+            font-weight: 700;
+            width: 100%;
+            max-width:360px;
+            font-variant: small-caps;
+        }
+
+        .projection-header-2{
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            max-width:360px;
+            font-variant: small-caps;
+        }
+        .standard-text{
+            font-size:14px;
+        }
+        .canvas-class{
+            height="300"
+        }
+        .compare-button{
+            font-size:16px;
+        }
+
+        .projection-top{
+            padding-right:0px;
+            padding-left:0px;
+            padding-top:15px;
+            padding-bottom:5px
+        }
+        .btb{
+            width:80%;
+        }
+    }
+</style>
+
+<div class="fr-view app-content container-fluid center-layout">
+    <div class="content-wrapper">
+        <div class="content-body"><!-- Description -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div style="margin-top:-3px"></div>
+                    <div class="all-content">
+                        <div class="user-post-and-comments">
+                            <div class="user-post row">
+                                <center>
+                                    <img alt="BTB" src="{% static 'images/logos/btb.png' %}" class="btb" align="center">
+                                    <br>
+                                    <span class="projection-header">Total Bases Consistency Sheet</span>
+                                    <br><br>
+                                    <span class="standard-text">Here are the players with OVER 1.5 total bases in at least 70 percent of their recent games.</span><br><br>
+
+                                    {% for i in consistency_sheet.itertuples %}
+                                    <span class="standard-text"><strong>{{i.Player_Name}}</strong>: {{i.Sentence}}</span><br>
+                                    {% endfor %}
+                                    <br>
+                                    <span class="projection-header-2">Powered by <img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:34px;" class="brand-logo" align="center"></span>
+                                    <br><br>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

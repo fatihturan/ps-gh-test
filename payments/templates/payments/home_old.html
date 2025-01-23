@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to jaXon</title>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.1/markdown-it.min.js"></script>
+    <script async src="https://js.stripe.com/v3/pricing-table.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+          --text-color: rgb(236, 236, 236);
+          --background-color: rgb(33, 33, 33);
+          --chatbox-color: #26272b;
+          --input-padding: 10px;
+          --button-padding: 10px 20px;
+        }
+
+        body {
+          margin: 0;
+          font-family: "Roboto", sans-serif;
+          font-weight: 400;
+          line-height: 1.6;
+          color: var(--text-color);
+          background-color: var(--background-color);
+          font-size: 0.9rem;
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+          -webkit-font-smoothing: auto;
+        }
+
+        li {
+            padding-bottom: 10px;
+        }
+
+        .pricing-description-and-table{
+            padding-top:65px;
+        }
+
+        .pricing-table {
+            padding-left: 20px;
+            padding-right: 20px;
+            max-width: 1000px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            padding-top: 20px;
+        }
+
+        .pricing-description {
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .account-login{
+            padding-left: 20px;
+            padding-right: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            font-size: 20px;
+            max-width: 620px;
+            margin-top: 25px;
+            margin-bottom: 0px;
+            border: 1px solid white;
+            border-radius: 20px;
+        }
+
+        .account-login-text{
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-top: 25px;
+            padding-bottom: 20px;
+        }
+
+        .jaxon-logo-container {
+            margin-bottom: 20px;
+        }
+
+        .jaxon-logo-image {
+            height: 100px;
+        }
+
+        .jaxon-description {
+            color: white;
+            font-size: 18px;
+            max-width: 800px;
+        }
+
+        /* Updated Tweet Carousel Styles */
+        .tweet-carousel-container {
+            padding: 20px 0;
+            background-color: var(--background-color);
+        }
+
+        .tweet-carousel {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px; /* Increased max-width to accommodate larger images */
+            margin: 0 auto;
+        }
+
+
+        .tweet-container {
+            flex: 0 0 calc(33.333% - 14px);
+            max-width: calc(33.333% - 14px);
+            height: 615px;
+        }
+
+        .tweet-container img {
+            width: 100%;
+            height:auto; /* Make the image fill the container */
+            object-fit: cover; /* Ensure the image covers the area without distortion */
+            border-radius: 15px;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .nav-button {
+            background-color: #252A32;
+            color: white;
+            border: none;
+            padding: 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button:hover {
+            background-color: #4a5058;
+        }
+
+        .arrow-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Rotate the right arrow */
+        .nav-button:nth-child(2) .arrow-icon {
+            transform: rotate(180deg);
+        }
+
+
+        .carousel-header {
+            text-align: center;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .qa-container {
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .qa-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .qa-question {
+            padding: 15px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .qa-answer {
+            padding: 0 10px 15px;
+            display: none;
+        }
+
+        .toggle-icon {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .video-container {
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            padding-top: 30px;
+        }
+
+        .video-container video {
+            width: 100%;
+            height: auto;
+            border-radius: 25px;
+        }
+
+        .video-container video:focus {
+            outline: none;
+        }
+
+        .what-is {
+            margin-bottom: 20px;
+        }
+
+
+        @media (max-width: 768px) {
+
+            .account-login {
+                max-width: 300px;
+                paddding-left: 15px;
+                padding-right: 15px;
+                font-size: 17px;
+            }
+
+            .jaxon-description {
+                font-size: 17px;
+            }
+            .tweet-carousel {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            .tweet-container {
+                flex: 0 0 100%;
+                max-width: 100%;
+                height: auto;
+            }
+
+            .tweet-container img {
+                max-height: 645px;
+                width: 100%;
+                margin: 0 auto;
+                display: block;
+            }
+
+            .video-container video {
+                max-width: 100%;
+                height: auto;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+{% include 'chat/header.html' %}
+<div class="pricing-description-and-table">
+    <div class="pricing-description">
+        <div class="jaxon-logo-container">
+            <img class="jaxon-logo-image" src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/jaxon_logo_white.png" alt="Jaxon Logo">
+        </div>
+        <div class="jaxon-description">
+            <p>Meet jaXon, your personal AI sports companion. With lightning-fast data analysis and emotionless precision, jaXon arms you with the insights you need to bet unfair.</p>
+            {%if is_logged_in %}
+            <p>Choose your plan and start outsmarting the sportsbooks & crushing your fantasy league today.</p>
+            {%endif%}
+        </div>
+    </div>
+    {%if is_logged_in %}
+    <div class="pricing-table">
+        <!-- Development -->
+<!--        <stripe-pricing-table pricing-table-id="prctbl_1Px6e0D46W3VJfdjGPiVNWZe"-->
+<!--        publishable-key="pk_test_51Om2gMD46W3VJfdjxNJsWYFQdJUihajeZJTTqXr5UdQwHukehlx9Q1xJbCclxxN2u7EyX31ns5sXdTnCbvnU1mk800iW9XyKMm"-->
+<!--        client-reference-id="{{username}}">-->
+<!--        </stripe-pricing-table>-->
+        <!-- Production -->
+        <stripe-pricing-table pricing-table-id="prctbl_1Pw4wGD46W3VJfdjsfis5zdB"
+        publishable-key="pk_live_51Om2gMD46W3VJfdj7wnvKuZnnZfN1eXkyf4XhxW3in1hwWqRvXKoTKa1iDXIIaA2zofaUS7tPnt5gLHMMLZNrCzm00AkSsfiRp"
+        client-reference-id="{{username}}">
+        </stripe-pricing-table>
+    </div>
+    {% else %}
+    <div class="account-login">
+        <div class="account-login-text">
+        <p>You must have a free Pine Sports account to subscribe to jaXon. <br><a href="/register/?next=/subscribe/">Register now!</a>
+        <br><br>Already have an account? <br><a href="/login/?next=/subscribe/">Log in here.</a></p>
+        </div>
+    </div>
+    {%endif%}
+    <div class="video-container">
+        <div class="carousel-header">What is jaXon?</div>
+        <video autoplay muted loop playsinline controls>
+            <source src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/videos/jaxon_promo.mp4" type="video/mp4">
+            <source src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/videos/jaxon_promo.mov" type="video/quicktime">
+        </video>
+    </div>
+    <div class="tweet-carousel-container">
+        <div class="carousel-header what-is">See what jaXon users are saying...</div>
+        <div class="nav-buttons">
+            <button class="nav-button" onclick="scrollCarousel(-1)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="arrow-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
+                </svg>
+            </button>
+            <button class="nav-button" onclick="scrollCarousel(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" class="arrow-icon">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="tweet-carousel" id="tweetCarousel">
+            <!-- Tweet images will be inserted here -->
+        </div>
+    </div>
+    <div class="carousel-header">Frequently Asked Questions</div>
+    <div class="qa-container">
+        <div class="qa-item">
+            <div class="qa-question">
+                What is jaXon?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                jaXon is your AI sports betting buddy, powered by Pine. It's like having a super-smart, sports-obsessed friend who never sleeps and is always ready to chat about betting, fantasy, and all things sports!
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                How does jaXon work its magic?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                jaXon taps into a treasure trove of sports data, news, and betting tools. It crunches numbers faster than you can say "touchdown," giving you insights on everything from player props to game lines. It's like having a sports analyst, statistician, and betting pro all rolled into one friendly chatbot.
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                What kind of tools does jaXon have access to?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                Oh boy, jaXon's toolbox is packed! Here's a peek at some of the high-tech gear our AI buddy uses to give you the edge:
+
+                <ol>
+                    <li><b>Game Scout:</b> jaXon can pull up schedules and details for games across multiple leagues, past and future. It's like having a time-traveling sports almanac!</li>
+                    <li><b>News Hound:</b> jaXon scours top sports publications for the latest news, giving you fresh insights on games, players, and even betting recommendations.</li>
+                    <li><b>Tweet Decoder:</b> jaXon keeps an ear to the ground on social media, catching breaking news on injuries, trades, and more from reliable sports reporters.</li>
+                    <li><b>Stat Master:</b> Want to know how LeBron performs in away games against East Coast teams? jaXon can crunch those numbers for you in a jiffy.</li>
+                    <li><b>Prop Projector:</b> For NBA, MLB, NFL, and NHL, jaXon can analyze player props, giving you historical data, projections, and even the best lines across sportsbooks.</li>
+                    <li><b>Line Shopper:</b> jaXon compares game lines across multiple sportsbooks, helping you find the best value for your bets.</li>
+                    <li><b>EV Calculator:</b> jaXon can spot positive expected value bets, potentially giving you an edge over the books.</li>
+                    <li><b>Arbitrage Detector:</b> jaXon can identify arbitrage opportunities across different sportsbooks, potentially allowing you to lock in profits regardless of the game's outcome.</li>
+                    <li><b>Fantasy Guru:</b> Whether you're drafting your team or setting weekly lineups, jaXon's got your back with player projections and analysis.</li>
+                    <li><b>MLB Matchup Analyzer:</b> For baseball bets, jaXon breaks down pitcher vs. batter stats and even considers park factors!</li>
+                    <li><b>NFL Survivor Pool Strategist:</b> jaXon can help you map out the optimal strategy for your NFL survivor pool.</li>
+                    <li><b>Historical Data Diver:</b> jaXon can access and analyze vast amounts of player and team data to answer complex statistical questions.</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                Can jaXon help me dominate my fantasy league?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                You bet! jaXon is a fantasy football fiend. It can help you draft, set lineups, and even suggest sleeper picks. It's like having a crystal ball, but way more reliable and much less creepy.
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                How much time can jaXon save me?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                Our users are calling jaXon their new best friend (don't be jealous, human friends). They say jaXon saves them hours of research time. Imagine getting a full day's worth of sports analysis in just seconds. It's like time travel, but for sports betting & fantasy!
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                Is jaXon perfect?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                Well, nobody's perfect (except maybe Tom Brady), and that includes AI. jaXon works super hard to give you the best info possible, but occasionally it might fumble. Our trials show that jaXon makes far fewer mistakes than any other AI chatbot when it comes to sports statistics. We're also constantly training jaXon to be better. It's like it's at AI sports bootcamp 24/7!
+            </div>
+        </div>
+
+                <div class="qa-item">
+            <div class="qa-question">
+                How often do you update jaXon?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                We're always tweaking and improving jaXon. It's like jaXon is doing two-a-days, every day. We're constantly adding new features, refining its knowledge, and making sure it stays ahead of the game.
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                Can jaXon place bets for me?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                Nope, jaXon is your research buddy, not your bookie. It'll give you all the info you need to make smart bets, It can even give you direct links to bets on all of the major sportsbooks, but the actual betting is up to you. Think of jaXon as your personal sports research assistant that gets you everything you need to make informed decisions.
+            </div>
+        </div>
+
+        <div class="qa-item">
+            <div class="qa-question">
+                What if I don't like it or want to cancel?
+                <span class="toggle-icon">+</span>
+            </div>
+            <div class="qa-answer">
+                No problem, you can easily cancel your subscription if you are not satisfied with jaXon.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+        document.querySelectorAll('.qa-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('.toggle-icon');
+
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.textContent = '+';
+                } else {
+                    answer.style.display = 'block';
+                    icon.textContent = '−';
+                }
+            });
+        });
+
+        const tweets = [
+            {id: '1831144113976029409', user: 'thefunkymartian'},
+            {id: '1827333349150531796', user: 'lockprops'},
+            {id: '1832162855631659308', user: 'kia_parlay'},
+            {id: '1832265254765539353', user: 'THC_IPA'},
+            {id: '1825183286009717185', user: 'dre_hnl'},
+            {id: '1830367118568697945', user: 'mclarenx989'},
+            {id: '1828822608311414828', user: 'm3taphorsbwithu'},
+            {id: '1829917157854966054', user: 'CapperCetla'},
+            {id: '1827774509450981697', user: 'nerdatcooltble'},
+            {id: '1832944851526058186', user: 'Its_Mosher'},
+            {id: '1830057720025624748', user: 'thechriskidd'}
+        ];
+
+        const carousel = document.getElementById('tweetCarousel');
+        let isMobile = window.innerWidth <= 768;
+
+        function createTweetElements() {
+            carousel.innerHTML = ''; // Clear existing content
+            tweets.forEach(tweet => {
+                const tweetLink = document.createElement('a');
+                tweetLink.href = `https://twitter.com/${tweet.user}/status/${tweet.id}`;
+                tweetLink.target = '_blank';
+                tweetLink.rel = 'noopener noreferrer';
+
+                const tweetImage = document.createElement('img');
+                tweetImage.src = `https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/tweets/${tweet.id}.png`;
+                tweetImage.alt = `Tweet by ${tweet.user}`;
+
+                tweetLink.appendChild(tweetImage);
+
+                const tweetContainer = document.createElement('div');
+                tweetContainer.className = 'tweet-container';
+                tweetContainer.appendChild(tweetLink);
+
+                carousel.appendChild(tweetContainer);
+            });
+        }
+
+        function scrollCarousel(direction) {
+            const scrollAmount = isMobile ? carousel.offsetWidth : carousel.offsetWidth / 3;
+            carousel.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Initial creation of tweet elements
+        createTweetElements();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const wasMobile = isMobile;
+            isMobile = window.innerWidth <= 768;
+            if (wasMobile !== isMobile) {
+                createTweetElements(); // Recreate elements to adjust layout
+            }
+        });
+    </script>
+</body>
+</html>

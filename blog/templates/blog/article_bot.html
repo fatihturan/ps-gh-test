@@ -1,0 +1,644 @@
+<script>
+
+    // Get references to the chat form, input field, and message list
+    const chatForm = document.querySelector('#chat-form');
+    const chatInput = document.querySelector('#chat-input');
+    const chatMessages = document.querySelector('#chat-messages');
+    const chatButton = document.querySelector('#chat-button');
+    const chatContainer = document.querySelector('#chat-container');
+    const buttonContainer = document.querySelector('#chat-button-container');
+
+    var step = "start";
+    var step_count = 1;
+    var response = "";
+    var full_chat = "";
+    var known_variables = ""
+    var last_message = ""
+    var data = ""
+    var event_id = "{{event_id}}"
+
+    console.log("event_id: " + event_id)
+
+    var decodeEntities = (function() {
+      // this prevents any overhead from creating the object each time
+      var element = document.createElement('div');
+
+      function decodeHTMLEntities (str) {
+        if(str && typeof str === 'string') {
+          // strip script/html tags
+          str = str.replace(/<script[^>]*>([\S\s]*?)<\/script>/gmi, '');
+          str = str.replace(/<\/?\w(?:[^"'>]|"[^"]*"|'[^']*')*>/gmi, '');
+          element.innerHTML = str;
+          str = element.textContent;
+          element.textContent = '';
+        }
+
+        return str;
+      }
+
+      return decodeHTMLEntities;
+    })();
+
+    function delay(time) {
+      return new Promise(resolve => setTimeout(resolve, time));
+    }
+
+    function updateLoadingIndicator(text) {
+      const loadingIndicator = document.querySelector('#loading-indicator');
+      loadingIndicator.textContent = text;
+    }
+
+    // Listen for form submissions
+    chatForm.addEventListener('submit', async(e) => {
+      console.log("HERE ARE THE KEY VARIABLES")
+      console.log(step);
+      console.log(step_count);
+      console.log(known_variables);
+      console.log(last_message);
+      console.log(response);
+      console.log(last_message)
+      e.preventDefault();
+
+      // Get the message text
+      var message = chatInput.value;
+
+      // Clear the input field
+      chatInput.value = '';
+
+      // Send the user's message to the chat window
+      sendMessage(message, 'user-message');
+
+      // Scroll to the bottom
+      scrollToBottom()
+
+      // Disable form submission
+      document.getElementById("send-button").disabled = true;
+      document.getElementById("send-button").style.backgroundColor = 'gray';
+
+      // Show the loading indicator and update it with the appropriate text
+      var loadingIndicator = document.querySelector('#loading-indicator');
+      loadingIndicator.style.display = 'block';
+      updateLoadingIndicator('.');
+
+      // Scroll to the bottom
+      scrollToBottom()
+
+      let interval = setInterval(() => {
+        let currentText = loadingIndicator.textContent;
+        if (currentText.length < 3) {
+          updateLoadingIndicator(currentText + '.');
+        } else {
+          updateLoadingIndicator('.');
+        }
+      }, 500);
+
+      // Send an AJAX request to the Django view
+
+      // sendAJAXRequest(message, interval, loadingIndicator)
+      console.log("sending request with the following:")
+      console.log(message)
+      console.log(event_id)
+      console.log(step)
+      console.log(step_count)
+      console.log(full_chat)
+      console.log(known_variables)
+      console.log(last_message)
+
+      var updatedVariables = await sendPOSTRequestAndWaitForJSON(message, event_id, step, step_count, full_chat, known_variables, last_message)
+      message = updatedVariables.message;
+      event_id = updatedVariables.event_id;
+      step = updatedVariables.step;
+      step_count = updatedVariables.step_count;
+      full_chat = updatedVariables.full_chat;
+      known_variables = updatedVariables.known_variables;
+      last_message = updatedVariables.last_message;
+
+      console.log("DONE SENDING REQUEST")
+      console.log("NEW VARIABLES")
+      console.log("message: " + message)
+      console.log("step: " + step)
+      console.log("step_count: " + step_count)
+      console.log("full_chat: " + full_chat)
+      console.log("known_variables: " + known_variables)
+      console.log("last_message: " + last_message)
+
+
+    });
+
+    async function sendPOSTRequest(message, event_id, step, step_count, full_chat, known_variables, last_message) {
+      // Set the URL and request body
+            console.log("sending request with the following:")
+      console.log(message)
+      console.log(event_id)
+      console.log(step)
+      console.log(step_count)
+      console.log(full_chat)
+      console.log(known_variables)
+      console.log(last_message)
+      const url =  '/generate_response/?event_id={{event_id}}&step=' + step +'&step_count=' + step_count + '&full_chat=' + full_chat + '&known_variables=' + known_variables + '&last_message=' + last_message;
+      const requestBody = `message=${message}`;
+
+      // Send the POST request
+      await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: requestBody,
+      });
+    }
+
+    async function waitForJSON(event_id, step_count) {
+      let tries = 0;
+      // Set the URL for the JSON file
+      const url = `https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/chat_bot_files/${event_id}_${step_count}.json`;
+
+      let fileContents;
+      while(tries < 1000) {
+        // Try to download the file from the URL
+        try {
+          const response = await fetch(url);
+          fileContents = await response.json();
+          break;
+        } catch (error) {
+          // If the file is not found, wait 1 second and try again
+          console.log(error);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          tries++;
+        }
+      }
+      if (tries >= 1000){
+        console.log("File was not found after 1000 tries")
+        return "Error"
+      }
+
+      console.log("FILECONTENTS")
+      console.log(fileContents)
+      return fileContents;
+    }
+
+
+    async function sendPOSTRequestAndWaitForJSON(message, event_id, step, step_count, full_chat, known_variables, last_message) {
+      // Send the POST request
+      await sendPOSTRequest(message, event_id, step, step_count, full_chat, known_variables, last_message);
+
+      // Wait for the JSON file to be available at the URL
+      data = await waitForJSON(event_id, step_count);
+      response = data['response'];
+      step = data['step'];
+      step_count = data['step_count'];
+      full_chat = data['full_chat'];
+      known_variables = data['known_variables'];
+      last_message = data['last_message'];
+
+
+      if (step === 'start_writing') {
+        // Show the loading image
+        showLoadingAnimation();
+        document.getElementById("send-button").disabled = true;
+        document.getElementById("send-button").style.backgroundColor = 'gray';
+      } else if (step === 'writing_article') {
+        // Show the loading image
+        showLoadingAnimation();
+        document.getElementById("send-button").disabled = true;
+        document.getElementById("send-button").style.backgroundColor = 'gray';
+      }
+      else if (step === 'done_writing') {
+        // Hide the loading image
+        hideLoadingAnimation();
+      }
+
+      console.log("HERE'S WHAT WE RECEIVED.")
+      console.log(step);
+      console.log(step_count);
+      console.log(known_variables);
+      console.log(last_message);
+      console.log(response);
+      console.log(last_message)
+      response = decodeEntities(response);
+
+      // Clear the loading indicator interval
+      //clearInterval(interval);
+
+      // Hide the loading indicator
+
+      try{
+        // Enable form submission
+        const loadingIndicator = document.querySelector('#loading-indicator');
+        loadingIndicator.style.display = 'none';
+      } catch (e) {
+        console.log(e);
+      }
+
+
+      delay(1).then(() => {
+        // Send the chatbot's response to the chat window
+        typeOutMessage(response, 'bot-message');
+        // Scroll to the bottom
+        scrollToBottom()
+      });
+
+      if (step == "start_writing"){
+        console.log("HERE1")
+        console.log(step)
+        console.log(step_count)
+        // Disable form submission
+        document.getElementById("send-button").disabled = true;
+        document.getElementById("send-button").style.backgroundColor = 'gray';
+
+
+        message, event_id, step, step_count, full_chat, known_variables, last_message = await sendPOSTRequestAndWaitForJSON(message, event_id, step, step_count, full_chat, known_variables, last_message)
+        response = data['response'];
+        step = data['step'];
+        step_count = data['step_count'];
+        full_chat = data['full_chat'];
+        known_variables = data['known_variables'];
+        last_message = data['last_message'];
+        console.log(last_message)
+      }
+      if (step == "writing_article"){
+        console.log("HERE2")
+        console.log(step)
+        console.log(step_count)
+
+        // Disable form submission
+        document.getElementById("send-button").disabled = true;
+        document.getElementById("send-button").style.backgroundColor = 'gray';
+
+        message, event_id, step, step_count, full_chat, known_variables, last_message = await sendPOSTRequestAndWaitForJSON(message, event_id, step, step_count, full_chat, known_variables, last_message)
+        response = data['response'];
+        step = data['step'];
+        step_count = data['step_count'];
+        full_chat = data['full_chat'];
+        known_variables = data['known_variables'];
+        last_message = data['last_message'];
+        console.log(last_message)
+      }
+      if (step == "done_writing"){
+        // Disable form submission
+        document.getElementById("send-button").disabled = true;
+        document.getElementById("send-button").style.backgroundColor = 'gray';
+
+        response = data['response'];
+        step = data['step'];
+        step_count = data['step_count'];
+        full_chat = data['full_chat'];
+        known_variables = data['known_variables'];
+        last_message = data['last_message'];
+        console.log("In done writing")
+        console.log(last_message)
+        title = data['title'];
+        body = data['body'];
+        console.log(title)
+        console.log(body)
+        typeOutTitle(title);
+        typeOutBody(body);
+
+        // Enable form submission
+        document.getElementById("send-button").disabled = false;
+        document.getElementById("send-button").style.backgroundColor = '#274970';
+      }
+      console.log("RETURNING NEW VARIABLES")
+      console.log(message)
+      console.log(event_id)
+      console.log(step)
+      console.log(step_count)
+      console.log(full_chat)
+      console.log(known_variables)
+      console.log(last_message)
+
+      return {
+        message: message,
+        event_id: event_id,
+        step: step,
+        step_count: step_count,
+        full_chat: full_chat,
+        known_variables: known_variables,
+        last_message: last_message
+      };
+    }
+
+
+    function getResponse(message, interval, loadingIndicator){
+          console.log("HERE'S WHAT WE HAVE")
+          console.log("message: " + message)
+          console.log("step: " + step)
+          console.log("step_count: " + step_count)
+          console.log("full_chat: " + full_chat)
+          console.log("known_variables: " + known_variables)
+          console.log("last_message: " + last_message)
+
+
+          console.log("HERE's WHAT I'M SENDING")
+          console.log("step: " + step)
+          console.log("step_count: " + step_count)
+          console.log("full_chat: " + full_chat)
+          console.log("known_variables: " + known_variables)
+          console.log("last_message: " + last_message)
+    }
+
+    function sendAJAXRequest(message, interval, loadingIndicator){
+      console.log("SENDING AJAX <REQUEST></REQUEST>")
+      console.log("HERE'S WHAT WE HAVE")
+      console.log("message: " + message)
+      console.log("step: " + step)
+      console.log("step_count: " + step_count)
+      console.log("full_chat: " + full_chat)
+      console.log("known_variables: " + known_variables)
+      console.log("last_message: " + last_message)
+      const xhr = new XMLHttpRequest();
+      console.log("HERE's WHAT I'M SENDING")
+      console.log("step: " + step)
+      console.log("step_count: " + step_count)
+      console.log("full_chat: " + full_chat)
+      console.log("known_variables: " + known_variables)
+      console.log("last_message: " + last_message)
+      xhr.open('POST', '/generate_response/?event_id={{event_id}}&step=' + step +'&step_count=' + step_count + '&full_chat=' + full_chat + '&known_variables=' + known_variables + '&last_message=' + last_message);
+      xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+      xhr.send(`message=${message}`);
+      xhr.onload = () => {
+        if (xhr.status === 200) {
+
+          // Get the chatbot's response from the server
+          var json_response = xhr.responseText;
+          data = JSON.parse(json_response);
+          response = data['response'];
+          step = data['step'];
+          step_count = data['step_count'];
+          full_chat = data['full_chat'];
+          known_variables = data['known_variables'];
+          last_message = data['last_message'];
+
+          if (step === 'start_writing') {
+            // Show the loading image
+            showLoadingAnimation();
+            document.getElementById("send-button").disabled = true;
+            document.getElementById("send-button").style.backgroundColor = 'gray';
+          } else if (step === 'writing_article') {
+            // Show the loading image
+            showLoadingAnimation();
+            document.getElementById("send-button").disabled = true;
+            document.getElementById("send-button").style.backgroundColor = 'gray';
+          }
+          else if (step === 'done_writing') {
+            // Hide the loading image
+            hideLoadingAnimation();
+          }
+
+          console.log("HERE'S WHAT WE RECEIVED.")
+          console.log(step);
+          console.log(step_count);
+          console.log(known_variables);
+          console.log(last_message);
+          console.log(response);
+          console.log(last_message)
+          response = decodeEntities(response);
+
+          // Clear the loading indicator interval
+          clearInterval(interval);
+
+          // Hide the loading indicator
+
+          try{
+            // Enable form submission
+            loadingIndicator.style.display = 'none';
+          } catch (e) {
+            console.log(e);
+          }
+
+
+          delay(1).then(() => {
+            // Send the chatbot's response to the chat window
+            typeOutMessage(response, 'bot-message');
+            // Scroll to the bottom
+            scrollToBottom()
+          });
+
+          if (step == "start_writing"){
+            console.log("HERE1")
+            console.log(step)
+            console.log(step_count)
+            // Disable form submission
+            document.getElementById("send-button").disabled = true;
+            document.getElementById("send-button").style.backgroundColor = 'gray';
+
+
+            sendAJAXRequest(message, step, step_count, full_chat, known_variables, last_message, interval, loadingIndicator)
+            response = data['response'];
+            step = data['step'];
+            step_count = data['step_count'];
+            full_chat = data['full_chat'];
+            known_variables = data['known_variables'];
+            last_message = data['last_message'];
+            console.log(last_message)
+          }
+          if (step == "writing_article"){
+            console.log("HERE2")
+            console.log(step)
+            console.log(step_count)
+
+            // Disable form submission
+            document.getElementById("send-button").disabled = true;
+            document.getElementById("send-button").style.backgroundColor = 'gray';
+
+            sendAJAXRequest(message, step, step_count, full_chat, known_variables, last_message, interval, loadingIndicator)
+            response = data['response'];
+            step = data['step'];
+            step_count = data['step_count'];
+            full_chat = data['full_chat'];
+            known_variables = data['known_variables'];
+            last_message = data['last_message'];
+            console.log(last_message)
+          }
+          if (step == "done_writing"){
+            // Disable form submission
+            document.getElementById("send-button").disabled = true;
+            document.getElementById("send-button").style.backgroundColor = 'gray';
+
+            response = data['response'];
+            step = data['step'];
+            step_count = data['step_count'];
+            full_chat = data['full_chat'];
+            known_variables = data['known_variables'];
+            last_message = data['last_message'];
+            console.log("In done writing")
+            console.log(last_message)
+            title = data['title'];
+            body = data['body'];
+            console.log(title)
+            console.log(body)
+            typeOutTitle(title);
+            typeOutBody(body);
+
+            // Enable form submission
+            document.getElementById("send-button").disabled = false;
+            document.getElementById("send-button").style.backgroundColor = '#274970';
+          }
+        }
+      };
+    }
+
+    // Send a message to the chat window
+    function sendMessage(message, className) {
+      // Create a new list item for the message
+      const li = document.createElement('li');
+      li.classList.add(className);
+
+      const span = document.createElement("span");
+
+      // Add an img element for the icon
+      const icon = document.createElement("img");
+      icon.src = icon.src = "{{request.user.profile.optimized_image_url}}";
+      icon.style.width = "27px";
+      icon.style.height = "27px";
+      icon.style.marginRight = "10px";
+      icon.style.borderRadius = "50%";
+      span.appendChild(icon);
+
+      // Set the text content to an empty string initially
+      li.appendChild(span);
+      span.innerHTML += message;
+
+
+      // Add the message to the list
+      chatMessages.appendChild(li);
+    }
+
+    function scrollToBottom() {
+      // Select the chat-messages element
+      var objDiv = document.getElementById("chat-container");
+      objDiv.scrollTop = objDiv.scrollHeight;
+    }
+
+
+    // Type out a message one letter at a time
+    function typeOutMessage(message, className) {
+
+      // Create a new list item for the message
+      const li = document.createElement('li');
+      li.classList.add(className);
+
+      const span = document.createElement("span");
+
+      // Add an img element for the icon
+      const icon = document.createElement("img");
+      icon.src = "https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/pk-robot.png";
+      icon.style.width = "27px";
+      icon.style.height = "27px";
+      icon.style.marginRight = "10px";
+      icon.style.borderRadius = "50%";
+      span.appendChild(icon);
+
+
+      // Set the text content to an empty string initially
+      li.appendChild(span);
+
+      // Add the message to the list
+      chatMessages.appendChild(li);
+
+      // Disable form submission
+      document.getElementById("send-button").disabled = true;
+      document.getElementById("send-button").style.backgroundColor = 'gray';
+
+      // Type out the message one letter at a time
+      let index = 0;
+      const typingInterval = setInterval(() => {
+        // If all letters have been typed, clear the interval and return
+        if (index === message.length) {
+          clearInterval(typingInterval);
+                console.log("DONE TYPING")
+          // Enable form submission
+          document.getElementById("send-button").disabled = false;
+            document.getElementById("send-button").style.backgroundColor = '#274970';
+
+          // Scroll to the bottom of the chat interface
+          scrollToBottom();
+
+          return;
+        }
+
+        // Add the next letter to the message
+        span.innerHTML += message[index];
+        index++;
+        scrollToBottom();
+      }, 5);
+    }
+
+    function typeOutTitle(title) {
+      console.log("TYPING OUT TITLE");
+      console.log(title);
+
+      // Get a reference to the title field
+      const titleField = document.querySelector("#id_title");
+
+      // Set the text content to an empty string initially
+      //titleField.innerHTML = "";
+      titleField.placeholder = "";
+
+      // Type out the title one letter at a time
+      let index = 0;
+      const typingInterval = setInterval(() => {
+        // If all letters have been typed, clear the interval and return
+        if (index === title.length) {
+          clearInterval(typingInterval);
+          console.log("DONE TYPING OUT TITLE");
+          return;
+        }
+
+        // Add the next letter to the title
+        //titleField.value += title[index];
+        titleField.value = title.substring(0,index);
+        console.log(titleField.value);
+        console.log(title[index])
+        index++;
+      }, 50);
+    }
+
+    function typeOutBody(body) {
+      console.log("TYPING");
+
+      // Get a reference to the body field
+      const bodyField = document.querySelector(".fr-element.fr-view");
+
+      // Hide the placeholder
+      const placeholder = document.querySelector(".fr-placeholder");
+      placeholder.style.display = "none";
+
+      // Set the text content to an empty string initially
+      bodyField.innerHTML = body;
+
+    }
+
+    let firstClick = true;
+    // Listen for clicks on the chat button
+    chatButton.addEventListener('click', () => {
+      if (firstClick) {
+
+        // Type out the chatbot's response one letter at a time
+        typeOutMessage("Hi {{user.username}}, it looks like you're writing an article. I'm happy to research your pick and write a draft for you to review. Just let me know what you're writing about -- for example, the teams playing, the player or team you're betting on, the line, and why you like the pick. The more detail the better!  Thanks!", 'bot-message');
+        //typeOutMessage("Hi {{user.username}}!", 'bot-message');
+        firstClick = false;
+      }
+      chatContainer.classList.toggle('visible');
+      buttonContainer.classList.toggle('visible');
+      var x = document.getElementById("chat-button");
+      console.log(x.innerHTML)
+      if (x.innerHTML.indexOf("<button>Ask the Robot</button>")  !== -1) {
+        x.innerHTML = "<button>Close Chat</button>";
+      } else {
+        x.innerHTML = "<button>Ask the Robot</button>";
+      }
+    });
+
+  function showLoadingAnimation() {
+    setTimeout(() => {
+      var loadingAnimation = document.querySelector('#loading-animation');
+      loadingAnimation.style.display = 'block';
+    }, 3000);
+  }
+
+  function hideLoadingAnimation() {
+    var loadingAnimation = document.querySelector('#loading-animation');
+    loadingAnimation.style.display = 'none';
+  }
+
+
+</script>

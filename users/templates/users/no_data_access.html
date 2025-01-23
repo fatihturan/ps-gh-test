@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+
+</head>
+
+<style>
+    .nda_font{
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px !important;
+    }
+
+    @media screen and (min-width: 767px) {
+        .nda_font{
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px !important;
+        }
+    }
+
+</style>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+
+<div class="all-content">
+
+    <div class="user-post-and-comments">
+
+        <div class="user-post row">
+            <div class="post-title-detail"><center>Users Without Data Access</center></div><br>
+            <table style="width:100%">
+                <tr>
+                    <th class="nda_font" style="font-weight:400;">User Name</th>
+                    <th class="nda_font" style="font-weight:400;">Trophies</th>
+                    <th class="nda_font" style="font-weight:400;">Date Joined</th>
+                </tr>
+                {% for dict_item in no_data_users %}
+                <tr>
+                    <td class="nda_font" style="font-weight:300;">{{dict_item.user}}</td>
+                    <td class="nda_font" style="font-weight:300;">{{dict_item.trophies}}</td>
+                    <td class="nda_font" style="font-weight:300;">{{dict_item.date_joined}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+    {% endblock content %}

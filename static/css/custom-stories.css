@@ -1,0 +1,36 @@
+
+.hovered-tweet{
+            box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+            max(0px, min(8px, calc((100vw - 4px - 100%) * 9999))) / 8px;
+            margin-bottom: 16px;
+            background:#fff;
+            border-radius:4px;
+            }
+
+.hovered-tweet:hover{
+    -webkit-transition: background-color ease-in-out .2s;
+    -webkit-transition: border ease-in-out .2s;
+    background-color: #fff !important;
+    border: 1px solid rgba(255, 255, 255, 1);
+    border-radius: 4px;
+    border: solid 0px #4EC48F;
+}
+
+.white-important {
+    color: #274970;
+    font-weight: bold;
+}
+a:hover{
+        color: #274970;
+        text-decoration: underline;
+
+}
+
+a.mr-2 white-important:hover{
+text-decoration: underline;
+}
+
+#text:hover{
+text-decoration:underline;
+}
+

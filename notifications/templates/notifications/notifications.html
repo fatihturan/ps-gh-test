@@ -1,0 +1,174 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <script src="https://kit.fontawesome.com/70572890b0.js" crossorigin="anonymous"></script>
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+<div id="top"></div>
+<div id="top-loading" style="display:none" class="top-loading"><center><img style="width:25%!important; max-width:100px!important" src="{% static 'images/Spin1_Gray_Transparent.svg' %}"></center></div>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+
+<div class="all-content infinite-container" style="margin-top:10px!important; margin-bottom:10px!important">
+
+    {% for notification in notifications.itertuples %}
+
+    {% if notification.is_seen %}
+    <div class="row full-post-summary infinite-item" style="margin-left:-9px;margin-right:-9px;padding: 10px 15px;">
+        {% else %}
+        <div class="row full-post-summary infinite-item" style="background-color:#f0faf5; margin-left:-9px;margin-right:-9px;padding: 10px 15px;">
+            {% endif %}
+            {% if notification.Notification_type == 1 %}
+            <div style="margin-top:6px">
+            <span class="pine-avatar" style="width:50px!important; float:left;margin-right:10px;margin-bottom:10px">
+                <img src="{{notification.sender.sender.profile.optimized_image_url}}"  onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:50px!important; height:50px!important; margin-top:1px!important" alt="avatar">
+            </span>
+                <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.sender.username %}">{{notification.sender.sender.username}}</a> {% if notification.count > 9 %} and {{notification.count|safe}} other people {% endif %}
+                liked your post <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.post.id notification.post.post.slug %}">{{ notification.post.post.title|safe }}</a></span><br>
+                <small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+
+            {% if notification.Notification_type == 2 %}
+            <div style="margin-top:6px">
+            <span class="pine-avatar" style="width:50px!important; float:left;margin-right:10px;margin-bottom:10px">
+                <img src="{{notification.sender.sender.profile.optimized_image_url}}"  onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:50px!important; height:50px!important; margin-top:1px!important" alt="avatar">
+            </span>
+                <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.sender.username %}">{{notification.sender.sender.username}}</a>
+                commented on your post <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.post.id notification.post.post.slug %}">{{ notification.post.post.title|safe }}</a></span><br>
+                <small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+
+            {% if notification.Notification_type == 3 %}
+            <div style="margin-top:6px">
+            <span class="pine-avatar" style="width:50px!important; float:left;margin-right:10px;margin-bottom:10px">
+                <img src="{{notification.sender.sender.profile.optimized_image_url}}"  onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:50px!important; height:50px!important; margin-top:1px!important" alt="avatar">
+            </span>
+                <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.sender.username %}">{{notification.sender.sender.username}}</a>
+                also commented on post <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.post.id notification.post.post.slug %}">{{ notification.post.post.title|safe }}</a></span><br>
+                <small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+
+            {% if notification.Notification_type == 4 %}
+            <div style="margin-top:6px">
+                <span class="pine-avatar" style="width:50px!important; float:left;margin-right:10px;margin-bottom:10px">
+                    <img src="{{notification.sender.sender.profile.optimized_image_url}}"  onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:50px!important; height:50px!important; margin-top:1px!important" alt="avatar">
+                </span>
+                <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.sender.username %}">{{notification.sender.sender.username}}</a>{% if notification.count > 9 %} and {{notification.count|safe}} other people {% endif %}
+                liked your comment on post <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.post.id notification.post.post.slug %}">{{ notification.post.post.title|safe }}</a></span><br>
+                <small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+
+            {% if notification.Notification_type == 5 %}
+            <div style="margin-top:6px">
+                You have one new invite!  Who's a great potential addition to Pine Sports? The invite code is <i><b> &nbsp;{{ notification.text_preview }}</b></i> <b><a href="{% url 'user_beta_notification' %}" target="_blank" class="text-primary"> Click here</a></b> to send this invite code to your friend.
+                <br><small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+
+            {% if notification.Notification_type == 6 %}
+            <div style="margin-top:6px">
+                <span class="pine-avatar" style="width:50px!important; float:left;margin-right:10px;margin-bottom:10px">
+                    <img src="{%static 'images/crown-circle.svg'%}" style="width:50px!important; height:50px!important; margin-top:1px!important" alt="crown">
+                </span>
+                <a href="/prop-master/user/{{notification.sender.sender.username}}/" target="_blank" style="color:#4EC48F;font-weight:600">{{notification.sender.sender.username}}</a> challenged you to a game of <a href="{% url 'prop_master_player2' uid=notification.prop_master_game.prop_master_game.uid %}" target="_blank" class="text-primary" style="color:#274970;font-weight:600">Prop Master!</a>
+                <br><small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+            {% if notification.Notification_type == 7 %}
+            <div style="margin-top:6px">
+                <span class="pine-avatar" style="width:50px!important; float:left;margin-right:10px;margin-bottom:10px">
+                    <img src="{%static 'images/crown-circle.svg'%}" style="width:50px!important; height:50px!important; margin-top:1px!important" alt="crown">
+                </span>
+                Congratulations, {{notification.text_preview}} <a href="/prop-master/user/{{notification.sender.sender.username}}/" target="_blank" style="color:#4EC48F;font-weight:600">{{notification.sender.sender.username}}</a> at a game of <a href="/prop-master/game/{{notification.prop_master_game.prop_master_game.uid}}/" target="_blank" style="color:#274970;font-weight:600">Prop Master!</a>
+                <br><small>{{ notification.date | timesince | upto:','  }} ago</small>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+        <div class="loading">
+            <center><img style="width:25%!important; max-width:100px!important" src="{% static 'images/Spin1_Gray_Transparent.svg' %}"></center>
+        </div>
+        {% endif %}
+
+        <div class="row">
+            {% if page_obj.has_next %}
+            <a class="infinite-more-link" href="?page={{ page_obj.next_page_number }}"></a>
+            {% endif %}
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
+
+{% block script %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="{% static 'blog/js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/infinite.min.js' %}" type="text/javascript"></script>
+
+<script>
+
+    var infinite = new Waypoint.Infinite({
+        element: $('.infinite-container')[0],
+
+        offset: 'bottom-in-view',
+
+        onBeforePageLoad: function () {
+            $('.loading').show();
+        },
+        onAfterPageLoad: function () {
+            $('.loading').hide();
+        }
+
+    });
+
+</script>
+
+<script>
+    document.addEventListener('scroll', function () {
+        top_div = document.getElementById("top").getBoundingClientRect();
+
+        if ($(window).width() < 690) {
+
+            if (top_div.top > 120){
+                document.getElementById("top-loading").style.display = "inline";
+                $('.top-loading').show();
+                location.reload();
+             }
+        }
+    }, {
+        passive: true
+    });
+</script>
+
+{% endblock %}

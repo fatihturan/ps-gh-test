@@ -1,0 +1,122 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <script asyncsrc="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+<div class="all-content">
+
+    <div class="user-post-and-comments">
+
+        <div class="user-post row">
+            <div class="post-title-detail"><center>Help</center></div>
+            <div class="post-content terms-text">
+                <div class="post-content terms-title">Overview</div>
+                <div class="post-content terms-text">
+                    Welcome to Pine Sports!  We're dedicated to giving you cutting-edge easy-to-use analytics and AI tools, and letting you share your insights with the world.<br><br>
+                    Pine has three main sections: (1) Stories; (2) Explore; and (3) Predict.  "Stories" aggregates all of the amazing sports insights that you generate, and provides the Pine Sports community with a forum to discuss and debate these insights.  "Explore" allows you to analyze sports data with the same cutting-edge technology used by the biggest New York hedge funds and Silicon Valley tech companies.  And "Predict" lets you build your own artificial intelligence models to predicting winners, winners against the spread and over-unders.<br><br>
+                </div>
+                <div class="post-content terms-title">Stories</div>
+                <div class="post-content terms-text">
+                    Stories is where you can post your thoughts and share your insights.  Importantly, when building a Story, you can share and discuss the data visualizations you build with the tools available to you in Explore.<br><br>
+                </div>
+                <div class="post-content terms-title">Explore</div>
+                <div class="post-content terms-text">
+                    Explore gives you access to years of historic sports data, and lets you analyze the data in ways you’ve never been able to do before.  Explore has four sections:<br><br>
+                    <ol class="post-content terms-text">
+                        <li><u>View</u> is a simple spreadsheet view of the data.  Here, you can sort and filter the data any way you like.</li><br>
+                        <li><u>Visualize</u> is a tool that allows you to build powerful data visualizations to share with the Pine community.</li><br>
+                        <li><u>Correlate</u> gives you the tools to better understand the relationships between data columns.</li><br>
+                        <li><u>Select</u> allows you to select the stats you would like to view in the other three sections.  It also gives you an overview of the data contained in each column.</li><br>
+                    </ol>
+                </div>
+                <div class="post-content terms-title">Predict</div>
+                <div class="post-content terms-text">
+                    Predict gives you access to cutting edge artificial intelligence so you can build your own models to predict the outcome of games.  All you need to do is tell us (1) how many seasons you want to go back to teach your model; (2) how many games back you would like to look when comparing teams; and (3) the stats you think are important to make a prediction.  We then run a bunch of AI models and pick the best one for your choices.  Your "model score" is the percentage of games it got right when we tested the model without telling it the result (usually using the last season as a test).
+                </div>
+                <div class="post-content terms-title">Tutorials</div>
+                <div class="post-content terms-text">
+                    <b><u>Exploring Explore</u></b><br><br>
+                    <center>
+                        <b>Understanding View</b><br><br>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/view_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+
+                        <b>Understanding Correlate</b><br><br>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/correlate_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+
+                        <b>Understanding Select</b><br><br>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/select_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+                    </center>
+
+                    <b><u>Building Visualizations</u></b><br><br>
+                    <center>
+
+                        <b>Building a Line Chart</b><br><br>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/line_chart_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+
+                        <b>Building a Bar Chart</b><br><br>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/bar_chart_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+
+                        <b>Building a Scatter Plot</b><br><br>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/scatter_plot_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+
+                    </center>
+                    <b><u>Creating a Story</u></b><br><br>
+                    <center>
+                        <video width="90%" controls="true" playsinline>
+                            <source src="{% static 'tutorials/building_a_story_small.mp4'%}" type="video/mp4">
+                            Your browser does not support the video.
+                        </video><br><br>
+                    </center>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

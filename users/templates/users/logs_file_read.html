@@ -1,0 +1,49 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <style>
+    p{
+        font-size:14px;
+        line-height: 15px;
+        margin-bottom: 13px;
+    }
+    </style>
+</head>
+
+<div class="hidden-sm-down top-buffer"></div>
+
+<div class="all-content pt-2">
+    <div class="user-post-and-comments">
+        <div class="user-post row">
+            {% if messages %}
+            <ul class="messages m-0 text-center">
+                {% for message in messages %}
+                    <h3 {% if message.tags %} class="text-{{ message.tags }}" {% endif %}> {{ message }}</h3>
+                {% endfor %}
+            </ul>
+            <br/>
+            {% endif %}
+            {% if log_lines %}
+                {% for log in log_lines %}                
+                    {{log | linebreaks}}
+                {% endfor %}
+            {% else %}
+                <p>There are no logs at the moment</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

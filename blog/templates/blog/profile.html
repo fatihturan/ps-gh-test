@@ -1,0 +1,136 @@
+{% extends "blog/base.html" %}
+{% load static %}
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+</head>
+<div class="col-12 col-md-3 pr-4 dont-move hidden pt-3">
+    <!-- <a href="/"> <h2><img class="img-fluid" width="60" src="{% static 'blog/logo.png' %}">ReadyTweet</h2></a><br> -->
+    <div class="profile-section">
+
+        <h3 class="black-important p-2">
+            Profile
+        </h3>
+
+        <article class="media content-section" style="height: 140px; width: 100%">
+            {%  if user_profile != None %}
+            <div class="mt-2 d-flex full-width align-items-center">
+                <img
+                        class="rounded-circle mr-3 img-fluid"
+                        style="width: 90px; height: 90px;"
+                        src="{{ user_profile.profile.image_url }}?v=2">
+                <div>
+                    <h4 style="text-align: left"
+                        class="white-important">
+                        {{ user_profile.username }}
+
+                    </h4>
+                    <h6 style="text-align: left"
+                        class="email-profile">
+                        {{ user.email }}
+
+                    </h6>
+
+                </div>
+            </div>
+            {%  else %}
+            <div class="mt-2 d-flex full-width align-items-center">
+                <img
+                        class="rounded-circle mr-3"
+                        style="width: 90px; height: 90px;"
+                        src="{{ user.profile.image_url }}?v=2">
+                <div>
+                    <h4 style="text-align: left"
+                        class="white-important">
+                        {{ user.username }}
+                    </h4>
+                    <h6 style="text-align: left"
+                        class="email-profile">
+                        {{ user.email }}
+                    </h6>
+                </div>
+            </div>
+            {%  endif %}
+        </article>
+        <article class="media content-section">
+            <div class="row full-width pl-2">
+                <div class="col-6">
+                    Followers
+                </div>
+                <div class="col-6">
+                    Following
+                </div>
+                {%  if user_profile != None %}
+                <div class="col-6">
+                    <h3 class="white-important follow-click">
+                        <a href="{% url 'stories:user-followers' user_profile.username %}">
+                            {{ user_profile.profile.followers }}
+                        </a>
+                    </h3>
+                </div>
+                <div class="col-6">
+                    <a href="{% url 'stories:user-follows' user_profile.username %}">
+                        <h3 class="white-important follow-click">
+                            {{ user_profile.profile.following }}
+                        </h3>
+                    </a>
+                </div>
+                {% else %}
+                <div class="col-6">
+                    <a href="{% url 'stories:user-followers' user.username %}">
+                        <h3 class="white-important follow-click">
+                            {{ user.profile.followers }}
+                        </h3>
+                    </a>
+                </div>
+
+                <a href="{% url 'stories:user-follows' user.username %}">
+                    <div class="col-6">
+                        <h3 class="white-important follow-click">
+                            {{ user.profile.following }}
+                        </h3>
+                    </div>
+                </a>
+                {%  endif %}
+            </div>
+        </article>
+
+        <div class="d-flex">
+            {% if user_profile is None %}
+            <div style="margin-left:25px">
+                <a class="btn btn-sm btn-outline-primary mb-4 mr-3 " href="{% url 'stories:post-create' %}">
+                    New Post
+                </a>
+            </div>
+            {% endif %}
+            {%  if user_profile is not None and user_profile.id != user.id  and user.username != '' %}
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <button style="margin-left: 18px" class="btn btn-sm btn-outline-primary"
+                            name="{% if can_follow %}follow{% else %}unfollow{% endif %}"
+                            type="submit">
+                        {% if can_follow %}
+                        FOLLOW
+                        {% else %}
+                        UNFOLLOW
+                        {% endif %}
+                    </button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</div>

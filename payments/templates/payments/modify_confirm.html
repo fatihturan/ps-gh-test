@@ -1,0 +1,282 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jaXon</title>
+    <link rel="stylesheet" href="https://use.typekit.net/qau1euj.css" />
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DKFP5KMQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9DKFP5KMQ8');
+    </script>
+    
+    <script>
+      var is_logged_in = {{ is_logged_in|yesno:"true,false" }};
+      console.log("is_logged_in_frontend:", is_logged_in);
+      var username = "{{ username }}";  
+      var plan_id = "{{ plan_id }}";
+      var subscription_status = "{{ subscription_status }}";
+      var priceId = "{{ price_id }}";
+      var cancel_coupon_id = "{{ cancel_coupon_id }}";
+      var stripePublicKey = "{{ stripe_publishable_key }}";
+
+
+      //checkout variables
+
+      // sandbox checkout vars
+
+      
+      var envurlbase = "{{ envurlbase }}";
+      
+      var success = `${envurlbase}/chat/`;
+      var cancel = `${envurlbase}/subscribe/`;
+
+    
+    </script>
+  </head>
+  <body>
+
+    <header>
+      <div class="header">
+        <img src="{% static 'img/logo/jaxon-logo.svg' %}" alt="" />
+        <div class="buttons">
+          <a href="" class="btn" id="headerLogin"></a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <!--<img src="{% static 'img/logo/jaxon-logo.svg' %}" width="250" alt="" />-->
+        <h1>Renewal <span>Offer</span></h1>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+      </div>
+      <div class="pricing-plan">
+        <div class="cards">
+          <div class="popular-card">
+            <div class="popular-card-title">
+              <span>Limited Time Offer</span>
+            </div>
+            <div class="card-border">
+              <div class="card second-card">
+                <div class="card-top">
+                  <span class="card-title card-title-green">{{ percent_off }}% OFF for {{ duration_in_months }} Months</span>
+                  <p>
+                    Claim this one time offer and give jaXon another shot!
+                  </p>
+                  <div class="monthly-price">
+                    <span class="old-price">${{ current_price }}</span>
+                    <span class="new-price">${{ new_price }}<span>/ mo</span> </span>
+                  </div>
+                  <a href="" class="btn btn-green subscriber" id="renew">Renew ({{ percent_off }}% Off)</a>
+                </div>
+                <div class="card-bottom">
+                  <ul>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>Starts at the end of your current term</p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>We make improvements every week so let us know what we can do better</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    <div class="hero-bottom">
+        <!--<p>
+          You must make a free Pine Sports account to access the Premium Discord.
+          <a href="https://www.pine-sports.com/register/?next=/subscribe/discord"
+            >Register now!</a>
+          
+        </p>
+        <p>
+          Already have an account?
+          <a href="https://www.pine-sports.com/login/?next=/subscribe/discord"
+            >Log in here.</a>
+          
+        </p>-->
+      </div>
+    </section>
+
+  
+
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <p>Copyright © 2024 Pine Sports Inc. | All Rights Reserved.</p>
+          <ul>
+           
+            <li>
+              <a href="https://x.com/PineSports_AI?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                <img src="{% static 'img/icon/twitter-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/pine.sports/">
+                <img src="{% static 'img/icon/instagram-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="footer-bottom">
+          <img src="{% static 'img/logo/jaxon-logo.svg' %}" alt="" />
+          <ul class="footer-bottom-list">
+            <li>
+              <a href="/terms/">Terms Of Use</a>
+            </li>
+            <li>
+              <a href="/privacy/">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  
+    <script>
+       // Set the login url to logout for logged-in users
+      
+      // Check if user is logged in
+    
+    document.addEventListener('DOMContentLoaded', function() {
+  // Check if user is logged in
+  if (is_logged_in) {
+    document.getElementById("headerLogin").innerHTML = "Logout";
+    document.getElementById('headerLogin').setAttribute('href', '/logout/');
+    // set the discord oauth url
+    
+   
+
+    console.log("User is logged in. Setting subscription URLs for logged-in users.");
+    var stripe = Stripe(stripePublicKey);
+    
+    document.getElementById('renew').addEventListener('click', async function(e) {
+          e.preventDefault();  // Prevent any immediate navigation
+          setLoading();
+          console.log('Redirecting to Stripe Portal');
+          body_data = {  return_url: success, update:true, renew:true };
+        
+        if (subscription_status != 'canceled'){
+          try {
+            
+            fetch("create-portal-session/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(body_data)
+          })
+          .then((result) => {
+            if (!result.ok) {
+              throw new Error('Failed to create Stripe Portal session');
+            }
+            return result.json();
+          })
+            .then((data) => {
+              //console.log('Response data:', data);
+
+              // Check if the data contains the 'url' field
+              if (data.url) {
+                // Redirect to the Stripe portal URL
+                window.location.href = data.url;
+              } else {
+                throw new Error('No URL found in the response from Stripe');
+              }
+            })
+            .catch(function (error) {
+              console.error("Error:", error);
+            });
+          } catch (error) {
+            console.error('Error redirecting to portal:', error);
+            alert('Failed to get subscription details. Please try again.');
+          }
+        }
+      else{
+        try {
+          
+            fetch("create-checkout-session/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            
+            body: JSON.stringify({  id: priceId,success_url:success, cancel_url:cancel, free_trial_eligible: 'False',coupon_id: cancel_coupon_id })
+          })
+          .then((result) => { return result.json(); })
+            .then((data) => {
+              if (data.error) {
+                alert(data.error);
+                window.location.reload();
+              }
+              // Redirect to Stripe Checkout
+              console.log('Redirecting to Checkout:', data.sessionId);
+              return stripe.redirectToCheckout({sessionId: data.sessionId})
+            })
+            .then((data) => {
+              // If redirectToCheckout fails due to a browser or network
+              // error, you should display the localized error message to your
+              // customer using error.message.
+              if (data.error) {
+                alert(data.error.message);
+              }
+            })
+            .catch(function (error) {
+              console.error("Error:", error);
+            });
+          } catch (error) {
+            console.error('Error retrieving priceId or redirecting to checkout:', error);
+            alert('Failed to get subscription details. Please try again.');
+          }
+      }
+        })
+      }
+   
+    
+   else {
+    // For non-logged-in users
+    console.log("User is not logged in. Setting subscription URLs for non-logged-in users.");
+
+    // Change login button
+    document.getElementById("headerLogin").innerHTML = "Login";
+    document.getElementById('headerLogin').setAttribute('href', '/login/');
+  }
+});
+
+    
+
+function setLoading() {
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
+}
+
+    </script>
+
+  </body>
+</html>

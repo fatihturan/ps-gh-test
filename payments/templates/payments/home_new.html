@@ -1,0 +1,980 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jaxon</title>
+    <link rel="stylesheet" href="https://use.typekit.net/qau1euj.css" />
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+    <script>
+      var is_logged_in = {{ is_logged_in|yesno:"true,false" }};
+      var username = "{{ username }}";
+      var subscription = "{{ subscription }}";
+
+      //checkout variables
+
+      // sandbox checkout vars
+
+      /*
+      var envurlbase = 'http://localhost:8000/';
+
+      var essentialmonthlyid = 'price_1PpmcbD46W3VJfdjVBbn3sTx';
+      var essentialyearlyid = 'price_1Ppmi5D46W3VJfdj4NbBqC2q';
+
+      var premiummonthlyid = 'price_1PpmllD46W3VJfdjlUAsxHre';
+      var premiumyearlyid = 'price_1Ppmm2D46W3VJfdj5lC3UEDW';
+
+      var unlimitedmonthlyid = 'price_1PpmmSD46W3VJfdjNmudjSya';
+      var unlimitedyearlyid = 'price_1PpmmgD46W3VJfdjp46CSn5f';
+
+      var stripePublicKey = 'pk_test_51Om2gMD46W3VJfdjxNJsWYFQdJUihajeZJTTqXr5UdQwHukehlx9Q1xJbCclxxN2u7EyX31ns5sXdTnCbvnU1mk800iW9XyKMm';
+      */
+
+
+      // live checkout vars
+
+      var envurlbase = 'https://prodtest.pine-sports.com/';
+
+      var essentialmonthlyid = 'price_1Pw4soD46W3VJfdjeJ0dpm1f';
+      var essentialyearlyid = 'price_1PxDRKD46W3VJfdjhrihdc6B';
+
+      var premiummonthlyid = 'price_1Pw51rD46W3VJfdjlYCNoP2r';
+      var premiumyearlyid = 'price_1Pw52qD46W3VJfdj4iW1djSH';
+
+      var unlimitedmonthlyid = 'price_1Pw547D46W3VJfdjlflgqHst';
+      var unlimitedyearlyid = 'price_1PxaVQD46W3VJfdjGDaoxEaD';
+
+      var stripePublicKey = 'pk_live_51Om2gMD46W3VJfdj7wnvKuZnnZfN1eXkyf4XhxW3in1hwWqRvXKoTKa1iDXIIaA2zofaUS7tPnt5gLHMMLZNrCzm00AkSsfiRp';
+
+
+      var success = `${envurlbase}chat/`;
+      var cancel = `${envurlbase}subscribe/`;
+
+      var defaultDiscountCode = 'JAXON50';
+
+      // Logging both values for debugging
+      console.log("Is logged in:", is_logged_in);
+      console.log("Username:", username);
+      console.log("Subscription:", subscription);
+
+    </script>
+  </head>
+  <body>
+    <!--<input type="hidden" id="csrf_token" value="{% csrf_token %}">-->
+
+    <header>
+      <div class="header">
+        <img src="{% static 'img/logo/jaxon-logo.svg' %}" alt="" />
+        <div class="buttons">
+          <a href="" class="btn" id="headerLogin"></a>
+          <!--<a href="#" class="btn btn-green">Start Now</a>-->
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <img src="{% static 'img/logo/jaxon_logo_white.webp' %}" width="250" alt="" />
+        <h1>Your Personal <span>AI Sports Companion</span></h1>
+        <p>
+          With Lightning-Fast Analysis And Precision, JaXon Gives You The
+          Insights To Bet Smarter.
+        </p>
+      </div>
+      <div class="sign-content">
+        <p class="sign-text">
+          <span>50% Off Code: </span>
+          <span class="get-off">JAXON50</span>
+        </p>
+      </div>
+      <div class="pricing-plan">
+        <div class="swicth-button">
+          <input type="checkbox" id="pricing" name="pricing" />
+          <span>Monthly</span>
+          <span>Yearly</span>
+        </div>
+        <div class="cards">
+          <div class="card first-card">
+            <div class="card-top">
+              <span class="card-title">ESSENTIAL</span>
+              <p>
+                Essential Access is perfect for those who want to test the
+                waters and experience the world's first AI Sports Companion.
+              </p>
+              <div class="monthly-price">
+                <span class="old-price">$39.99</span>
+                <span class="new-price">$19.99<span>/ mo</span> </span>
+              </div>
+              <div class="yearly-price">
+                <span class="old-price">$799.99</span>
+                <span class="new-price">$399.99<span>/ mo</span> </span>
+              </div>
+
+              <a href="" class="btn" id="subscriptionEssential">Subscribe</div>
+
+            </div>
+            <div class="card-bottom">
+              <ul>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>
+                    Engage with jaXon and unlock 50 monthly pro questions to
+                    outthink the books.
+                  </p>
+                </li>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>Arm yourself with the right data, fast.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="popular-card">
+            <div class="popular-card-title">
+              <span>MOST POPULAR</span>
+            </div>
+            <div class="card-border">
+              <div class="card second-card">
+                <div class="card-top">
+                  <span class="card-title card-title-green">PREMIUM</span>
+                  <p>
+                    Premium Access is the way to elevate your jaXon experience
+                    with enhanced features. Be a part of the evolution that
+                    never stops improving.
+                  </p>
+                  <div class="monthly-price">
+                    <span class="old-price">$99.99</span>
+                    <span class="new-price">$49.99<span>/ mo</span> </span>
+                  </div>
+                  <div class="yearly-price">
+                    <span class="old-price">$1899.99</span>
+                    <span class="new-price">$999.99<span>/ mo</span> </span>
+                  </div>
+                  <a href="" class="btn btn-green" id="subscriptionPremium">Subscribe</a>
+                </div>
+                <div class="card-bottom">
+                  <ul>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>
+                        Super charge your research with 150 monthly pro
+                        questions.
+                      </p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>
+                        Unlock +EV, arbitrage and middle opportunities with
+                        jaXon.
+                      </p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>
+                        Exclusive access to the Pine Premium Discord community.
+                      </p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>
+                        Gain an advantage with Daily Sharp AI picks from the
+                        Pine Bot.
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card third-card">
+            <div class="card-top">
+              <span class="card-title card-title-gradient">UNLIMTED</span>
+              <p>
+                Unleash the full force of jaXon with Ultimate Access. Bet
+                Unfair.
+              </p>
+              <div class="monthly-price">
+                <span class="old-price">$199.99</span>
+                <span class="new-price">$99.99<span>/ mo</span> </span>
+              </div>
+              <div class="yearly-price">
+                <span class="old-price">$3999.99</span>
+                <span class="new-price">$1999.99<span>/ mo</span> </span>
+              </div>
+              <a href="" class="btn" id="subscriptionUnlimited">Subscribe</a>
+            </div>
+            <div class="card-bottom">
+              <ul>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>Access to everything in Premium</p>
+                </li>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>
+                    Master your research with a game changing 300 monthly pro
+                    questions.
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bottom">
+        <p>
+          You must make a free Pine Sports account to access jaXon.
+          <a href="https://www.pine-sports.com/register/?next=/subscribe/"
+            >Register now!</a
+          >
+        </p>
+        <p>
+          Already have an account?
+          <a href="https://www.pine-sports.com/login/?next=/subscribe/"
+            >Log in here.</a
+          >
+        </p>
+      </div>
+    </section>
+
+    <section class="video-section">
+      <div class="video-wrapper">
+        <div class="video-inner">
+          <h2>How It Works</h2>
+          <!--<p>
+          </p>-->
+          <a href="#" class="btn">Subscribe</a>
+        </div>
+        <div class="video">
+          <video src="{% static 'img/jaxon-teaser-optimized.mp4' %}" controls></video>
+        </div>
+      </div>
+    </section>
+
+    <section class="tweets-section">
+      <div class="tweets">
+        <h3>See what JaXon users are <span>saying</span></h3>
+        <div class="tweets-cards">
+          <div class="swiper">
+            <div class="tweets-card-controls">
+              <span class="swiper-button swiper-button-prev"></span>
+              <span class="swiper-button swiper-button-next"></span>
+            </div>
+            <div class="swiper-wrapper" id="tweets">
+              <!--
+              <div class="tweets-card swiper-slide">
+                <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">🤖Meet <a href="https://twitter.com/hashtag/jaXon?src=hash&amp;ref_src=twsrc%5Etfw">#jaXon</a>, the ultimate AI sports betting companion. Ask any betting or fantasy question and have the answer in seconds. <a href="https://twitter.com/hashtag/jaXon?src=hash&amp;ref_src=twsrc%5Etfw">#jaXon</a> is uniquely capable of assisting with it&#39;s wide range of tools and information. <br><br>To win a free week of prelaunch beta access LIKE➡️FOLLOW➡️REPOST <a href="https://t.co/MKoc9Ve6sT">pic.twitter.com/MKoc9Ve6sT</a></p>&mdash; Pine Sports (@PineSports_AI) <a href="https://twitter.com/PineSports_AI/status/1824446205385949557?ref_src=twsrc%5Etfw">August 16, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+              <div class="tweets-card swiper-slide">
+                <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">🃏 It&#39;s that time of the week again!<br><br>Come play some hold &#39;em with the Pine community and staff!<br><br>Blinds are .1SC/.2SC min buy in 8SC, which means that with the welcome offer at the link below, you&#39;re good to buy in for the next few weeks&#39; games!<a href="https://t.co/HJXtmBTxNF">https://t.co/HJXtmBTxNF</a> <a href="https://t.co/TkV8cpP7wZ">https://t.co/TkV8cpP7wZ</a> <a href="https://t.co/2sRdKmWvbS">pic.twitter.com/2sRdKmWvbS</a></p>&mdash; Pine Sports (@PineSports_AI) <a href="https://twitter.com/PineSports_AI/status/1836915300983300365?ref_src=twsrc%5Etfw">September 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+              <div class="tweets-card swiper-slide">
+                <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">✅ Braves ML<br>✅ Baltimore ML<br><br>Need the <a href="https://twitter.com/hashtag/Yankees?src=hash&amp;ref_src=twsrc%5Etfw">#Yankees</a> to get it together! <a href="https://t.co/AwyMeajPpV">https://t.co/AwyMeajPpV</a></p>&mdash; Pine Sports (@PineSports_AI) <a href="https://twitter.com/PineSports_AI/status/1836867357576233298?ref_src=twsrc%5Etfw">September 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+              <div class="tweets-card swiper-slide">
+                <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="en" dir="ltr">⚡️ <a href="https://twitter.com/hashtag/jaXon?src=hash&amp;ref_src=twsrc%5Etfw">#jaXon</a>&#39;s <a href="https://twitter.com/hashtag/TNFonPrime?src=hash&amp;ref_src=twsrc%5Etfw">#TNFonPrime</a> insight! ⚡️<br><br>Show some love and drop a Like if you&#39;re ready for TNF!<br><br>🏈 Jets -6.5<br>🎯 Breece Hall Over 30.5 Receiving Yards<br>👐 Rhamondre Stevenson Over 2.5 Receptions<br><br>Want access to jaXon? Join the PREMIUM Discord to sign up NOW!<a href="https://t.co/ZLSg9tzNvR">https://t.co/ZLSg9tzNvR</a> <a href="https://t.co/kXNnkxqYxH">pic.twitter.com/kXNnkxqYxH</a></p>&mdash; Pine Sports (@PineSports_AI) <a href="https://twitter.com/PineSports_AI/status/1836819450965938396?ref_src=twsrc%5Etfw">September 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+              <div class="tweets-card swiper-slide">
+                <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="de" dir="ltr">✅ Mets ML<br>🗑️ Under 7.5 total runs<br>✅ Quintata Under 5.5 K&#39;s <a href="https://t.co/bpfmI28ISi">https://t.co/bpfmI28ISi</a></p>&mdash; Pine Sports (@PineSports_AI) <a href="https://twitter.com/PineSports_AI/status/1836770973376229546?ref_src=twsrc%5Etfw">September 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              </div>
+              <div class="tweets-card swiper-slide">
+                <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark"><p lang="es" dir="ltr">¡Hasta mañana! <a href="https://t.co/OriuJnKvOp">https://t.co/OriuJnKvOp</a></p>&mdash; Pine Sports (@PineSports_AI) <a href="https://twitter.com/PineSports_AI/status/1836612428668506510?ref_src=twsrc%5Etfw">September 19, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+              -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+<!--
+    <section class="product">
+      <div class="product-feature">
+        <div class="product-feature-inner">
+          <h2>Find The Best Bets</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+        <div class="product-feature-image">
+          <img src="{% static 'img/best-bets.png' %}" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="product">
+      <div class="product-feature">
+        <div class="product-feature-image">
+          <img src="{% static 'img/sports-knowledge.png' %}" alt="" />
+        </div>
+        <div class="product-feature-inner">
+          <h2>General Sports Knowledge</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="product">
+      <div class="product-feature">
+        <div class="product-feature-inner">
+          <h2>Get Fantasy Advice</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+        <div class="product-feature-image">
+          <img src="{% static 'img/fantasy-advice.png' %}" alt="" />
+        </div>
+      </div>
+    </section>
+    <section class="product">
+      <div class="product-feature">
+        <div class="product-feature-image">
+          <img src="{% static 'img/the-data.png' %}" alt="" width="720px" height="406px" />
+        </div>
+        <div class="product-feature-inner">
+          <h2>Dig Into The Data</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+            vulputate libero et velit interdum, ac aliquet odio mattis.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="table-wrapper">
+      <h3>Full Feature Breakdown</h3>
+      <div class="table-inner">
+        <div class="table">
+          <div class="table-row-title">
+            <ul>
+              <li>
+                <span>JaXon</span>
+              </li>
+              <li>
+                <span>CHATGPT</span>
+              </li>
+              <li>
+                <span>Perplexity</span>
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+          <div class="table-row">
+            <div class="table-row-inner">
+              <span>Lorem ipsum</span>
+              <p>
+                Horem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Class aptent taciti sociosqu ad litora torquent per conubia
+                nostra.
+              </p>
+            </div>
+            <ul>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+              <li>
+                <img src="{% static 'img/icon/table-checkmark-icon.svg' %}" alt="" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+-->
+    <section class="faqs">
+      <h2>Frequently Asked Questions</h2>
+      <div class="accordion">
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">What is JaXon?</span>
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              jaXon is your AI sports betting buddy, powered by Pine. It's like having a super-smart, sports-obsessed friend who never sleeps and is always ready to chat about betting, fantasy, and all things sports!
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">How Does JaXon Work Its Magic?</span>
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              jaXon taps into a treasure trove of sports data, news, and betting tools. It crunches numbers faster than you can say "touchdown," giving you insights on everything from player props to game lines. It's like having a sports analyst, statistician, and betting pro all rolled into one friendly chatbot.
+            </p>
+          </div>
+        </div>
+        <!--
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title"
+              >What Kind Of Tools Does JaXon Have Access To?</span
+            >
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              Oh boy, jaXon's toolbox is packed! Here's a peek at some of the high-tech gear our AI buddy uses to give you the edge:
+Game Scout: jaXon can pull up schedules and details for games across multiple leagues, past and future. It's like having a time-traveling sports almanac!
+News Hound: jaXon scours top sports publications for the latest news, giving you fresh insights on games, players, and even betting recommendations.
+Tweet Decoder: jaXon keeps an ear to the ground on social media, catching breaking news on injuries, trades, and more from reliable sports reporters.
+Stat Master: Want to know how LeBron performs in away games against East Coast teams? jaXon can crunch those numbers for you in a jiffy.
+Prop Projector: For NBA, MLB, NFL, and NHL, jaXon can analyze player props, giving you historical data, projections, and even the best lines across sportsbooks.
+Line Shopper: jaXon compares game lines across multiple sportsbooks, helping you find the best value for your bets.
+EV Calculator: jaXon can spot positive expected value bets, potentially giving you an edge over the books.
+Arbitrage Detector: jaXon can identify arbitrage opportunities across different sportsbooks, potentially allowing you to lock in profits regardless of the game's outcome.
+Fantasy Guru: Whether you're drafting your team or setting weekly lineups, jaXon's got your back with player projections and analysis.
+MLB Matchup Analyzer: For baseball bets, jaXon breaks down pitcher vs. batter stats and even considers park factors!
+NFL Survivor Pool Strategist: jaXon can help you map out the optimal strategy for your NFL survivor pool.
+Historical Data Diver: jaXon can access and analyze vast amounts of player and team data to answer complex statistical questions.
+            </p>
+          </div>
+        </div>-->
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title"
+              >Can JaXon Help Me Dominate My Fantasy League?</span
+            >
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              You bet! jaXon is a fantasy football fiend. It can help you draft, set lineups, and even suggest sleeper picks. It's like having a crystal ball, but way more reliable and much less creepy.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title"
+              >How Much Time Can JaXon Save Me?</span
+            >
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              Our users are calling jaXon their new best friend (don't be jealous, human friends). They say jaXon saves them hours of research time. Imagine getting a full day's worth of sports analysis in just seconds. It's like time travel, but for sports betting & fantasy!
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">Is JaXon Perfect?</span>
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              Well, nobody's perfect (except maybe Tom Brady), and that includes AI. jaXon works super hard to give you the best info possible, but occasionally it might fumble. Our trials show that jaXon makes far fewer mistakes than any other AI chatbot when it comes to sports statistics. We're also constantly training jaXon to be better. It's like it's at AI sports bootcamp 24/7!
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">How Often Do You Update JaXon?</span>
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              We're always tweaking and improving jaXon. It's like jaXon is doing two-a-days, every day. We're constantly adding new features, refining its knowledge, and making sure it stays ahead of the game.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title"
+              >What If I Don't Like It Or Want To Cancel?</span
+            >
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              No problem, you can easily cancel your subscription if you are not satisfied with jaXon.
+            </p>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <div class="accordion-trigger" aria-expanded="false">
+            <span class="accordion-title">Can JaXon Place Bets For Me?</span>
+            <img class="accordion-icon" src="{% static 'img/faqs-arrow.svg' %}" alt="" />
+          </div>
+          <div class="accordion-content">
+            <p>
+              Nope, jaXon is your research buddy, not your bookie. It'll give you all the info you need to make smart bets, It can even give you direct links to bets on all of the major sportsbooks, but the actual betting is up to you. Think of jaXon as your personal sports research assistant that gets you everything you need to make informed decisions.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <p>Copyright © 2024 Pine Sports | All Rights Reserved.</p>
+          <ul>
+            <li>
+              <a href="#">
+                <img src="{% static 'img/icon/facebook-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="{% static 'img/icon/twitter-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="{% static 'img/icon/instagram-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                <img src="{% static 'img/icon/linkedin-icon.svg' %}" alt="" />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="footer-bottom">
+          <img src="{% static 'img/logo/jaxon-logo.svg' %}" alt="" />
+          <ul class="footer-bottom-list">
+            <li>
+              <a href="#">Terms Of Use</a>
+            </li>
+            <li>
+              <a href="#">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script>
+       // Set the login url to logout for logged-in users
+
+
+      // Check if user is logged in
+      console.log("is_logged_in:", is_logged_in);
+
+    document.addEventListener('DOMContentLoaded', function() {
+  // Check if user is logged in
+  if (is_logged_in) {
+    document.getElementById("headerLogin").innerHTML = "Logout";
+    document.getElementById('headerLogin').setAttribute('href', '/logout/');
+
+    // Set the Stripe public key
+    var stripe = Stripe(stripePublicKey);
+    console.log('Stripe initialized:', stripe);
+
+    console.log("User is logged in. Setting subscription URLs for logged-in users.");
+
+    // Event listeners for subscription buttons
+   // Event listeners for subscription buttons with async/await for handling
+  document.getElementById('subscriptionEssential').addEventListener('click', async function(e) {
+    e.preventDefault();  // Prevent any immediate navigation
+    console.log('Redirecting to Stripe for Essential Plan');
+
+    try {
+      const priceId = await getPriceId('essential');
+      console.log('priceId:', priceId);
+
+      // Once priceId is successfully returned, proceed to Stripe Checkout
+      const stripeResult = await stripe.redirectToCheckout({
+        lineItems: [{ price: priceId, quantity: 1 }],
+        mode: 'subscription',
+        successUrl: success,
+        cancelUrl: cancel,
+        clientReferenceId: username,
+      });
+
+      console.log('Stripe result:', stripeResult);
+
+      if (stripeResult.error) {
+        alert(stripeResult.error.message);
+      }
+    } catch (error) {
+      console.error('Error retrieving priceId or redirecting to checkout:', error);
+      alert('Failed to get subscription details. Please try again.');
+    }
+  });
+
+  document.getElementById('subscriptionPremium').addEventListener('click', async function(e) {
+    e.preventDefault();  // Prevent any immediate navigation
+    console.log('Redirecting to Stripe for Premium Plan');
+
+    try {
+      const priceId = await getPriceId('premium');
+      console.log('priceId:', priceId);
+
+      const stripeResult = await stripe.redirectToCheckout({
+        lineItems: [{ price: priceId, quantity: 1 }],
+        mode: 'subscription',
+        successUrl: success,
+        cancelUrl: cancel,
+        clientReferenceId: username,
+      });
+
+      if (stripeResult.error) {
+        alert(stripeResult.error.message);
+      }
+    } catch (error) {
+      console.error('Error retrieving priceId or redirecting to checkout:', error);
+      alert('Failed to get subscription details. Please try again.');
+    }
+  });
+
+  document.getElementById('subscriptionUnlimited').addEventListener('click', async function(e) {
+    e.preventDefault();  // Prevent any immediate navigation
+    console.log('Redirecting to Stripe for Unlimited Plan');
+
+    try {
+      const priceId = await getPriceId('unlimited');
+      console.log('priceId:', priceId);
+
+      const stripeResult = await stripe.redirectToCheckout({
+        lineItems: [{ price: priceId, quantity: 1 }],
+        mode: 'subscription',
+        successUrl: success,
+        cancelUrl: cancel,
+        clientReferenceId: username,
+      });
+
+      if (stripeResult.error) {
+        alert(stripeResult.error.message);
+      }
+    } catch (error) {
+      console.error('Error retrieving priceId or redirecting to checkout:', error);
+      alert('Failed to get subscription details. Please try again.');
+    }
+  });
+
+  } else {
+    // For non-logged-in users
+    console.log("User is not logged in. Setting subscription URLs for non-logged-in users.");
+    document.getElementById('subscriptionEssential').setAttribute('href', '/login/?next=/subscribe/');
+    document.getElementById('subscriptionPremium').setAttribute('href', '/login/?next=/subscribe/');
+    document.getElementById('subscriptionUnlimited').setAttribute('href', '/login/?next=/subscribe/');
+
+    // Change login button
+    document.getElementById("headerLogin").innerHTML = "Login";
+    document.getElementById('headerLogin').setAttribute('href', '/login/');
+  }
+});
+
+
+function getPriceId(planType) {
+  return new Promise((resolve, reject) => {
+    const isYearly = document.getElementById('pricing').checked;
+    console.log('isYearly:', isYearly);
+
+    if (planType === 'essential') {
+      resolve(isYearly ? essentialyearlyid : essentialmonthlyid);
+    } else if (planType === 'premium') {
+      resolve(isYearly ? premiumyearlyid : premiummonthlyid);
+    } else if (planType === 'unlimited') {
+      resolve(isYearly ? unlimitedyearlyid : unlimitedmonthlyid);
+    } else {
+      reject('Invalid plan type');
+    }
+  });
+}
+      const tweets = [
+            {id: '1831144113976029409', user: 'thefunkymartian'},
+            {id: '1827333349150531796', user: 'lockprops'},
+            {id: '1832162855631659308', user: 'kia_parlay'},
+            {id: '1832265254765539353', user: 'THC_IPA'},
+            {id: '1825183286009717185', user: 'dre_hnl'},
+            {id: '1830367118568697945', user: 'mclarenx989'},
+            {id: '1828822608311414828', user: 'm3taphorsbwithu'},
+            {id: '1829917157854966054', user: 'CapperCetla'},
+            {id: '1827774509450981697', user: 'nerdatcooltble'},
+            {id: '1832944851526058186', user: 'Its_Mosher'},
+            {id: '1830057720025624748', user: 'thechriskidd'}
+        ];
+
+        const carousel = document.getElementById('tweets');
+
+        function createTweetElements() {
+            carousel.innerHTML = ''; // Clear existing content
+            tweets.forEach(tweet => {
+                const tweetLink = document.createElement('a');
+                tweetLink.href = `https://twitter.com/${tweet.user}/status/${tweet.id}`;
+                tweetLink.target = '_blank';
+                tweetLink.rel = 'noopener noreferrer';
+
+                const tweetImage = document.createElement('img');
+                tweetImage.src = `https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/tweets/${tweet.id}.png`;
+                tweetImage.alt = `Tweet by ${tweet.user}`;
+
+                tweetLink.appendChild(tweetImage);
+
+                const tweetContainer = document.createElement('div');
+                tweetContainer.className = 'tweets-card swiper-slide';
+                tweetContainer.appendChild(tweetLink);
+
+                carousel.appendChild(tweetContainer);
+            });
+        }
+
+
+        // Initial creation of tweet elements
+        createTweetElements();
+
+
+    </script>
+  </body>
+</html>

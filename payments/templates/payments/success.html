@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<head>
+    
+</head>
+
+<div class="container pt-3">
+    <p>You have successfully subscribed!</p>
+    <p><a href="{% url "payments:subscriptions_home" %}">Return to the dashboard</a></p>    
+</div>
+
+
+{% endblock content %}

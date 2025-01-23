@@ -1,0 +1,433 @@
+
+{% load static %}
+{% load my_tags %}
+
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+<html lang="en">
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="The best sports analytics and AI modeling platform on the internet. View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, player props, futures, and more bets."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" media="screen" onload="this.media='all'">-->
+    <!-- BEGIN VENDOR CSS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/feather/style.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/feather/style.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/app.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/app.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'assets/css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <!-- Froala CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" media="screen" onload="this.media='all'">
+
+    <!-- Start Custom CSS-->
+    <link rel="preload" href="{% static 'css/custom-stories.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom-stories.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/main.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/new-style-2022-05-02.css' %}" media="screen" onload="this.media='all'">
+    <!-- END Custom CSS-->
+
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<style>
+    /*css for hiding explore if height is too small */
+    @media screen and (max-height: 500px) {
+        .hidden-small-height{
+            display: none;
+        }
+    }
+
+    .footer-font{
+        font-size:11px;
+    }
+
+    /*css for desktop */
+    @media screen and (min-width: 767px) {
+        .footer-font{
+            font-size:15px;
+        }
+    }
+
+    @media screen and (max-width: 820px) {
+        .header-navbar .navbar-nav .open {
+            position:relative;
+        }
+    }
+    .white-bg:hover{
+        background-color:#f0faf5!important;
+    }
+
+    @media screen and (max-width: 378px) {
+        .hidden-narrow{
+            display:none;
+         }
+    }
+</style>
+
+{% include "blog/darkmode.html" %}
+
+{% if is_jaxon_user %}
+<div></div>
+{% else %}
+<div>{% include "banner.html" %}</div>
+{% endif %}
+
+
+<body data-open="click" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns">
+<!-- navbar-fixed-top-->
+
+<nav class="header-navbar navbar navbar-with-menu navbar-static-top navbar-light navbar-border navbar-brand-left navbar-fixed top-navb" style="border-bottom:0px!important; background-color:#efbfcfd;">
+    <div class="navbar-wrapper container-fluid" style="margin-bottom:5px">
+        <ul class="navbar-container">
+            <div>
+                <a href="/" class="navbar-brand"><img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;margin-right:-15px" class="brand-logo"></a>
+            </div>
+            {% if user.is_authenticated %}
+            <div class="nav navbar-nav float-xs-right admin" style="">
+
+                <div class="dropdown dropdown-notification nav-item hidden-sm-down"><a href="/"><img src="{% static 'images/black-home-feed.svg'%}" alt="Home" title="Home" class="img-responsive mr-1 mt-1" style=""></img></a></div>
+
+                {%if notification_count > 0 %}
+                <div class="dropdown dropdown-user nav-item hidden-sm-down">
+                    <a href="/notifications/" data-toggle="dropdown" class="nav-link dropdown-user-link" style="margin-left:-3px;">
+                        <span class="img-responsive mr-1 mt-1"><img name="notifications" alt="Notifications" src="{% static 'images/black-notifications.svg'%}" style="margin-top:0px!important;width:34px!important"></span>
+                        <div class="dropdown-menu dropdown-menu-right">
+                            {% for notification in recent_notifications %}
+                            {% if notification.is_seen %}
+                            <div class="row" style="margin-left:0px;margin-right:0px;padding: 10px 15px;">
+                                {% else %}
+                                <div class="row" style="background-color:#f0faf5; margin-left:0px;margin-right:0px;padding: 10px 15px;">
+                                    {% endif %}
+                                    {% if notification.Notification_type == 1 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                    <span class="pine-avatar" style="width:30px!important; float:left;margin-right:10px;margin-bottom:10px">
+                                        <img src="{{notification.sender.profile.optimized_image_url}}" alt="Profile Picture" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:30px!important; height:30px!important; margin-top:1px!important" alt="avatar">
+                                    </span>
+                                        <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.username %}">{{notification.sender.username}}</a> {% if notification.count > 9 %} and {{notification.count|safe}} other people {% endif %}
+                                        liked your <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.id notification.post.slug %}">post.</a></span><br>
+                                        <small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if notification.Notification_type == 2 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                    <span class="pine-avatar" style="width:30px!important; float:left;margin-right:10px;margin-bottom:10px">
+                                        <img src="{{notification.sender.profile.optimized_image_url}}" alt="Profile Picture" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:30px!important; height:30px!important; margin-top:1px!important" alt="avatar">
+                                    </span>
+                                        <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.username %}">{{notification.sender.username}}</a>
+                                        commented on your <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.id notification.post.slug %}">post.</a></span><br>
+                                        <small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if notification.Notification_type == 3 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                    <span class="pine-avatar" style="width:30px!important; float:left;margin-right:10px;margin-bottom:10px">
+                                        <img src="{{notification.sender.profile.optimized_image_url}}" alt="Profile Picture" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:30px!important; height:30px!important; margin-top:1px!important" alt="avatar">
+                                    </span>
+                                        <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.username %}">{{notification.sender.username}}</a>
+                                        also commented on a <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.id notification.post.slug %}">post.</a></span><br>
+                                        <small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if notification.Notification_type == 4 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                        <span class="pine-avatar" style="width:30px!important; float:left;margin-right:10px;margin-bottom:10px">
+                                            <img src="{{notification.sender.profile.optimized_image_url}}" alt="Profile Picture" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'  style="width:30px!important; height:30px!important; margin-top:1px!important" alt="avatar">
+                                        </span>
+                                        <a style="color:#4EC48F; font-weight:600" href="{% url 'stories:user-posts' username=notification.sender.username %}">{{notification.sender.username}}</a>{% if notification.count > 9 %} and {{notification.count|safe}} other people {% endif %}
+                                        liked your <span style="font-weight:600"><a style="color:#274970" href="{% url 'stories:post-detail' notification.post.id notification.post.slug %}">comment</a></span><br>
+                                        <small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+
+                                    {% if notification.Notification_type == 5 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                        You have one new invite!  Who's a great potential addition to Pine Sports? The invite code is <i><b> &nbsp;{{ notification.text_preview }}</b></i> <b><a href="{% url 'user_beta_notification' %}" target="_blank" class="text-primary"> Click here</a></b> to send this invite code to your friend.
+                                        <br><small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+                                    {% if notification.Notification_type == 6 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                        <span class="pine-avatar" style="width:30px!important; float:left;margin-right:10px;margin-bottom:10px">
+                                            <img src="{% static 'images/crown-circle.svg' %}" style="width:30px!important; height:30px!important; margin-top:1px!important" alt="avatar">
+                                        </span>
+                                        <a href="{% url 'prop_master_player2' uid=notification.prop_master_game.uid %}" target="_blank">{{notification.sender.username}} challenged you to a game of Prop Master!</a>
+                                        <br><small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+                                    {% if notification.Notification_type == 7 %}
+                                    <div class="dropdown-item white-bg" style="padding-right:120px; margin-right:-15px; margin-left:-15px; {%if forloop.counter == 1%} margin-top:-30px;{%else%}margin-top:-20px;{%endif%}">
+                                        <span class="pine-avatar" style="width:30px!important; float:left;margin-right:10px;margin-bottom:10px">
+                                            <img src="{% static 'images/crown-circle.svg' %}" style="width:30px!important; height:30px!important; margin-top:1px!important" alt="avatar">
+                                        </span>
+                                        <a href="/prop-master/game/{{notification.prop_master_game.uid}}/" target="_blank">Congratulations, {{notification.text_preview}} {{notification.sender}} at a game of Prop Master!</a>
+                                        <br><small>{{ notification.date | timesince | upto:','  }} ago</small>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                                <a style="font-family: 'Raleway'!important; font-weight: 600!important; font-size: 14px; color: #274970!important;margin-top:0px;" class="dropdown-item" href="/notifications/">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;More...</a>
+                            </div>
+                        </div>
+                    </a>
+                    {% endif %}
+                    {% if user.is_authenticated %}
+                    <div class="hidden-md-up dropdown dropdown-user nav-item" style="margin-right: 7px;">
+                        <a href="" data-toggle="dropdown" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                            <span class="img-responsive"><img src="{% static 'images/black-explore.svg'%}" alt="Explore"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for sport in sports_name %}
+                            {% if sport != "NFL-CBS" %}
+                        <a class="dropdown-item" style="font-family: 'Raleway'; font-size: 14px" href="{% url 'stats_generating' sport_name=sport %}">{{sport}}</a>
+                    {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+                <div class="hidden-md-up dropdown dropdown-user nav-item" style="margin-right: 7px;">
+                    <a href="" data-toggle="dropdown" class="nav-link" aria-haspopup="true" aria-expanded="false">
+                        <span class="img-responsive"><img src="{% static 'images/black-predict.svg'%}" alt="Predict"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for sport in sports_name %}
+                        <a class="dropdown-item" style="font-family: 'Raleway'; font-size: 14px" href="{% url 'predict' sport_name=sport %}">{{sport}}</a>
+                    {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+                {%if notification_count > 0 %}
+                <div class="dropdown dropdown-notification nav-item hidden-md-up">
+                    <a href="/notifications/" style="margin-right:-7px"><img name="notifications" src="{% static 'images/black-notifications.svg'%}" alt="Notifications" title="Notifications" class="img-responsive mr-1 mt-1" style=""></img></a>
+                </div>
+                {% endif %}
+
+                <div class="dropdown dropdown-notification nav-item hidden-sm-down"><a href="{% url 'stories:post-create' %}"><img src="{% static 'images/black-write-circle.svg'%}" alt="New Post" title="New Post" class="img-responsive mr-1 mt-1" style=""></img></a></div>
+                <!--<div class="dropdown dropdown-notification nav-item hidden-md-up"><a href="/"><img src="{% static 'images/black-home-feed.svg'%}" title="Home" class="img-responsive mt-1" style="margin-right:4px"></img></a></div>-->
+                <!--<div class="dropdown dropdown-notification nav-item hidden-md-up"><a href="{% url 'stories:post-create' %}"><img src="{% static 'images/black-write-circle.svg'%}" title="New Post" class="img-responsive mt-1" style="margin-right:6px"></img></a></div>-->
+
+
+
+                <div class="dropdown dropdown-user nav-item"><a href="/user/{{user}}" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
+                    <span class="pine-avatar"><img src="{{request.user.profile.optimized_image_url}}" onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";' style="margin-top:1px!important" alt="avatar"><i></i></span><span class="hidden-md-down" style="font-family: 'Raleway'!important; font-weight: 500!important; font-size: 18px; color: rgba(0,0,0,.7)!important; margin-left:8px">{{user}}</span></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+
+
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item hidden-md-up" href="{% url 'stories:post-create' %}"><img style="margin-right:5px" class="d-icon" src="{% static 'images/black-write-circle.svg'%}">  New Story</a>
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item" href="/user/{{user}}"><img style="margin-right:5px" class="d-icon" src="{% static 'images/black-my-stories.svg'%}">  My Stories</a>
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item" href="/user/{{user}}/drafts/"><img style="margin-right:5px" alt="Drafts" class="d-icon" src="{% static 'images/black-my-drafts.svg'%}">  My Drafts</a>
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item" href="{% url 'help' %}"><img style="margin-right:5px" class="d-icon" src="{% static 'images/black-help.svg'%}" alt="Help">  Help</a>
+
+
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item" href="{% url 'settings' %}"><img style="margin-right:5px" class="d-icon" src="{% static 'images/black-settings.svg'%}" alt="Settings">  Settings</a>
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item" href="/logout/"><img style="margin-right:5px" class="d-icon" src="{% static 'images/black-logout.svg'%}" alt="Logout">  Logout</a>
+                    </div>
+                </div>
+            </div>
+
+            {% else %}
+
+            <ul class="nav navbar-nav float-xs-right admin" style="">
+
+                <li class="dropdown dropdown-user nav-item"><a href="/login" data-toggle="dropdown" class="dropdown-toggle nav-link dropdown-user-link">
+                    <span class="avatar"><img src="{% static 'images/profile.svg'%}" alt="Avatar"></span></a>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <a style="font-family: 'Raleway'!important; font-weight: 400!important; font-size: 14px; color: #404E67!important;" class="dropdown-item" href="/login"><img class="d-icon" src="{% static 'images/black-login.svg'%}" alt="Login"> Log In</a>
+                    </div>
+                </li>
+
+            </ul>
+            {% endif %}
+
+    </div>
+
+        <!-- Horizontal menu content-->
+        <div role="navigation" data-menu="menu-wrapper" class="darkmode-flip hidden-sm-down hidden-small-height navbar-container main-menu-content container-fluid" id="" style="z-index: 0;background-color: #274970;">
+            <!-- include includes/mixins-->
+            <ul id="main-menu-navigation" data-menu="menu-navigation" class="nav navbar-nav" >
+                <!--Added this so that Stories lines up with Pine logo -->
+                <li>     </li>
+
+                <li class="nav-item active hidden-sm-down">
+                    <a href="{% url 'stories:blog-home' %}" class="nav-link" style="font-family: 'Raleway'; font-weight: 500; font-size: 25px">Stories</a>
+                </li>
+                <li class="nav-item hidden-sm-down">
+                    {% if user.is_authenticated %}
+                        <!--Sports Dropdown-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" style="font-family: 'Raleway'; font-size: 25px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Explore
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for sport in sports_name %}
+                                {% if sport != "NFL-CBS" %}
+                                    <a class="dropdown-item" style="font-family: 'Raleway'; font-size: 18px" href="{% url 'stats_generating' sport_name=sport %}">{{sport}}</a>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </li> <!--End of Sports Dropdown-->
+                        <!--Predict Dropdown-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" style="font-family: 'Raleway'; font-size: 25px" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Predict
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                {% for sport in sports_name %}
+                                    <a class="dropdown-item" style="font-family: 'Raleway'; font-size: 18px" href="{% url 'predict' sport_name=sport %}">{{sport}}</a>
+                                {% endfor %}
+                            </div>
+                        </li> <!--End of Predict Dropdown-->
+                    {% else %}
+                        <!--Sports Dropdown-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" onclick="login()" style="font-family: 'Raleway'; font-size: 25px" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Explore
+                            </a>
+                        </li> <!--End of Sports Dropdown-->
+                        <!--Predict Dropdown-->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link" onclick="login()" style="font-family: 'Raleway'; font-size: 25px" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Predict
+                            </a>
+                        </li>
+                        <!--End of Predict Dropdown-->
+                    {% endif %}
+                </li>
+            </ul>
+            <script>
+            // Add active class to the current button (highlight it)
+            var header = document.getElementById("main-menu-navigation");
+            var btns = header.getElementsByClassName("nav-item");
+            for (var i = 0; i < btns.length; i++) {
+              btns[i].addEventListener("click", function() {
+              var current = document.getElementsByClassName("active");
+              current[0].className = current[0].className.replace(" active", "");
+              this.className += " active";
+              });
+            }
+            </script>
+
+        </div>
+        <!-- /horizontal menu content-->
+    <!-- Horizontal navigation-->
+</nav>
+
+<div class="fr-view app-content container-fluid center-layout">
+    <div class="content-wrapper">
+        <div class="content-body"><!-- Description -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<center class="footer-font"><a href="/privacy/">Privacy Policy</a> | <a href="/terms/">Terms & Conditions</a></center><br>
+</body>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+-->
+{% block script %}{% endblock %}
+
+<!-- BEGIN VENDOR JS-->
+<script src="{% static 'app-assets/vendors/js/vendors.min.js' %}" type="text/javascript"></script>
+<script type="text/javascript" src="{% static 'app-assets/vendors/js/ui/jquery.sticky.js' %}"></script>
+<script src="{% static 'app-assets/js/core/app-menu.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'app-assets/js/core/app.min.js' %}" type="text/javascript"></script>
+
+<!-- Froala JS -->
+<script src="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/js/froala_editor.pkgd.min.js"></script>
+<script  src="https://cdn.embedly.com/widgets/platform.js" charset="UTF-8"></script>
+
+<!-- <script>
+//Froala Embedly Script
+(function(e){"function"===typeof define&&define.amd?define(["jquery"],e):"object"===typeof module&&module.exports?module.exports=function(h,a){void 0===a&&(a="undefined"!==typeof window?require("jquery"):require("jquery")(h));e(a);return a}:e(jQuery)})(function(e){var h=/^(http|https):\/\/(([a-zA-Z0-9$\-_.+!*'(),;:&=]|%[0-9a-fA-F]{2})+@)?(((25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])(\.(25[0-5]|2[0-4][0-9]|[0-1][0-9][0-9]|[1-9][0-9]|[0-9])){3})|localhost|([a-zA-Z0-9\-\u00C0-\u017F]+\.)+([a-zA-Z]{2,}))(:[0-9]+)?(\/(([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*(\/([a-zA-Z0-9$\-_.+!*'(),;:@&=]|%[0-9a-fA-F]{2})*)*)?(\?([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?(\#([a-zA-Z0-9$\-_.+!*'(),;:@&=\/?]|%[0-9a-fA-F]{2})*)?)?$/;e.extend(e.FroalaEditor.POPUP_TEMPLATES,{"embedly.insert":"[_BUTTONS_][_INPUT_LAYER_]"});e.extend(e.FroalaEditor.DEFAULTS,{embedlyOptions:{},embedlyHelpText:"Paste a URL to generate code"});e.FroalaEditor.PLUGINS.embedly=function(a){function k(){var b=a.popups.get("embedly.insert"),d=b.find("ul.errorlist"),b=b.find('input.fr-link-attr[type="text"][name="href"]');d.hide();d.html("");b.val("").trigger("change")}function g(b){var d=a.popups.get("embedly.insert"),c=d.find("ul.errorlist"),d=d.find('input.fr-link-attr[type="text"][name="href"]');c.html("<li>"+b+"</li>").fadeIn();d.one("keyup",function(){c.fadeOut()})}function m(b){a.events.focus(!0);a.selection.restore();var d=e.trim(b);if(""===d)return g("The URL is invalid. Please enter a valid URL."),!1;d=d.replace(/ /g,"%20");/^https?:\/\//i.test(d)||(d="http://"+d);if(!h.test(d))return g("The URL is invalid. Please enter a valid URL."),!1;b=document.createElement("a");b.href=d;var c=e("#embedly-card-area");0===c.length?(c=e("<div />").appendTo("body"),c.attr("id","embedly-card-area"),c.css("display","none")):c.empty();c.append(b);var f=embedly.card(b);f?(f.on("card.snippet",function(b){b=e(b.snippet);for(var c in a.opts.embedlyOptions)a.opts.embedlyOptions.hasOwnProperty(c)&&b.attr("data-card-"+c,a.opts.embedlyOptions[c]);a.html.insert('<span contenteditable="false" class="fr-embedly embedly-card-area" data-url="'+d+'" data-title="'+b.text()+'">'+b[0].outerHTML+"</span><p><br></p>");c=a.$el.find(".fr-embedly");c.removeClass("fr-embedly");a.popups.hide("embedly.insert");a.events.trigger("embedly.inserted",[c,d,b[0].outerHTML]);return!0}),f.on("card.rendered",function(a){if("error"===a.name)return g("Cannot create a card for the url. Please check the URL you entered is correct."),!0;f.send("card.snippet")})):g("Cannot create a card for the url. Please check the URL you entered is correct.");return!1}function l(b){b&&!1!==a.events.trigger("embedly.beforeRemove",[b])&&(a.popups.hideAll(),a.toolbar.enable(),a.selection.setBefore(b.get(0))||a.selection.setAfter(b.get(0)),b.remove(),a.selection.restore(),a.html.fillEmptyBlocks(!0),a.events.trigger("embedly.removed",[b]))}return{_init:function(){a.events.on("keydown",function(b,d){var c,f=e(a.selection.element());f&&f.hasClass("embedly-card-area")&&(c=f);f=b.which;if(c&&(f==e.FroalaEditor.KEYCODE.BACKSPACE||f==e.FroalaEditor.KEYCODE.DELETE))return b.preventDefault(),l(c),!1;if(c&&!a.keys.ctrlKey(b))return b.preventDefault(),!1},!0);a.events.on("keydown",function(){a.$el.find("span.embedly-card-area:empty").remove()})},showPopup:function(){if(!a.popups.get("embedly.insert")){var b="";a.opts.popupButtons&&0<a.opts.popupButtons.length&&(b=b+'<div class="fr-buttons">'+a.button.buildList(a.opts.popupButtons),b+="</div>");var d=0,c='<div class="fr-link-insert-layer fr-layer fr-active" id="fr-link-insert-layer-'+a.id+'">',c=c+'<ul class="errorlist" style="display:none;"></ul>';a.opts.embedlyHelpText&&(c+='<span class="fr-small-text">'+a.language.translate(a.opts.embedlyHelpText)+"</span>");c+='<div class="fr-input-line"><input name="href" type="text" class="fr-link-attr" placeholder="URL" tabIndex="'+ ++d+'"></div>';c+='<div class="fr-action-buttons"><button class="fr-command fr-submit" data-cmd="linkEmbedlyInsert" href="#" tabIndex="'+ ++d+'" type="button">'+a.language.translate("Insert")+"</button></div></div>";a.popups.create("embedly.insert",{buttons:b,input_layer:c})}k();a.popups.setContainer("embedly.insert",a.$tb);b=a.$tb.find('.fr-command[data-cmd="embedlyBtn"]');d=b.offset().left+b.outerWidth()/2;c=b.offset().top+(a.opts.toolbarBottom?10:b.outerHeight()-10);a.popups.show("embedly.insert",d,c,b.outerHeight())},hidePopup:function(){a.popups.hide("embedly.insert")},insertCallback:function(){var b=a.popups.get("embedly.insert").find('input.fr-link-attr[type="text"][name="href"]').val(),d=e(a.original_window).scrollTop();m(b);e(a.original_window).scrollTop(d)},resetPopup:k,remove:l}};e.FroalaEditor.DefineIcon("embedlyBtnIcon",{NAME:"code"});e.FroalaEditor.RegisterCommand("embedlyBtn",{title:"Embed",icon:"embedlyBtnIcon",undo:!1,focus:!0,popup:!0,refreshOnCallback:!1,callback:function(){this.popups.isVisible("embedly.insert")?(this.$el.find(".fr-marker")&&(this.events.disableBlur(),this.selection.restore()),this.popups.hide("embedly.insert")):this.embedly.showPopup()}});e.FroalaEditor.RegisterCommand("linkEmbedlyInsert",{focus:!1,refreshAfterCallback:!1,callback:function(){this.embedly.insertCallback()}})});
+</script> -->
+<!-- END STACK JS-->
+
+<script>
+
+    //Checks notifications on start
+    window.onload = function(){
+        setTimeout(function(){
+            {%if new_notifications %}
+             notification_icons = document.getElementsByName('notifications')
+             for(var x=0;x<=notification_icons.length;x++){
+                   notification_icons[x].src="{% static 'images/black-notifications_alert.svg'%}";
+                   notification_icons[x].style.marginTop = "-1px!important";
+                   notification_icons[x].style.width = "36px!important";
+             }
+            {% endif %}
+        });
+    };
+
+    function login(){
+        alert("Login for free access to the best sports analytics and AI modeling tools on the internet.")
+        window.open("/login/","popup","width=810,height=1070");
+    }
+
+</script>
+</html>

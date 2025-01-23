@@ -1,0 +1,222 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<html lang="en" data-textdirection="ltr" class="loading">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="The best sports analytics and AI modeling platform on the internet. View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, player props, futures, and more bets."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" media="screen" onload="this.media='all'">-->
+    <!-- BEGIN VENDOR CSS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/feather/style.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/feather/style.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/app.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/app.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'assets/css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <!-- Froala CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" media="screen" onload="this.media='all'">
+
+    <!-- Start Custom CSS-->
+    <link rel="preload" href="{% static 'css/custom-stories.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom-stories.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/main.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/new-style-2022-05-02.css' %}" media="screen" onload="this.media='all'">
+    <!-- END Custom CSS-->
+
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <!-- Chart.js script -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<style>
+
+    .user-post-and-comments{
+        max-width:660px!important
+    }
+
+    .all-content{
+        max-width:660px!important
+    }
+
+    .projection-header{
+        font-weight: 700;
+        font-size: 46px;
+        color: rgba(0,0,0,.9);
+        border: none;
+        width: 360px;
+        border-radius: 30px;
+        font-variant: small-caps;
+        padding-top: 50px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .research-and-tail{
+        font-family: 'Open Sans', sans-serif;
+        color: rgba(0,0,0,.75);
+        font-size: 120%;
+        text-align: center;
+    }
+
+    .html-string{
+        padding-top: 20px;
+        font-family: 'Open Sans', sans-serif;
+        color: rgba(0,0,0,.9);
+        font-size: 150%;
+        text-align: center;
+        font-weight:600;
+    }
+
+    .bet-info{
+        padding-top: 20px;
+        font-family: 'Open Sans', sans-serif;
+        color: rgba(0,0,0,.75);
+        font-size: 100%;
+        text-align: center;
+    }
+
+    .bet-now{
+        padding-top:50px;
+        font-weight: 700;
+        color: rgba(0,0,0,.9);
+        font-family: 'Open Sans', sans-serif;
+        font-variant: small-caps;
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .bet-on-fd{
+        text-align: center;
+        padding-top: 5px;
+    }
+
+
+    @media screen and (max-width: 800px) {
+        .projection-header{
+            font-weight: 700;
+            font-size: 35px;
+            color: rgba(0,0,0,.9);
+            border: none;
+            width: 360px;
+            border-radius: 30px;
+            font-variant: small-caps;
+            padding-top: 50px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .research-and-tail{
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(0,0,0,.75);
+            font-size: 100%;
+            text-align: center;
+        }
+
+        .bet-info{
+            padding-top: 20px;
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(0,0,0,.75);
+            font-size: 90%;
+            text-align: center;
+        }
+
+        .html-string{
+            padding-top: 20px;
+            font-family: 'Open Sans', sans-serif;
+            color: rgba(0,0,0,.9);
+            font-size: 130%;
+            text-align: center;
+            font-weight:600;
+        }
+    }
+</style>
+
+{% include "blog/darkmode.html" %}
+<div class="fr-view app-content container-fluid center-layout">
+    <div class="content-wrapper">
+        <div class="content-body"><!-- Description -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div style="margin-top:-3px"></div>
+                    <div class="all-content">
+                        <div class="user-post-and-comments">
+                            <div class="user-post row">
+                                <div style="padding-bottom:40px">
+                                    <div><a href="https://www.pine-sports.com"><img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;" class="brand-logo" align="left"></a></div>
+                                    {% if got_url %}
+                                        <a href="{{fd_url}}" target='popup' onclick='window.open("{{fd_url}}","popup");'>
+                                            <div class="bet-now">Bet Now On</div>
+                                            <div class="bet-on-fd"><img src="{% static 'images/FDBet.jpg' %}" alt="FanDuel Bet" width="200px"></div>
+                                        </a>
+                                    {% else %}
+                                        <div class="html-string" style="padding-top:80px;height:500px">Sorry, we could not find that betslip.</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

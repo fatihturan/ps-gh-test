@@ -1,0 +1,762 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="The best sports analytics and AI modeling platform on the internet. View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, player props, futures, and more bets."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" media="screen" onload="this.media='all'">-->
+    <!-- BEGIN VENDOR CSS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/feather/style.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/feather/style.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/app.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/app.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'assets/css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <!-- Froala CSS -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_editor.pkgd.min.css" media="print" onload="this.media='all'">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" as="style">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/froala-editor@3.2.2/css/froala_style.min.css" media="screen" onload="this.media='all'">
+
+    <!-- Start Custom CSS-->
+    <link rel="preload" href="{% static 'css/custom-stories.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom-stories.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/main.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/new-style-2022-05-02.css' %}" media="screen" onload="this.media='all'">
+    <!-- END Custom CSS-->
+
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <!-- Chart.js script -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<style>
+    .consistency-banner{
+           height:50px;
+        }
+    select{
+        color: #274970;
+        font-weight: 400;
+        text-align:center;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+    }
+
+    select:focus{
+        border: 1px solid #ddd!important;
+        background-color: #ffffff;
+    }
+
+    table {
+        font-family: 'Roboto', sans-serif;
+        font-size: 16.5px;
+        font-weight: 300;
+        border-collapse: collapse;
+        max-width:vw;
+    }
+
+    tr{
+        text-align:center!important;
+    }
+
+    th{
+        text-align:center!important;
+        font-weight: 500;
+        background-color: #fafbfc;
+        padding-left:10px;
+        padding-right:10px;
+        padding-top:7px;
+        padding-bottom:7px;
+    }
+    td{
+        background-color: #ffffff;
+        padding-left:5px;
+        padding-right:5px;
+        padding-top:5px;
+        padding-bottom:5px;
+    }
+
+    .projection-header{
+        font-weight: 700;
+        font-size: 40px;
+        color: rgba(0,0,0,.9);
+        border: none;
+        width: 360px;
+        border-radius: 30px;
+        font-variant: small-caps;
+    }
+
+    .projection-header-2{
+        font-weight: 700;
+        font-size: 18px;
+        color: rgba(0,0,0,.7);
+        border: none;
+        width: 360px;
+        border-radius: 30px;
+        font-variant: small-caps;
+    }
+    .all-content{
+        max-width:660px!important
+    }
+
+    .user-post-and-comments{
+        max-width:660px!important
+    }
+
+    .canvas-class{
+        height="300"
+    }
+
+    .chart-button{
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:4px;
+        padding-bottom:4px;
+        font-weight: 400;
+        color: #284970;
+        border: 1px solid #284970;
+        border-radius: 18px;
+        background-color: #fbfcfe;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .chart-button:hover{
+        background-color: #edf2f9;
+     }
+
+     .table-button{
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:4px;
+        padding-bottom:4px;
+        font-weight: 400;
+        color: #284970;
+        border: 1px solid #284970;
+        border-radius: 18px;
+        background-color: #fbfcfe;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .table-button:hover{
+        background-color: #edf2f9;
+     }
+
+     .trends-button{
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:4px;
+        padding-bottom:4px;
+        font-weight: 400;
+        color: #284970;
+        border: 1px solid #284970;
+        border-radius: 18px;
+        background-color: #fbfcfe;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .trends-button:hover{
+        background-color: #edf2f9;
+     }
+    .box {
+      width: 14px;
+      height: 14px;
+    }
+
+    .green {
+      background: rgba(78, 196, 143, 1);
+      border: 1px solid rgb(78, 196, 143);
+    }
+
+    .red {
+      background: rgba(234, 51, 51, 1);
+      border: 1px solid rgb(234, 51, 51);
+    }
+
+    .blue {
+      background: rgba(39, 73, 112, 1);
+      border: 1px solid rgb(39, 73, 112);
+    }
+
+    .black {
+      background: rgba(0, 0, 0, 1);
+      border: 1px solid rgb(0, 0, 0);
+    }
+
+    .green-text{
+        color:white;
+        background-color: #4EC48F;
+        font-weight:500;
+    }
+
+    .red-text{
+        color:white;
+        background-color: #EA3333;
+        font-weight:500;
+    }
+
+    .black-text{
+        color:black;
+        background-color: white;
+        font-weight:500;
+    }
+    .blue-text{
+        color:white;
+        background-color: #274970;
+        font-weight:500;
+    }
+
+    .compare-button{
+        font-weight: 400;
+        color: white!important;
+        font-size:21px;
+        border: 1px solid #274970;
+        background-color: #274970;
+        padding-left:31px;
+        padding-right:31px;
+        padding-top:8px;
+        padding-bottom:8px;
+        border-radius:24px;
+        width:250px;
+        cursor:pointer
+    }
+
+    .error{
+        font-size:25px;
+        font-family:Kanit;
+        color: #274970;
+        font-weight:400;
+    }
+
+    .error-button{
+        font-size: 18px;
+        color: #274970;
+        font-weight: 400;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 3px;
+        padding-bottom: 4px;
+        border-radius: 18px;
+        border: 1px solid #274970;
+        cursor:pointer;
+    }
+
+    .error-button:hover{
+        background-color: #c0d3e9;
+    }
+
+    .projection-top{
+        padding-right:0px;
+        padding-left:0px;
+        padding-top:5px;
+        padding-bottom:5px
+    }
+
+    .likes-under{
+        color: #274970;
+    }
+
+    .likes-over{
+        color: #4EC48F;
+    }
+
+    @media screen and (max-width: 800px) {
+        table {
+            font-size: 12px;
+        }
+
+        select{
+            border-radius: 5px;
+        }
+
+        .projection-header{
+            font-size: 28px;
+            font-weight: 700;
+            width: 100%;
+            max-width:360px;
+            font-variant: small-caps;
+        }
+
+        .projection-header-2{
+            font-size: 14px;
+            font-weight: 500;
+            width: 100%;
+            max-width:360px;
+            font-variant: small-caps;
+        }
+        .standard-text{
+            font-size:14px;
+        }
+        .canvas-class{
+            height="300"
+        }
+        .compare-button{
+            font-size:16px;
+        }
+
+        .projection-top{
+            padding-right:0px;
+            padding-left:0px;
+            padding-top:15px;
+            padding-bottom:5px
+        }
+    }
+</style>
+{% include "blog/darkmode.html" %}
+
+{% if is_jaxon_user %}
+    <div></div>
+  {% else %}
+    <div class="consistency-banner">{% include "banner.html" %}</div>
+  {% endif %}
+
+<div class="fr-view app-content container-fluid center-layout">
+    <div class="content-wrapper">
+        <div class="content-body"><!-- Description -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div style="margin-top:-3px"></div>
+                    <div class="all-content">
+                        <div class="user-post-and-comments">
+                            <div class="user-post row">
+                                <p style="padding-bottom:10px">
+                                    <a href="https://www.pine-sports.com"><img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;" class="brand-logo" align="left"></a>
+                                    <a href="https://www.paypal.me/PineSports" target="_blank"><img alt="Tip Jar" src="{% static 'images/tipjar2.svg' %}" style="height:35px;" class="brand-logo" align="right"></a>
+                                    <img src="{% static 'images/camera.svg'%}?v=1" onclick="print()" style="height:22px; cursor: pointer; margin-top:5px" align="right">
+                                </p>
+                                <div id="projection" class="projection-top">
+                                    {% if Error %}
+                                    <center><span class="error">Whoops, something went wrong!</span><br><br>
+                                        <img alt="Robot-Question" src="{% static 'images/pk-robot-question.png' %}" style="width:60%"><br><br>
+                                        <span class="error-button" onclick="history.back()">Go Back</span>
+                                    </center>
+
+                                    {% else %}
+                                    <center><div class="projection-header"><center>{{player_name}}</center></div></center>
+                                    <center><div class="projection-header-2"><center>{{stat}}</center></div></center>
+                                    <div class="post-content standard-text" style="margin-bottom:10px">
+                                        <center>
+                                            <select id="project_player_date_range" name="player_date_range" style="background-color:white; color:rgba(0,0,0,.7); padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px;margin-top:10px;margin-bottom:10px" onchange="updateProjection()">
+                                                {% for number in player_project_games %}
+                                                {% if forloop.counter == games_back %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="{{number}}" selected>{{number}} Games Back</option>
+                                                {% else %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="{{number}}">{{number}} Games Back</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            &emsp;
+                                            <select id="project_player_split" name="project_player_split" style="background-color:white; color:rgba(0,0,0,.7); padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px;margin-top:10px;margin-bottom:10px" onchange="updateProjection()">
+                                                {% for player_split in player_project_split %}
+                                                {% if player_split == split %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="{{player_split}}" selected>{{player_split}}</option>
+                                                {% else %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="{{player_split}}">{{player_split}}</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            <br><span style="font-weight: 500;color: rgba(0,0,0,.7);">Games without:</span>&nbsp;
+                                            <select id="project_games_without" name="project_games_without" style="background-color:white; color:rgba(0,0,0,.7); padding-left:10px;padding-right:10px;padding-top:5px;padding-bottom:5px;margin-top:10px;margin-bottom:10px" onchange="updateProjection()">
+                                                {% if games_without_player == "All Available" %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="All Available" selected>All Available</option>
+                                                {% else %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="All Available">All Available</option>
+                                                {% endif %}
+                                                {% for player in games_without_players %}
+                                                {% if player == games_without_player %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="{{player}}" selected>{{player}}</option>
+                                                {% else %}
+                                                <option class="explore-text" style="color:rgba(0,0,0,.7)" value="{{player}}">{{player}}</option>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </select>
+                                            {% if has_line %}
+                                            <br>
+                                            {{robot_likes | safe}}
+                                            <table class="dataframe" border="1" style="margin-top:10px; margin-bottom:15px">
+                                                <thead>
+                                                <tr>
+                                                    <th>Line</th>
+                                                    <th>Projection</th>
+                                                    <th>Average</th>
+                                                    <th>Median</th>
+                                                    <th>Hit Rate</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td class="black-text">{{line}}</td>
+                                                    <td class="{{projection_class}}">{{projection}}</td>
+                                                    <td class="{{mean_class}}">{{mean}}</td>
+                                                    <td class="{{median_class}}">{{median}}</td>
+                                                    <td class="{{hit_rate_class}}">{{hit_rate}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            {% else %}
+                                            <table class="dataframe" border="1" style="margin-top:10px; margin-bottom:15px">
+                                                <thead>
+                                                <tr>
+                                                    <th>Projection</th>
+                                                    <th>Average</th>
+                                                    <th>Median</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <td>{{projection}}</td>
+                                                    <td>{{mean}}</td>
+                                                    <td>{{median}}</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            {% endif %}
+                                        </center>
+                                        <span id="table" style="display:none">{{table_string | safe}}</span>
+                                        <center><canvas id="canvas" height="150"></canvas></center>
+                                        <center><div id="table-toggle"><a onclick="getChart()"><span id="chart-button" class="chart-button">Chart</span></a>&emsp;&emsp;<a onclick="getTable()"><span id="table-button" class="table-button">Table</span></a></div></center>
+                                        {{next_opponent | safe}}
+                                        {{footer_string | safe}}
+                                        <br>
+                                        <div id="key-trends" style="text-align:center">
+                                            <hr>
+                                            <center><div id="trends-toggle"><a onclick="getTrends()"><span id="trends-button" class="trends-button">Key Trends</span></a></div></center>
+                                            <div id="key-trends-text" style="display:none">
+                                                <br>
+                                                {% for trend in trends %}
+                                                <span>{{trend | safe}}</span>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- html2canvas -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.1.5/html2canvas.min.js"></script>
+
+<!-- filesaver -->
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+
+<!-- Screenshot Script -->
+<script>
+
+function getChart(){
+    document.getElementById('table').style.display="none";
+    document.getElementById('canvas').style.display="";
+    document.getElementById('chart-button').style.backgroundColor="#edf2f9";
+    document.getElementById('table-button').style.backgroundColor="#fbfcfe";
+}
+
+function getTable(){
+    document.getElementById('table').style.display="";
+    document.getElementById('canvas').style.display="none";
+    document.getElementById('chart-button').style.backgroundColor="#fbfcfe";
+    document.getElementById('table-button').style.backgroundColor="#edf2f9";
+}
+
+function getTrends(){
+    console.log("In getTrends");
+    if (document.getElementById('key-trends-text').style.display == ""){
+        console.log("In if");
+        document.getElementById('key-trends-text').style.display="none";
+        document.getElementById('trends-button').style.backgroundColor="#fbfcfe";
+    }
+    else{
+        console.log("In else");
+        document.getElementById('key-trends-text').style.display="";
+        document.getElementById('trends-button').style.backgroundColor="#edf2f9";
+    }
+
+}
+
+function print()
+{
+    var width = $(window).width();
+    document.getElementById("projection").style.minWidth = "400px";
+    document.getElementById("table-toggle").style.display = "none";
+    document.getElementById("key-trends").style.display = "none";
+    if (width <= 450){
+        document.getElementById("project_player_date_range").style.paddingBottom = "10px";
+        document.getElementById("project_player_split").style.paddingBottom = "10px";
+        document.getElementById("project_games_without").style.paddingBottom = "10px";
+    }
+
+    var scaleBy = 10;
+    var domNode = document.getElementById('projection')
+    var div = document.querySelector('#screen');
+    var canvas = document.createElement('canvas');
+    canvas.width = domNode.clientWidth * scaleBy * 0.8;
+    canvas.height = domNode.clientHeight * scaleBy * 1.05;
+    canvas.style.width = canvas.width + 'px';
+    canvas.style.height = canvas.height + 'px';
+
+    var context = canvas.getContext('2d');
+    context.scale(scaleBy, scaleBy);
+
+    html2canvas(domNode, {
+        letterRendering: 1,
+        scale: 2,
+    }).then(function(canvas) {
+        theCanvas = canvas;
+        canvas.toBlob(function(blob) {
+            saveAs(blob, "MyProjections.png");
+        });
+        document.getElementById("projection").style.minWidth = "";
+        document.getElementById("table-toggle").style.display = "";
+        document.getElementById("key-trends").style.display = "none";
+        if (width <= 450){
+            document.getElementById("project_player_date_range").style.paddingBottom = "5px";
+            document.getElementById("project_player_split").style.paddingBottom = "5px";
+            document.getElementById("project_games_without").style.paddingBottom = "5px";
+        }
+    });
+}
+
+function updateProjection(){
+
+    var games_back = document.getElementById("project_player_date_range").value;
+    var split = document.getElementById("project_player_split").value;
+    var gw = document.getElementById("project_games_without").value;
+    var url = '/stats/project/{{sport_name}}/{{player_name}}/{{full_stat}}/{{prop}}/' + games_back + '/' + split + '/' + gw + '/';
+    url = url.replace("&#x27;", "'")
+    window.location.href = decodeURI(url);
+}
+
+</script>
+
+<script type="text/javascript">
+    window.onload=function(){
+        document.getElementById('chart-button').style.backgroundColor="#edf2f9";
+        var width = $(window).width();
+        var chartFont = 11
+        var fixedAmount = .03
+        {% if games_back > 5 %}
+        if (width <= 375){
+            chartFont = 7
+            fixedAmount = .055
+        }
+        else if (width <= 400){
+            chartFont = 7
+            fixedAmount = .055
+        }
+        else if (width <= 425){
+            chartFont = 8
+            fixedAmount = .055
+        }
+        else if (width <= 450){
+            chartFont = 9
+            fixedAmount = .055
+        }
+        {% endif %}
+        var ctx = document.getElementById("canvas");
+        Chart.pluginService.register({
+            afterDraw: function(chart) {
+                if (typeof chart.config.options.lineAt != 'undefined') {
+                    var lineAt = chart.config.options.lineAt;
+                    var lineNumber = chart.config.options.lineAt
+                    var ctxPlugin = chart.chart.ctx;
+                    var xAxe = chart.scales[chart.config.options.scales.xAxes[0].id];
+                    var yAxe = chart.scales[chart.config.options.scales.yAxes[0].id];
+                    if(yAxe.min != 0) return;
+                    ctxPlugin.strokeStyle = "black";
+                    ctxPlugin.beginPath();
+                    lineAt = (lineAt - yAxe.min) * (100 / yAxe.max);
+                    lineAt = (100 - lineAt) / 100 * (yAxe.height) + yAxe.top;
+
+                    console.log("OLD LINE");
+                    console.log(lineAt);
+
+                    var heightRange = yAxe.max - yAxe.min;
+                    console.log("HEIGHT RANGE");
+                    console.log(heightRange);
+                    var linePercent = lineNumber/heightRange;
+                    console.log("LINE PERCENT");
+                    console.log(linePercent);
+                    var lineAdjust = linePercent;
+                    console.log("LINE ADJUST");
+                    console.log(lineAdjust);
+
+                    lineMove = (fixedAmount * lineAdjust);
+
+                    console.log("LINE MOVE");
+                    console.log(lineMove);
+
+                    lineAt = (lineMove * yAxe.height) + lineAt
+
+                    console.log("NEW LINE");
+                    console.log(lineAt);
+
+                    ctxPlugin.moveTo(xAxe.left, lineAt);
+                    ctxPlugin.lineTo(xAxe.right, lineAt);
+                    ctxPlugin.stroke();
+                }
+                if (typeof chart.config.options.projection != 'undefined') {
+                    var projection = chart.config.options.projection;
+                    var ctxPlugin = chart.chart.ctx;
+                    var xAxe = chart.scales[chart.config.options.scales.xAxes[0].id];
+                    var yAxe = chart.scales[chart.config.options.scales.yAxes[0].id];
+                    if(yAxe.min != 0) return;
+                    ctxPlugin.strokeStyle = "green";
+                    ctxPlugin.beginPath();
+                    projection = (projection - yAxe.min) * (100 / yAxe.max);
+                    projection = (100 - projection) / 100 * (yAxe.height) + yAxe.top;
+                    ctxPlugin.moveTo(xAxe.left, projection);
+                    ctxPlugin.lineTo(xAxe.right, projection);
+                    ctxPlugin.stroke();
+                }
+            }
+        });
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                {% for i in stats_table.itertuples %}
+                {% if games_back <= 10 %}
+                ["{{i.Date}}", "{{i.Opponent}}"],
+                {% else %}
+                "{{i.Date}}",
+                {% endif %}
+                {% endfor %}
+                ],
+                datasets: [{
+                    label: '{{stat}}',
+                    data: [
+                    {% for i in stats_table.itertuples %}
+                    {{i.data}},
+                    {% endfor %}
+                    ],
+                    backgroundColor: [
+                    {% for i in stats_table.itertuples %}
+                        {% if has_line %}
+                            {% if i.data >= line %}
+                            'rgba(78, 196, 143, 1)',
+                            {% else %}
+                            'rgba(39,73,112, 1)',
+                            {% endif %}
+                        {% else %}
+                        'rgba(78, 196, 143, 1)',
+                        {% endif %}
+                    {% endfor %}
+                    ],
+                    borderColor: [
+                    {% for i in stats_table.itertuples %}
+                        {% if has_line %}
+                            {% if i.data >= line %}
+                            'rgba(78, 196, 143, 1)',
+                            {% else %}
+                            'rgba(39,73,112, 1)',
+                            {% endif %}
+                        {% else %}
+                        'rgba(78, 196, 143, 1)',
+                        {% endif %}
+                    {% endfor %}
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                {% if has_line %}
+                lineAt: {{line}},
+                {% else %}
+                projection: {{projection}},
+                {% endif %}
+                 legend: {
+                    display: false
+                 },
+                 maintainAspectRatio: true,
+                 plugins: {
+                  datalabels: {
+                    color: 'black'
+                  }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            min: 0
+                        }
+                    }],
+                    xAxes: [{
+                        ticks: {
+                          fontSize: chartFont
+                        }
+                    }],
+                }
+            }
+        });
+    }
+
+</script>
+
+{% endblock content %}

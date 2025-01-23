@@ -1,0 +1,23 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+<div class="container pt-3">
+    <div class="col-md-12 content-section hovered-tweet">
+        <center>
+            <h3>Pine's Stat's page is currently in closed beta.</h3>
+            <h3>Enter your email below to join the wait list.</h3>
+            <br>
+            <form action= method="post">
+
+                <input type="text" name="email" placeholder="your email address"><br>
+
+
+                <input type="submit" value="Join">
+            </form>
+
+            Go to <a href="/">Stories</a>
+
+        </center>
+    </div>
+</div>
+{% endblock content %}

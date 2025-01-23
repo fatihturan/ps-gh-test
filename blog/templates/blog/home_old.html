@@ -1,0 +1,275 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+</head>
+
+<style>
+
+    iframe{
+        max-width:100%;
+        max-height:50vw;
+    }
+
+    .square-box {
+      position: relative;
+      padding-bottom: 100%; /* 1:1 */
+      height: 0;
+      width: 100%;
+      overflow: hidden;
+    }
+    .widescreen {
+      position: absolute;
+	  height: 0;
+      left: -45.88%;
+      right: -45.88%;
+    }
+
+    .read-time{
+        opacity: 0.8;
+        font-size:14px;
+    }
+    @media screen and (min-width: 767px) {
+        .read-time{
+            opacity: 0.8;
+            font-size:17px;
+        }
+    }
+}
+</style>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+
+<div class="all-content row">
+
+    <div class="all-home-posts col-lg-12 infinite-container">
+
+        {% for post in posts %}
+
+        <div class="row full-post-summary infinite-item">
+            <div class="row summary-and-pic">
+                {% if post.has_image %}
+                {% if post.first_sentence != "" %}
+                <div class="post-image-div">
+                    <div class="post-image-div">
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}">
+                            <img src="{{post.first_image}}" class="post-image" onerror="this.style.display='none'"/>
+                        </a>
+                    </div>
+                </div>
+                {%else%}
+                <div class="post-image-div hidden-sm-down">
+                    <div class="post-image-div">
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}">
+                            <img src="{{post.first_image}}" class="post-image" onerror="this.style.display='none'"/>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+                {% elif post.has_iframes %}
+                {% if post.first_sentence != "" %}
+                <div class="post-image-div">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <iframe style="max-height: 100%!important; max-width: 100%!important" src="{{post.first_iframe_src}}" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                        </div>
+                    </div>
+                </div>
+                {%else%}
+                <div class="post-image-div hidden-sm-down">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <iframe style="max-height: 100%!important; max-width: 100%!important" src="{{post.first_iframe_src}}" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% elif post.has_charts %}
+                {% if post.first_sentence != "" %}
+                <div class="post-image-div">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <iframe style="max-height: 100%!important; max-width: 100%!important" src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                        </div>
+                    </div>
+                </div>
+                {%else%}
+                <div class="post-image-div hidden-sm-down">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <iframe style="max-height: 100%!important; max-width: 100%!important" src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endif %}
+                <div class="post-summary">
+                    <h1 class="post-title-home">
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}">{{ post.title }}</a>
+                    </h1>
+                    <h8>
+
+                        <img
+                                class="profile-icon rounded-circle mr-2"
+                                src="{{ post.author.profile.image_url }}?v=2"
+                                onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                        />
+                        <a class="post-author mr-2" href="{% url 'stories:user-posts' post.author %}">{{ post.author }}</a>
+
+                        {% if post.author == user or is_moderator %}
+                        <small class="ml-4">
+                            <a class="ml-4"
+                               href="{% url 'stories:post-update' post.id post.slug %}"><img src="{% static 'images/black-edit.svg'%}" style="width:20px" title="Edit"></a>
+                            <a class="ml-4"
+                               href="{% url 'stories:post-delete' post.id post.slug %}"><img src="{% static 'images/black-delete.svg'%}" style="width:22px" title="Delete"></a>
+                        </small>
+                        {%  endif %}
+                    </h8>
+
+                    <div class="post-sentence standard-text">
+                        <span class="mb-4">
+                            {% if post.first_sentence != "" %}
+                            <div class="hidden-sm-down"><a href="{% url 'stories:post-detail' post.id post.slug %}"> {{ post.first_sentence|safe|truncatewords_html:post.sentence_cutoff }}</a></div>
+                            <div class="hidden-md-up"><a href="{% url 'stories:post-detail' post.id post.slug %}">{{ post.first_paragraph|safe|truncatewords_html:post.paragraph_cutoff }} {% if post.first_paragraph_count < post.word_count and post.first_paragraph_count <= post.paragraph_cutoff  %} <span style="display: block; margin-bottom:14px;"></span><center><span class="read-time">Read more | {{post.read_minutes}} min read</span></center><span style="display: block; margin-bottom:12px;"></span>{% endif %}</a></div>
+                            {% elif post.has_image %}
+                            <div class="hidden-md-up"><a href="{% url 'stories:post-detail' post.id post.slug %}">
+                                <img src="{{post.first_image}}" style="width: 100%!important; max-height: 100vw!important; object-fit: cover;" onerror="this.style.display='none'"/>
+                            </a></div>
+                            {% elif post.has_iframes %}
+
+                            <div class="hidden-md-up"><div class="square-box"><div class="widescreen"><iframe style="width: 100%!important; max-height:100vw!important; height:100vw!important; position: absolute"; src="{{post.first_iframe_src}}?muted=1&hd=1&controls=0&mute=1&loop=1&playsinline=1" frameborder="0" onload="this.style.opacity = 1"></iframe></div></div></div>
+                            {% elif post.has_charts %}
+                            <div class="hidden-md-up"><iframe style="width: 100%!important; max-height:118vw!important; height:118vw!important"; src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe></div>
+                            {% endif %}
+                       </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row likes-comments-date-home">
+                <div class="likes-comments">
+                    <form action="{% url 'stories:like_post' post.pk %}" method="POST">
+                        {% csrf_token %}
+
+
+                        {% if request.user in post.likes.all %}
+
+                        <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                            <img src="{% static 'images/black-like - clicked.svg'%}" class="likes-comments-img" title="Like">
+                            {{post.likes.count}}
+                        </a>
+
+
+                        {% elif user.is_authenticated %}
+
+                        <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                            <img src="{% static 'images/black-like - not clicked.svg'%}" class="likes-comments-img" title="Like">
+                            {{post.likes.count}}
+                        </a>
+
+                        {% else %}
+
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}">
+                            <img src="{% static 'images/black-like - not clicked.svg'%}" class="likes-comments-img" title="Like">
+                            {{post.likes.count}}
+                        </a>
+
+                        {% endif %}
+
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}"><img src="{% static 'images/black-comment.svg'%}" class="likes-comments-img">
+                            {{post.number_of_comments}}
+                        </a>
+                    </form>
+                </div>
+                <div class="post-date-home">
+                    {% if post.publish %}
+                    {{ post.publish | timesince | upto:','  }} ago
+                    {% else %}
+                    Draft Post
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endfor %}
+
+        <div class="row">
+            {% if is_paginated %}
+            {% if page_obj.has_previous %}
+            <li class="page-item"> <a class="btn page-link button-prev" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="btn page-link button-next" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="hall-of-fame col-lg-4"></div>
+
+</div>
+
+
+{% endblock content %}
+{% block script %}
+<script type="text/javascript">
+    function likedislike (id, value) {
+        var id = id;
+        var value = value;
+        var url = "{% url 'stories:postlikepreference' %}";
+        console.log(url);
+        $.ajax({
+        url: url,
+        type: "GET",
+        data: {
+        
+          "id": id,
+          "value": value,
+        //   "csrfmiddlewaretoken": "{{ csrf_token }}"
+
+        },
+        success: function (data) {
+            console.log(data.html)
+            var result = data.html;
+            $('#L-'+id).html(result);
+          
+        }
+      });
+
+    }
+</script>
+
+<script src="{% static 'blog/js/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'blog/js/infinite.min.js' %}" type="text/javascript"></script>
+
+    <script>
+        var infinite = new Waypoint.Infinite({
+            element: $('.infinite-container')[0],
+
+            offset: 'bottom-in-view',
+
+            onBeforePageLoad: function () {
+                $('.loading').show();
+            },
+            onAfterPageLoad: function () {
+                $('.loading').hide();
+            }
+
+        });
+    </script>
+{% endblock %}

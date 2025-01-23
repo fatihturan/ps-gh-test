@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+</head>
+<div class="container">
+    <h3 class="white-important">You've been logged out</h3>
+    <div class="pt-3">
+        <small class="text-muted">
+            Login again? <a class="ml-2" href="{% url 'login' %}">Login</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

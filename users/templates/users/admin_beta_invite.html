@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+</head>
+
+<div class="hidden-sm-down top-buffer"></div>
+
+<div class="all-content pt-2">
+    <div class="user-post-and-comments">
+        <div class="user-post row">
+            <div class="row post-title-detail">                
+            </div>
+            {% if messages %}
+            <ul class="messages m-0 text-center">
+                {% for message in messages %}
+                    <h3 {% if message.tags %} class="text-{{ message.tags }}" {% endif %}> {{ message }}</h3>
+                {% endfor %}
+            </ul>
+            <br/>
+            {% endif %}
+
+            <form method="post" action="{% url 'admin_beta_notification' %}">
+                <div class="col-md-12 dropdown my-2">
+                    {{ form.as_p }}
+                     <button class="btn btn-success m-2" type="submit">Submit</button>
+                </div>
+            </form>
+
+    </div>
+  </div>
+  
+<script language="JavaScript">
+    function checkbox_toggle(source) {
+        checkboxes = document.getElementsByName('options');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+            }
+        }
+</script>
+{% endblock content %}

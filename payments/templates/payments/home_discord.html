@@ -1,0 +1,323 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jaXon</title>
+    <link rel="stylesheet" href="https://use.typekit.net/qau1euj.css" />
+    <link rel="stylesheet" href="{% static 'css/swiper-bundle.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9DKFP5KMQ8"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9DKFP5KMQ8');
+    </script>
+    
+    <script>
+      var is_logged_in = {{ is_logged_in|yesno:"true,false" }};
+      console.log("is_logged_in_frontend:", is_logged_in);
+      var stripePublicKey = "{{ stripe_publishable_key }}";
+      var username = "{{ username }}";  
+      var plan_id = "{{ plan_id }}";
+      var discord_username = "{{ discord_username }}";
+      var subscription_canceled = "{{ subscription_canceled }}";
+      
+
+      //checkout variables
+
+      // sandbox checkout vars
+
+      
+      var envurlbase = "{{ envurlbase }}";
+      
+      var essentialmonthlyid = "{{ essentialmonthlyid }}";
+      var essentialyearlyid = "{{ essentialyearlyid }}";
+
+      var premiummonthlyid = "{{ premiummonthlyid }}";
+      var premiumyearlyid = "{{ premiumyearlyid }}";
+
+      var ultimatemonthlyid = "{{ ultimatemonthlyid }}";
+      var ultimateyearlyid = "{{ ultimateyearlyid }}";
+
+      var premiumdiscordpriceid = "{{ premiumdiscordid }}";
+
+      var success = discordOauthURl;
+      var cancel = `${envurlbase}/subscribe/discord/`;
+
+      var discordOauthURl = "{{ discordOAuthUrl|safe }}";
+
+    
+    </script>
+  </head>
+  <body>
+
+    <header>
+      <div class="header">
+        <img src="{% static 'img/logo/jaxon-logo.svg' %}" alt="" />
+        <div class="buttons">
+          <a href="" class="btn" id="headerLogin"></a>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-text">
+        <!--<img src="{% static 'img/logo/jaxon-logo.svg' %}" width="250" alt="" />-->
+        <img src="{% static 'img/discord-icon-svgrepo-com.svg' %}" width="200" alt="" />
+        <h1>Smarter <span>Together</span></h1>
+        <p>
+        </p>
+        <p>
+        </p>
+        <p>
+        </p>
+      </div>
+      <div class="pricing-plan">
+        <div class="cards">
+          <div class="card first-card">
+            <div class="card-top">
+              <span class="card-title">FREE DISCORD</span>
+              <p>
+                Join the community to engage with the community.
+              </p>
+              <div class="monthly-price">
+                <span class="new-price">$0.00 </span>
+              </div>
+              <a href="" class="btn subscriber" id="freediscord" style="background-color: #5865F2;">Join Now</a>
+              
+            </div>
+            <div class="card-bottom">
+              <ul>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>Player Prop Research Tools - last 10 analysis and projections.
+                  </p>
+                </li>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>Best Lines Research Tools - best prices on Moneyline, Spread, and Totals.</p>
+                </li>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>Instabet - add your fanduel sli screenshot to generate tailing links.</p>
+                </li>
+                <li>
+                  <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                  <p>Bet Tracking - Connect your Discord to select sportsbooks, share bets and track plays.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="popular-card">
+            <div class="popular-card-title">
+              <span>EXTRA FEATURES</span>
+            </div>
+            <div class="card-border">
+              <div class="card second-card">
+                <div class="card-top">
+                  <span class="card-title card-title-green">PREMIUM</span>
+                  <p>
+                    Get access to exclusive channels for arbs, middles, picks and JaXon tips.
+                  </p>
+                  <div class="monthly-price">
+                    <span class="new-price">$19.99<span>/ mo</span> </span>
+                  </div>
+                  <a href="" class="btn btn-green subscriber" id="premiumdiscord">Subscribe</a>
+                </div>
+                <div class="card-bottom">
+                  <ul>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>Everything in the Free Discord.</p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>Daily Pinebot Picks - alerts from an enhanced preciction engine.</p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>Arb & Middle Alerts - realtime alerts of guaranteed profit opportunities.</p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>Plus EV Plays - mispriced bets on major sportsbooks and DFS providers.</p>
+                    </li>
+                    <li>
+                      <img src="{% static 'img/checkmark.svg' %}" alt="" />
+                      <p>Early access to betas, new features and product updates.</p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    <div class="hero-bottom">
+        <!--<p>
+          You must make a free Pine Sports account to access the Premium Discord.
+          <a href="https://www.pine-sports.com/register/?next=/subscribe/discord"
+            >Register now!</a>
+          
+        </p>
+        <p>
+          Already have an account?
+          <a href="https://www.pine-sports.com/login/?next=/subscribe/discord"
+            >Log in here.</a>
+          
+        </p>-->
+      </div>
+    </section>
+
+  
+
+
+    <footer class="footer">
+      <div class="footer-content">
+        <div class="footer-top">
+          <p>Copyright © 2024 Pine Sports Inc. | All Rights Reserved.</p>
+          <ul>
+           
+            <li>
+              <a href="https://x.com/PineSports_AI?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor">
+                <img src="{% static 'img/icon/twitter-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/pine.sports/">
+                <img src="{% static 'img/icon/instagram-icon.svg' %}" alt="" />
+              </a>
+            </li>
+            
+          </ul>
+        </div>
+        <div class="footer-bottom">
+          <img src="{% static 'img/logo/jaxon-logo.svg' %}" alt="" />
+          <ul class="footer-bottom-list">
+            <li>
+              <a href="/terms/">Terms Of Use</a>
+            </li>
+            <li>
+              <a href="/privacy/">Privacy Policy</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  
+    <script>
+       // Set the login url to logout for logged-in users
+      
+      // Check if user is logged in
+    
+    document.addEventListener('DOMContentLoaded', function() {
+  // Check if user is logged in
+  if (is_logged_in) {
+    document.getElementById("headerLogin").innerHTML = "Logout";
+    document.getElementById('headerLogin').setAttribute('href', '/logout/?next=/subscribe/discord/');
+    // set the discord oauth url
+    
+    // Set the Stripe public key
+    var stripe = Stripe(stripePublicKey);
+    //console.log('Stripe initialized:', stripe);
+
+    console.log("User is logged in. Setting subscription URLs for logged-in users.");
+
+    const freediscord = document.getElementById('freediscord');
+
+    freediscord.addEventListener('click', async function(e) {
+          e.preventDefault();  // Prevent any immediate navigation
+          setLoading();
+          console.log('Redirecting to Discord');
+
+          window.location.href = discordOauthURl;
+        });
+
+    const premiumdiscord = document.getElementById('premiumdiscord');
+    premiumdiscord.addEventListener('click', async function(e) {
+          e.preventDefault();  // Prevent any immediate navigation
+          setLoading();
+          console.log('Redirecting to Stripe');
+
+          const id = this.id;
+          //console.log('id:', id);
+
+          try {
+            const priceId = premiumdiscordpriceid;
+            //console.log('priceId:', priceId);
+
+            // Once priceId is successfully returned, proceed to Stripe Checkout
+            fetch("create-checkout-session/", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+
+            body: JSON.stringify({  id: priceId,success_url:discordOauthURl, cancel_url:cancel, free_trial_eligible: 'True'})
+
+          })
+          .then((result) => { return result.json(); })
+            .then((data) => {
+              if (data.error) {
+                alert(data.error);
+                window.location.reload();
+              }
+              // Redirect to Stripe Checkout
+              return stripe.redirectToCheckout({sessionId: data.sessionId})
+            })
+            .then((data) => {
+              // If redirectToCheckout fails due to a browser or network
+              // error, you should display the localized error message to your
+              // customer using error.message.
+              if (data.error) {
+                alert(data.error.message);
+              }
+            })
+            .catch(function (error) {
+              console.error("Error:", error);
+            });
+          } catch (error) {
+            console.error('Error retrieving priceId or redirecting to checkout:', error);
+            alert('Failed to get subscription details. Please try again.');
+          }
+        });
+    
+    
+   
+    
+  } else {
+    // For non-logged-in users
+    console.log("User is not logged in. Setting subscription URLs for non-logged-in users.");
+    document.getElementById('freediscord').setAttribute('href', '/login/?next=/subscribe/discord/');
+    document.getElementById('premiumdiscord').setAttribute('href', '/login/?next=/subscribe/discord/');
+
+    // Change login button
+    document.getElementById("headerLogin").innerHTML = "Login";
+    document.getElementById('headerLogin').setAttribute('href', '/login/');
+  }
+});
+
+    
+
+function setLoading() {
+    const buttons = document.querySelectorAll('.btn');
+    buttons.forEach((button) => {
+      button.disabled = true;
+    });
+}
+
+    </script>
+
+  </body>
+</html>

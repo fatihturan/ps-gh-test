@@ -1,0 +1,100 @@
+{% extends "blog/base_explore.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Oswald:wght@400;500;600&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <style>
+body{
+    overflow-x:hidden !important;
+    background: #fff !important;
+}
+.jumbotron{
+    background: #1a304a;
+    color: #fff;
+    border-radius:0px !important;
+    }
+    .hover:hover{
+    transform: scale(4);
+    transition: .4 ease;
+    }
+@media screen and (max-width: 1300px) {
+    .img-responsive {
+        display: none;
+    }
+    .p{
+    margin-right:0% !important;
+    }
+    h1{
+    margin-right:0% !important;
+    font-size:57px !important;
+    }
+    .fr-view {
+    word-wrap: break-word;
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+      </style>
+
+
+    <title>Pine Sports - Get Data Access</title>
+
+</head>
+
+<body>
+
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+    <div class="container">
+
+        <h1 style="font-family: 'Roboto', sans-serif; font-weight:500; font-size: 63px;color:#fff;">The most advanced sports analytics platform on the internet</h1><br>
+
+
+        <div style="margin-right:100px">
+            <a href="https://www.pine-sports.com/" style="float:right;margin-left:50px"><img src="{% static 'images/black-like - clicked.svg'%}" style="width:200px;margin-top:-60px; margin-left:0%" class="img-responsive" alt="/"></a>
+
+            <span style="font-family: 'Roboto', sans-serif; font-weight:300; font-size: 21px;">
+                Explore is currently in beta. You are already on the wait list, and we'll let you know as soon as you have access.<br><br>
+
+                To move to the top of the wait list, become an active member of the Pine community and earn  <span style="color: #4EC48F; font-weight:300;">100 trophies</span> from your fellow Piners.<br>
+
+                {% if likes_left < 100 %}<br>You just need to earn <span style="color: #4EC48F; font-weight:300;">{{likes_left}}</span> more trophies for data access!<br>{% endif %}
+
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row" style="padding:10px !important;">
+        <div class="col-md-15">
+            <h2 style="text-align:center;font-family: 'Roboto', sans-serif; font-size:50px!important;color:#274970">Explore</h2><br>
+            <p style="font-family: 'Roboto'; font-size:21px;font-weight:300;color:#274970;">Explore spreads, scores, and other stats to help predict games or player performance with just a couple of clicks.</p>
+            <p style="font-family: 'Roboto', sans-serif;
+      font-size: 28px;font-weight:500;color:#4fc48f;text-align: center;padding-top:35px;color:#274970">Key Insights With a Few Clicks</p>
+            <div class="col-md-15">
+                <img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/dashboard.png" style="width: 85%; margin-left:8%;"></div>
+            <p style="font-family: 'Roboto', sans-serif;
+         font-size: 28px;font-weight:500;color:#4fc48f;text-align: center; padding-top:50px;color: #274970">Understand Deep Relationships Quickly</p>
+            <div class="col-md-15">
+                <img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/correlate.png" style="width: 85%; margin-left:8%;"></div>
+            <p style="font-family: 'Roboto', sans-serif;
+        font-size: 28px;font-weight:500;color:#4fc48f;text-align: center; padding-top:50px;color:#274970">Visualize Your Insights Like the Pros</p>
+            <div class="col-md-15">
+                <img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3-us-west-2.amazonaws.com/static/images/visualize.png" style="width: 85%; margin-left:8%;"></div>
+        </div>
+    </div>
+    <hr>
+</div>
+
+</body>
+</html>
+{% endblock %}
+

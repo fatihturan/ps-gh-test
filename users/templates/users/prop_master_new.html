@@ -1,0 +1,470 @@
+{% extends "blog/base_prop_master.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+
+    <meta name="description" content="Challenge your friends to a heads-up player prop contests."/>
+    <meta name="keywords" content="sports, analytics, artificial intelligence, ai, modeling, betting, fantasy, picks, spread, overs, unders, props, futumoneylineres, bets, nba, nfl, nhl, mlb, basketball, hockey, football, baseball, soccer, cricket, tennis">
+    <link rel="canonical" href="https://www.pine-sports.com/"/>
+
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:site_name" content="Pine Sports" />
+	<meta property="og:image" content="{% static 'images/prop-master.svg' %}" />
+
+    <meta name="twitter:site" content="@pine_ai_sports"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Pine Sports | Prop Master"/>
+    <meta name="twitter:description" content="Challenge your friends to a heads-up player prop contests."/>
+    <meta name="twitter:image" content="{% static 'images/prop-master.svg' %}"/>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+</head>
+
+<style>
+
+    a{
+        font-weight: 500;
+        color: #4EC48F;
+    }
+
+     /* The switch - the box around the slider */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 28px;
+      height: 15px;
+    }
+
+    /* Hide default HTML checkbox */
+    .switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* The slider */
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color:#274970;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 12px;
+      width: 12px;
+      left: 2px;
+      bottom: 2px;
+      background-color: white;
+      -webkit-transition: .4s;
+      transition: .4s;
+    }
+
+    input:checked + .slider {
+      background-color: #4EC48F;
+    }
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px #4EC48F;
+    }
+
+    input:checked + .slider:before {
+      -webkit-transform: translateX(12px);
+      -ms-transform: translateX(12px);
+      transform: translateX(12px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+      border-radius: 17px;
+    }
+
+    .slider.round:before {
+      border-radius: 50%;
+    }
+
+    .lock-in-button{
+        background-color: #274970 !important;
+        font-weight: 400;
+        border-radius: 25px;
+        font-size: 12px;
+        padding-right: 22px;
+        padding-left: 24px;
+    }
+
+    .lock-in-button:hover{
+        background-color: #274970 !important;
+    }
+
+    .game-select{
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        display: inline-block;
+    }
+
+    .pk-image{
+        width:90%;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+
+    .prop-table{
+        table-layout: auto;
+        width: 100%;
+        font-size:13px!important;
+        margin-top:20px!important;
+    }
+
+    th{
+        padding-left:5px!important;
+        padding-right:5px!important;
+        padding-top:5px!important;
+        padding-bottom:5px!important;
+    }
+
+    td{
+        padding-left:2px!important;
+        padding-right:2px!important;
+        padding-top:5px!important;
+        padding-bottom:5px!important;
+    }
+
+    .selection{
+        min-width: 110px!important;
+    }
+
+    select{
+        color: #274970;
+        font-weight: 400;
+        text-align:center;
+        padding-top:5px;
+        padding-bottom:5px;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+        display:inline-block;
+        overflow:hidden;
+    }
+
+    select:focus{
+        border: 1px solid #ddd!important;
+        background-color: #ffffff;
+    }
+
+    .game-select-list{
+        color: black;
+        font-weight: 400;
+        text-align: left;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 15px;
+        border: 1px solid #ddd;
+        display: inline-block;
+        overflow: hidden;
+        background-color: #ffffff;
+        font-size: 18px;
+    }
+
+    .pk-robot{
+      width: 35px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+
+    .arrow{
+        width: 30px;
+        margin-top: -4px;
+    }
+    @media screen and (min-width: 767px) {
+        .pk-image{
+            width:66%;
+            margin-top:20px;
+        }
+
+        .prop-table{
+            table-layout: auto;
+            width: 100%;
+            font-size:16px!important;
+            margin-top:20px!important;
+        }
+
+        .selection{
+            min-width: 220px!important;
+        }
+
+        th{
+            padding-left:10px!important;
+            padding-right:10px!important;
+            padding-top:5px!important;
+            padding-bottom:5px!important;
+        }
+
+        .game-select{
+            font-size: 19px;
+            font-weight: 700;
+            margin-bottom: 18px;
+            display: inline-block;
+        }
+
+        .lock-in-button{
+            background-color: #274970 !important;
+            font-weight: 400;
+            border-radius: 25px;
+            font-size: 19px;
+            padding-right: 28px;
+            padding-left: 30px;
+            margin-bottom:50px;
+        }
+
+         /* The switch - the box around the slider */
+        .switch {
+          position: relative;
+          display: inline-block;
+          width: 55px;
+          height: 30px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+          opacity: 0;
+          width: 0;
+          height: 0;
+        }
+
+        /* The slider */
+        .slider {
+          position: absolute;
+          cursor: pointer;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-color:#274970;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+
+        .slider:before {
+          position: absolute;
+          content: "";
+          height: 23px;
+          width: 23px;
+          left: 4px;
+          bottom: 4px;
+          background-color: white;
+          -webkit-transition: .4s;
+          transition: .4s;
+        }
+
+        input:checked + .slider {
+          background-color: #4EC48F;
+        }
+
+        input:focus + .slider {
+          box-shadow: 0 0 1px #4EC48F;
+        }
+
+        input:checked + .slider:before {
+          -webkit-transform: translateX(23px);
+          -ms-transform: translateX(23px);
+          transform: translateX(23px);
+        }
+
+        /* Rounded sliders */
+        .slider.round {
+          border-radius: 34px;
+        }
+
+        .slider.round:before {
+          border-radius: 50%;
+        }
+
+        .game-select-list{
+            font-size:20px;
+        }
+    }
+
+</style>
+<div class="all-content">
+    <div class="user-post-and-comments">
+        <div class="user-post row">
+            <div><center><img src="{% static 'images/prop-master.svg'%}" alt="prop-master" class="pk-image"></center></div>
+            <div class="hidden-sm-down top-buffer">
+                {% if messages %}
+                <ul class="messages m-0 text-center">
+                    {% for message in messages %}
+                    <h3 {% if message.tags %} class="text-{{ message.tags }}" {% endif %}> {{ message }}</h3>
+                    {% endfor %}
+                </ul>
+                <br/>
+                {% endif %}
+            </div>
+
+            {% if number_of_games > 0 %}
+            <div class="col-md-12">
+                <center style="margin-bottom:10px">
+                    <span class="game-select">Select an NBA Game:</span><br>
+                    <select class="game-select-list" class="form-control" name="game" id="game" onChange="getGame(this.value)">
+                        {% for i in games.itertuples %}
+                        <option value="{{i.Game}}">{{i.Game}}</option>
+                        {% endfor %}
+                    </select>
+                    <div id="time"></div>
+                    <div id="table"></div>
+                </center>
+            </div>
+            {% else %}
+            <p class="text-center">Sorry, there are no available games right now.  Please try again later.</p>
+            {% endif %}
+            <br><br><br>
+        </div>
+    </div>
+</div>
+<script>
+
+    //Loads initial props on start
+    setTimeout(function(){
+        var game = document.getElementById("game").value
+        document.getElementById("table").innerHTML=get_row(game);
+        document.getElementById("time").innerHTML=get_time(game);
+
+    }, 100);
+
+
+</script>
+
+<script type="text/javascript">
+
+    function getGame(chosen){
+        var ans = document.querySelector('#game');
+        var game = chosen
+        document.getElementById("table").innerHTML=get_row(game);
+        document.getElementById("time").innerHTML=get_time(game);
+    }
+
+    function get_row(result)
+    {
+
+
+        var selected_game=document.querySelector('#game').value;
+        var html='<table class="prop-table text-center" id="props_table">'+
+                    '<thead>'+
+                        '<tr>'+
+                            '<th scope="col" style="text-align:center!important">Player<br>Name</th>'+
+                            '<th scope="col" style="text-align:center!important">Prop</th>'+
+                            '<th scope="col" style="text-align:center!important">Line</th>'+
+                            '<th scope="col" style="text-align:center!important">Ask<br>Robot</th>'+
+                            '<th scope="col" style="text-align:center!important" class="selection">My Pick</th>'+
+                        '</tr>'+
+                    '</thead>'+
+                    '<tbody>'
+        var prop_counter = 0
+        {% for i in props.itertuples %}
+            var game_name = '{{i.Game}}'
+            var game_prop = '{{i.Prop}}'
+            var ask_robot = '{{i.Robot_Likes}}'.replaceAll("&lt;", "<").replaceAll("&gt;", ">").replaceAll(" ", "%20").replaceAll("a%20href", "a href").replaceAll("&#x27;", "'").replace("&quot;", '"').replace("%20target", " target").replace("%20onclick", " onclick").replace("%20style", " style").replace('Over', '<img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/pk-robot.png" alt="prop-master" class="pk-robot">').replace('Under', '<img src="https://pinesports-prod-s3-storage-bucket-us-west-2-192279148113.s3.us-west-2.amazonaws.com/static/images/pk-robot.png" alt="prop-master" class="pk-robot">')
+            if(game_name == result && prop_counter < 10){
+                html = html + '<td>{{i.Player_Name}}</td>'+ '<td>{{i.Prop}}</td>'+ '<td>{{i.Line}}</td>'+
+                '<td>' + ask_robot + '</td>'+
+                '<td><span aria-hidden="true">Under&nbsp;&nbsp;</span><label class="switch"><input type="checkbox" id="choice{{forloop.counter}}" name="prop_type"><span class="slider round"></span></label><span aria-hidden="false">&nbsp;&nbsp;Over</span></td>'+
+                '</tr>'
+                prop_counter = prop_counter+1
+            }
+        {% endfor %}
+        html = html + '</tbody>'+
+                '</table>'+
+                '<div class="col-md-12"><center><input type="submit" class="lock-in-button btn btn-info mt-1" id="submit_data" onClick="value_sub()" value="Lock In My Picks"></center></div>';
+
+        if (prop_counter == 0){
+            html = "<br><br><span style='color:#274970'>Sorry, there are no props available for this game yet.</span><br><br>"
+        }
+
+        return html;
+    }
+
+    function get_time(result)
+    {
+        var html = ""
+        {% for i in props.itertuples %}
+            var game_name = '{{i.Game}}'
+            if(game_name == result){
+                time = '{{i.Time}}'
+                html = '<br><b>Game Time: </b>' + time + ' EST'
+            }
+        {% endfor %}
+
+        return html
+    }
+
+
+</script>
+
+
+<script type="text/javascript"> //After submitting form data
+    function value_sub(){
+        var len=document.getElementById("props_table").rows.length
+        var jsonArr = [];
+        var game
+        for (i = 1; i < len; i++) {
+            var player_name = document.getElementById("props_table").rows[i].cells[0].innerHTML;
+            var prop = document.getElementById("props_table").rows[i].cells[1].innerHTML;
+            var point = document.getElementById("props_table").rows[i].cells[2].innerHTML;
+
+            var get_propTypeId = document.getElementById("props_table").rows[i].cells[4].querySelector('input').id;
+            var over_under = ($('#'+get_propTypeId).is(':checked') === true) ? "Over":"Under";
+
+            game = document.getElementById("game").value;
+            jsonArr.push({"Game":game,"Player_Name":player_name,"Prop":prop,"Line":point,"Selection":over_under});
+        }
+        var time = ''
+        {% for i in props.itertuples %}
+            if(game == '{{i.Game}}'){
+                time='{{i.Time}}'
+            }
+        {% endfor %}
+
+        document.getElementById("submit_data").classList.add('disabled');
+        document.getElementById("submit_data").value="Please wait.....";
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: '/add_prop_data/',
+            data: {
+                propsdata: JSON.stringify(jsonArr),
+                game:game,
+                time:time
+                },
+                success: function(result) {
+                    var uid = result.uid
+                    var url = window.location.origin+"/prop-master/invite/"+uid+"/"
+                    window.location.assign(url);
+                }
+                
+            });
+    }
+</script>
+
+{% endblock content %}

@@ -1,0 +1,45 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+</head>
+
+<div class="hidden-sm-down top-buffer"></div>
+
+<div class="all-content pt-2">
+    <div class="user-post-and-comments">
+        <div class="user-post row">
+            <div class="row post-title-detail">                
+            </div>
+            {% if messages %}
+            <ul class="messages m-0 text-center">
+                {% for message in messages %}
+                    <h3 {% if message.tags %} class="text-{{ message.tags }}" {% endif %}> {{ message }}</h3>
+                {% endfor %}
+            </ul>
+            <br/>
+            {% endif %}
+            <ul>
+                 <li><a class="col-sm-6 text-primary pt-1" href="{% url 'beta_code' %}"><u>Beta-Code Generation</u></a><li>
+                <li><a class="col-sm-6 text-primary pt-1" href="{% url 'beta_user' %}"><u>Beta-User</u></a><li>
+                <li><a class="col-sm-6 text-primary pt-1" href="{% url 'activate_dataset' %}"><u>Activate Datasheet</u></a><li>
+                <li><a class="col-sm-6 text-primary pt-1" href="{% url 'log_file_fetch' %}"><u>Logs</u></a><li>
+                <li><a class="col-sm-6 text-primary pt-1" href="{% url 'admin_beta_notification' %}"><u>Send Invite invite code Notification</u></a><li>
+                <li><a class="col-sm-6 text-primary pt-1" href="{% url 'invite_beta_status' %}"><u>Invite Status</u></a><li>
+                <li><a class="col-sm-6 text-primary pt-1" href="{% url 'delete_datafiles_s3' %}"><u>Delete S3 Datafiles</u></a><li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

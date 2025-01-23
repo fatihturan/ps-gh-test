@@ -1,0 +1,170 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+
+<div class="all-content row">
+
+    <div class="all-home-posts col-lg-12">
+
+        {% for post in posts %}
+        {% if post.author == user or is_moderator%}
+        <div class="row full-post-summary">
+            <div class="row summary-and-pic">
+                {% if post.has_image %}
+                <div class="post-image-div">
+                    <a href="{% url 'stories:post-detail' post.id post.slug %}">
+                        <img src="{{post.first_image}}" class="post-image" onerror="this.style.display='none'"/>
+                    </a>
+                </div>
+                {% elif post.has_charts %}
+                <div class="post-image-div">
+                    <div class="thumbnail-container">
+                        <div class="thumbnail">
+                            <iframe src="{{post.first_chart}}" frameborder="0" onload="this.style.opacity = 1"></iframe>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="post-summary">
+                    <h1 class="post-title-home">
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}">{{ post.title }}</a>
+                    </h1>
+                    <h8>
+
+                        <img
+                                class="profile-icon rounded-circle mr-2"
+                                src="{{ post.author.profile.image_url }}?v=2"
+                                onError='this.onerror=null;this.src="{% static "images/profile.svg" %}?v=2";'
+                        />
+                        <a class="post-author mr-2" href="{% url 'stories:user-posts' post.author %}">{{ post.author }}</a>
+
+                        {% if post.author == user or is_moderator %}
+                        <small class="ml-4">
+                            <a class="ml-4"
+                               href="{% url 'stories:post-update' post.id post.slug %}"><img src="{% static 'images/black-edit.svg'%}" style="width:20px" title="Edit"></a>
+                            <a class="ml-4"
+                               href="{% url 'stories:post-delete' post.id post.slug %}"><img src="{% static 'images/black-delete.svg'%}" style="width:22px" title="Delete"></a>
+                        </small>
+                        {%  endif %}
+                    </h8>
+
+                    <div class="post-sentence standard-text">
+                        <span class="mb-4">
+                            <a href="{% url 'stories:post-detail' post.id post.slug %}"> {{ post.first_sentence|safe|truncatewords_html:100 }}</a>
+                       </span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row likes-comments-date-home">
+                <div class="likes-comments">
+                    <form action="{% url 'stories:like_post' post.pk %}" method="POST">
+                        {% csrf_token %}
+
+
+                        {% if request.user in post.likes.all %}
+
+                        <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                            <img src="{% static 'images/black-like - clicked.svg'%}" class="likes-comments-img" title="Like">
+                            {{post.likes.count}}
+                        </a>
+
+
+                        {% else %}
+                        <a id="L-{{post.id}}" class="ml-1" onclick="return  likedislike( {{post.id}},'false');">
+                            <img src="{% static 'images/black-like - not clicked.svg'%}" class="likes-comments-img" title="Like">
+                            {{post.likes.count}}
+                        </a>
+
+                        {% endif %}
+
+                        <a href="{% url 'stories:post-detail' post.id post.slug %}"><img src="{% static 'images/black-comment.svg'%}" class="likes-comments-img">
+                            {{post.number_of_comments}}
+                        </a>
+                    </form>
+                </div>
+                <div class="post-date-home">
+
+                    {{ post.date_posted | timesince | upto:','  }} ago
+
+                </div>
+
+            </div>
+
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <div class="row">
+            {% if is_paginated %}
+            {% if page_obj.has_previous %}
+            <li class="page-item"> <a class="btn page-link button-prev" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+            <li class="page-item"><a class="btn page-link button-next" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+
+            {% endif %}
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="hall-of-fame col-lg-4"></div>
+
+</div>
+
+
+{% endblock content %}
+{% block script %}
+<script type="text/javascript">
+    function likedislike (id, value) {
+        var id = id;
+        var value = value;
+        var url = "{% url 'stories:postlikepreference' %}";
+        console.log(url);
+        $.ajax({
+        url: url,
+        type: "GET",
+        data: {
+
+          "id": id,
+          "value": value,
+        //   "csrfmiddlewaretoken": "{{ csrf_token }}"
+
+        },
+        success: function (data) {
+            console.log(data.html)
+            var result = data.html;
+            $('#L-'+id).html(result);
+
+        }
+      });
+
+    }
+</script>
+{% endblock %}

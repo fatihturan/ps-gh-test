@@ -1,0 +1,142 @@
+@import url('https://use.typekit.net/qau1euj.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-dark-blue bg-[url(/images/body-shape-bl-bg.png),_url(/images/body-shape-tr-bg.png)] bg-no-repeat;
+    @apply bg-[position:bottom_left,top_right];
+    @apply bg-[size:717px_785px,888px_800px];
+}
+
+h1 {
+    @apply text-[24px] font-semibold text-white md:text-[18px];
+}
+
+h2 {
+    @apply text-[20px] font-semibold text-white md:text-[16px];
+}
+
+h3 {
+    @apply text-[18px] font-semibold text-white md:text-[14px];
+}
+
+h4 {
+    @apply text-[16px] font-semibold text-white;
+}
+
+p {
+    @apply text-[16px] font-normal text-white;
+}
+
+.render-markdown {
+    @apply text-[16px] font-normal text-white;
+
+    h1 {
+        @apply mb-[20px];
+    }
+
+    h2 {
+        @apply mb-[16px];
+    }
+
+    h3 {
+        @apply mb-[16px];
+    }
+
+    h4 {
+        @apply mb-[16px] text-[16px];
+
+        strong {
+            @apply text-[16px];
+        }
+    }
+
+    p {
+        @apply mb-[12px] list-decimal text-[14px];
+        &:last-child {
+            @apply mb-[0];
+        }
+    }
+
+    a {
+        @apply text-green underline;
+    }
+
+    ul {
+        @apply mb-[12px] ml-[16px] list-disc text-[14px];
+    }
+
+    ol {
+        @apply mb-[12px] ml-[16px] list-decimal text-[14px];
+    }
+
+    table {
+        @apply mb-[20px] w-full border-separate border-spacing-0 text-[14px];
+        @apply block overflow-y-scroll;
+
+        /* Custom scrollbar for WebKit browsers */
+        &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        /* Firefox scrollbar styling */
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
+
+        tr {
+            th {
+                @apply !text-center;
+            }
+        }
+
+        tr th,
+        tr td {
+            @apply border-b border-r border-white-10;
+            @apply px-[8px] py-[8px] text-left;
+        }
+
+        tr th:first-child,
+        tr td:first-child {
+            @apply border-l border-white-10;
+        }
+
+        tr th {
+            @apply border-t border-white-10 bg-white-5;
+        }
+
+        /* top-left border-radius */
+        tr:first-child th:first-child {
+            @apply rounded-tl-[10px];
+        }
+
+        /* top-right border-radius */
+        tr:first-child th:last-child {
+            @apply rounded-tr-[10px];
+        }
+
+        /* bottom-left border-radius */
+        tr:last-child td:first-child {
+            @apply rounded-bl-[10px];
+        }
+
+        /* bottom-right border-radius */
+        tr:last-child td:last-child {
+            @apply rounded-br-[10px];
+        }
+    }
+
+    hr {
+        @apply m-[20px];
+    }
+}

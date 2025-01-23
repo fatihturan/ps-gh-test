@@ -1,0 +1,15 @@
+{% load static %}
+{% if request.user in post.likes.all %}
+
+    <a onclick="return  likedislike( {{post.id}},'true');">
+        <img src="{% static 'images/black-like - clicked.svg'%}" class="likes-comments-img" title="Like" class="img-responsive"> {{post.likes.count}}
+    </a>
+
+{% else %}
+
+    <a onclick="return  likedislike( {{post.id}},'false');">
+        <img src="{% static 'images/black-like - not clicked.svg'%}" class="likes-comments-img" title="Like" class="img-responsive"> {{post.likes.count}}
+    </a>
+
+{% endif %}
+

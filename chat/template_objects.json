@@ -1,0 +1,565 @@
+{
+    "Game Analysis": {
+        "All": {
+            "General": {
+                "Questions": [
+                    "What games show the strongest sharp money movement today?",
+                    "Which games have notable scheduling advantages or rest mismatches?",
+                    "Generate a chart comparing key metrics across all today's matchups"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Analyze {event} including injuries, weather, and situational spots",
+                    "Using Monte Carlo simulation, predict winner and score for {event}",
+                    "Break down key statistical mismatches in {event} with confidence rating",
+                    "Provide a detailed breakdown of {event} including matchup advantages, recent form, and key trends",
+                    "What factors should I consider when betting {event} today? Include injuries, and historical data"
+                ]
+            },
+            "Market": {
+                "Questions": [
+                    "Find mispriced lines across all sports based on power ratings",
+                    "Which totals show the largest deviation from projected scores?",
+                    "Identify strongest betting advantages across all games today"
+                ]
+            }
+        },
+        "NBA": {
+            "General": {
+                "Questions": [
+                    "What are the top NBA games to bet on tonight based on statistical edges?",
+                    "Generate defensive statistics chart for all NBA teams playing tonight"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Analyze {event} including matchups, scheduling spots and rankings for SGP opportunities",
+                    "Using Monte Carlo simulation, predict winner and score for {event} with confidence rating",
+                    "What are the key statistical mismatches in {event} that could create betting value?"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NFL": {
+            "General": {
+                "Questions": [
+                    "Which NFL games show the strongest sharp money movement today?",
+                    "What are the key divisional and scheduling spots to target today?"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Provide in-depth analysis of {event} with key injuries and matchup advantages",
+                    "Project game flow and scoring pace for {event} with situational factors",
+                    "What factors should I consider when betting {event} today? Include injuries, and historical data"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NHL": {
+            "General": {
+                "Questions": [
+                    "Which NHL teams have the strongest power rating advantages tonight?",
+                    "Analyze goalie matchups and advantages across today's slate"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Break down special teams and scoring trends for {event}",
+                    "Project total goals and game flow for {event} with line movement analysis"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "MLB": {
+            "General": {
+                "Questions": [
+                    "Which pitching matchups offer the strongest edges today?",
+                    "Analyze ballpark factors and weather impacts for today's games"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Break down starting pitcher vs lineup metrics for {event}",
+                    "Project runs scored and bullpen usage for {event}",
+                    "What are the key statistical mismatches in {event} that could create betting value?"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAF": {
+            "General": {
+                "Questions": [
+                    "Which college football games have notable scheduling advantages?",
+                    "Analyze tempo and scheme matchups across today's games"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Break down key statistical advantages in {event} with situational spots",
+                    "Project scoring pace and game flow for {event} with weather impact"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAMB": {
+            "General": {
+                "Questions": [
+                    "Which college basketball teams have tempo mismatches today?",
+                    "Analyze home court advantages and scheduling spots"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Break down efficiency metrics and matchup edges for {event}",
+                    "Project scoring distribution and pace for {event}"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        }
+    },
+    "Player Props": {
+        "All": {
+            "General": {
+                "Questions": [
+                    "What props have the highest hit rates across all sports today?",
+                    "Generate a table of props with 90%+ historical success rate",
+                    "Which players are in the strongest situational spots today?",
+                    "Show all prop lines that have hit over 80% in the last 10 games",
+                    "List props with positive expected value based on historical data"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Break down key prop opportunities in {event}",
+                    "Compare historical vs projected performance for {player}",
+                    "Analyze matchup advantages for player props in {event}",
+                    "Show all prop lines that have hit over 80% in the last 10 games for {event}",
+                    "Which prop markets show the biggest statistical edge in {event}?",
+                    "Compare player performance metrics against defensive matchup stats for {event}"
+                ]
+            }
+        },
+        "NBA": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NFL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NHL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "MLB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAF": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAMB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        }
+    },
+    "Trends": {
+        "All": {
+            "General": {
+                "Questions": [
+                    "How do these teams perform against the spread after a win/loss?",
+                    "{event}. What are the scoring trends when these teams play as favorite/underdog?"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "{event}. Show home/away performance splits for both teams in their last 10 games"
+                    
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NBA": {
+            "General": {
+                "Questions": [
+                    "Display rest advantage impact on team performance this season"
+                ]
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NFL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NHL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "MLB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAF": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAMB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        }
+    },
+    "Advanced Analytics": {
+        "NBA": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": [
+                    "{event}. Generate position-by-position matchup grades using, Advanced metrics, Recent performance, Head-to-head history",
+                    "{event}. Analyze key performance indicators in similar matchup contexts - Style matchups, Schedule spots, Travel impact"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NFL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NHL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "MLB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAF": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAMB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        }
+    },
+    "Value Betting": {
+        "All": {
+            "General": {
+                "Questions": [
+                    "Which games have the largest discrepancy between projected and market lines?",
+                    "Show all games with a 10%+ difference between projected and market totals",
+                    "Which teams have the largest power rating advantages today?"
+                ]
+            },
+            "Event": {
+                "Questions": [
+                    "Find mispriced lines in {event} based on power ratings and market odds",
+                    "Which betting markets show highest edge vs market consensus for {event}?",
+                    "Identify props with largest deviation from projected values in {event}",
+                    "Where is sharp money flowing in {event} and why?"
+                ]
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NBA": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NFL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NHL": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "MLB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAF": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        },
+        "NCAAMB": {
+            "General": {
+                "Questions": []
+            },
+            "Event": {
+                "Questions": []
+            },
+            "Market": {
+                "Questions": []
+            },
+            "Selection": {
+                "Questions": []
+            }
+        }
+    }
+}

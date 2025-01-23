@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<style xmlns="http://www.w3.org/1999/html">
+
+    img {
+        max-width: 100%
+    }
+
+    .all-content{
+        	max-width: 1080px;
+        	/* -1% to be fixed with sticky header update */
+	        margin: -1% auto !important;
+	        float: none !important;
+    }
+
+    .pine-logo{
+        width:7%;
+        height:auto;
+        padding: 15px;
+        margin: auto;
+        display: inline-block;
+        padding: 2px;
+    }
+    header{
+        background:#274970;
+        color: white;
+        font-size: 10px;
+        font-family: 'Raleway', sans-serif;
+        text-align: left;
+        padding-bottom: 50px;
+        padding-top: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        }
+
+    .header-2{
+        background: #F5F5F8;
+        color: #1B1464;
+        font-size: 20px;
+        font-family: 'Raleway', sans-serif;
+        text-align: center;
+        padding: 15px;
+        }
+    h1{
+        font-family: 'Raleway', sans-serif;
+        font-size: 15px;
+        text-align: left;
+        width: 100%;
+        }
+    p{
+        font-size: 22px;
+        font-family: 'Raleway', sans-serif;
+        }
+    h2{
+        font-size: 25px;
+        font-family: 'Raleway', sans-serif;
+        text-align: left;
+        color: #274970;
+        }
+    h3{
+        font-size: 15px;
+        font-family: 'Raleway', sans-serif;
+        background: #274970;
+        border-radius: 6px;
+        color: #F5F5F8;
+        padding: 10px;
+        width: 25%;
+        margin-left:13%;
+        text-align: center;
+        }
+    .logo-text-2{
+        width: 10%;
+        float: left;
+    }
+    .faq-content{
+        margin-left: 20%;
+        margin-right: 20%;
+        padding: 25px;
+        }
+    a{
+        color: white;
+        text-decoration: none;
+        }
+    h3:hover, a:hover{
+        color: #4EC48F;
+        background: #112f55;
+        }
+    .left{
+        float: left;
+        }
+    .right{
+        float: right;
+        }
+      ref{
+        text-decoration: underline;
+        text-decoration-color: #4EC48F;
+        font-family: 'Raleway', sans-serif;
+        }
+      ref:hover{
+        background: #4EC48F;
+        border-radius: 6px;
+        padding: 3px;
+        color: white;
+        }
+      .footer{
+        background:#274970;
+        text-size:15px;
+        padding: 10px;
+        text-align: center;
+        color:#1B1464;
+        font-family: 'Raleway', sans-serif;
+        }
+
+</style>
+<head>
+    <title>Pine: Tutorial</title>
+
+</head>
+<header>
+    <div class="header">
+        <div class="pine-logo">
+            <img src="{% static 'images/Pine-inverted.svg' %}" class="brand-logo;">
+            </div>
+        <br>
+        <span class="left"><h1>Frequently Asked Questions & Tutorial</h1>
+        </span>
+
+        <span class="right"><a href="/"><h1>Back to Pine</h1></a>
+        </span>
+</header>
+<body>
+    <div class="header-2">
+       <a href="#bar-graph"> <h3>How do I create a bar graph?</h3> </a>
+        <a href="#scatter-graph"><h3>How do I create a scatter plot?</h3></a>
+        <a href="#relationships"><h3>How do I view relationships (correlations)?</h3></a>
+        <a href="#save-graph"> <h3>How do I save my graphs and import them into a story I'm writing?</h3> </a>
+
+    </div>
+        <body>
+<div class="faq-content">
+    <div id="bar-graph"><h2>Creating a Bar Graph</h2>
+        <p>Making charts in Pine is simple and intuitive. Use bar graphs when you have at least one <ref>category</ref> data (like names of quarterbacks) and <ref>numerical</ref> data for that category (like passing yards). For example, say you want to visualize quarterback passing yards, both by total yards ever thrown and by average yards thrown in a game. Using a bar chart would be perfect for this because it allows you to stack all of the QBs you want to make a comparison for, and then see the total yards they've thrown in their careers, or view the average number of yards they throw in a game.</p>
+
+        <p>All charts and graphs are made using the <ref>Visualize</ref> feature in the main data window. The short video below  walks you through how to select QB data, open the <ref>Visualize</ref> interface, and create a graph of QB passing yard stats over the last 20 years, and the average yards they throw in a game.</p>
+        <video width="720" controls>
+            <source src="{% static 'videos/tutorial-bar-chart.mp4' %}" type="video/mp4">
+        </video>
+    </div>
+<br>
+    <div id="scatter-graph"><h2>Creating a Scatter Plot</h2>
+<p>Like bar graphs, scatter plots are made using the <ref>Visualize</ref> interface. Use scatter plots when you have at least two pieces of <ref>numerical</ref> data. For example, let's say you want to see how wind speed affects how many yards a quarterback throws. Here, you'd have two pieces of <ref>numerical</ref> data: wind speeds and yards thrown. You can plot these numbers on a graph, and then apply a <ref>trend line</ref> to visualize the the relationship between your data and help you make predictions.</p>
+        <p>The short video below walks you through this example using <ref>scatter plots</ref>.</p>
+        <video width="720" controls>
+            <source src="{% static 'videos/tutorial-scatter-chart.mp4'%}" type="video/mp4">
+        </video>
+</div>
+
+    <div id="relationships"><h2>Looking at Relationships</h2>
+        <p><ref>Numerical</ref> data have relationships. When the relationship between two numbers is very evident, we say the relationship is strong (this relationship is sometimes also called a <ref>correlation</ref>). For example, a person's height (which is a number) and a person's weight (also a number) have some relationship: someone who is short is likely to weigh less than someone who is tall. We could graph this relationship to see how age affects weight.</p>
+
+        <p>Pine lets you intuitively view the relationships between numbers by exploring the data over time. You can use the relationship tool to identify areas of interest in the data, and then create charts and stories based on that data. The below video provides an example of how to access and view <ref>relationships</ref> on Pine.</p>
+    <video width="720" controls>
+            <source src="{% static 'videos/tutorial-relationships.mp4'%}" type="video/mp4">
+    </video>
+    </div>
+    <div id="saving-graphs"><h2>Saving and Importing a Graph in Your Story</h2>
+    <p>Once you've explored the data and made your graphs you'll want to share the interesting insights you've generated. But how do you take a graph and import it into a story? Easy. The below video shows you the three simple steps to save your graph and import it into your story.</p>
+
+    <video width="720" controls>
+            <source src="{% static 'videos/tutorial-save-chart.mp4'%}" type="video/mp4">
+        </video>
+</div>
+</div>
+<div class="footer">
+    <a href="{% static 'privacy-policy.html' %}">Privacy Policy</a> | <a href="/terms">Terms and Conditions</a>
+    </div>
+
+</body>

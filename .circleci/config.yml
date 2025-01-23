@@ -1,0 +1,255 @@
+version: 2.1
+
+orbs:
+  aws-cli: circleci/aws-cli@3.1.5
+
+ver-sha-tag-filter: &ver-sha-tag-filter
+  filters:
+    branches:
+      ignore: /.*/
+    tags:
+      only: /^v[0-9]+.[0-9]+.[0-9]+-[a-f0-9]+/
+
+ver-tag-filter: &ver-tag-filter
+  filters:
+    branches:
+      ignore: /.*/
+    tags:
+      only: /^v[0-9]+.[0-9]+.[0-9]+/
+
+master-filter: &master-filter
+  filters:
+    branches:
+      only:
+        - master
+
+not-master-filter: &not-master-filter
+  filters:
+    branches:
+      ignore: master
+
+jobs:
+  validate-version:
+    docker:
+      - image: cimg/base:2020.01
+    steps:
+      - checkout
+      - run:
+          name: Validate version
+          command: if git diff --exit-code origin/master VERSION; then echo "VERSION - matches origin/master, needs bumped" 1>&2; false; fi
+
+  build-and-publish:
+    executor: aws-cli/default
+    parameters:
+      env:
+        description: "Which environment to target"
+        default: "dev"
+        type: string
+      use_version_sha:
+        description: "Use a version sha"
+        default: false
+        type: boolean
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: pine
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: 
+          name: Build React Static
+          command: make build-react env=<< parameters.env >>
+      - run: 
+          name: Build Site image
+          command: make build env=<< parameters.env >>
+      - run:
+          name: Docker login
+          command: make login
+      - run:
+          name: Publish Site image
+          command: make publish<<# parameters.use_version_sha >>-candidate<</ parameters.use_version_sha >> env=<< parameters.env >>
+
+  plan-tf:
+    docker:
+      - image: hashicorp/terraform:latest
+    working_directory: ~/pine-sports-site/tf
+    parameters:
+      workspace:
+        description: "Workspace to run Terraform plan against"
+        default: "dev"
+        type: string
+      use_version_sha:
+        description: "Use a version sha"
+        default: false
+        type: boolean
+      validate:
+        description: "Run terraform validate"
+        default: false
+        type: boolean
+    steps:
+      - checkout:
+          path: ~/pine-sports-site
+      - attach_workspace:
+          at: ~/pine-sports-site
+      - run:
+          name: Plan Terraform
+          command: |
+            VERSION=$(cat ~/pine-sports-site/VERSION)
+            echo "app-version = \"$VERSION<<# parameters.use_version_sha >>-$CIRCLE_SHA1<</ parameters.use_version_sha >>\"" > version.auto.tfvars
+            echo $TF_TOKEN_HCL > ~/.terraformrc
+            export TF_WORKSPACE=<< parameters.workspace >>
+            terraform init
+            <<# parameters.validate >>terraform validate<</ parameters.validate >>
+            terraform plan
+
+  apply-tf:
+    docker:
+      - image: hashicorp/terraform:latest
+    working_directory: ~/pine-sports-site/tf
+    parameters:
+      workspace:
+        description: "Workspace to run Terraform apply against"
+        default: "dev"
+        type: string
+      use_version_sha:
+        description: "Use a version sha"
+        default: false
+        type: boolean
+    steps:
+      - checkout:
+          path: ~/pine-sports-site
+      - attach_workspace:
+          at: ~/pine-sports-site
+      - run:
+          name: Apply Terraform
+          command: |
+            VERSION=$(cat ~/pine-sports-site/VERSION)
+            echo "app-version = \"$VERSION<<# parameters.use_version_sha >>-$CIRCLE_SHA1<</ parameters.use_version_sha >>\"" > version.auto.tfvars
+            echo $TF_TOKEN_HCL > ~/.terraformrc
+            export TF_WORKSPACE=<< parameters.workspace >>
+            terraform init
+            terraform apply -auto-approve
+
+  run-migrations:
+    docker: 
+      - image: cimg/python:3.10
+    working_directory: ~/pine-sports-site
+    parameters:
+      env:
+        description: "Which environment to run migrations on"
+        type: string
+    steps:
+      - checkout
+      - aws-cli/setup:
+          profile-name: pine
+      - run:
+          name: Install AWS Session Manager Plugin
+          command: |
+            curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/ubuntu_64bit/session-manager-plugin.deb" -o "session-manager-plugin.deb"
+            sudo apt-get update
+            sudo apt-get install -y ./session-manager-plugin.deb
+      - run:
+          name: Install Requirements
+          command: pip install -r requirements_migrations.txt
+      - run:
+          name: Connect to Database and Run Migrations
+          command: |
+            aws ssm start-session --target i-02223f18c24132713 --document-name AWS-StartPortForwardingSessionToRemoteHost --parameters "host=['$AWS_RDS_HOSTNAME'],portNumber=['5432'],localPortNumber=['5433']" & sleep 15 & python manage.py migrate
+
+  publish-github-release:
+    docker:
+      - image: cimg/go:1.17
+    working_directory: ~/pine-sports-site
+    parameters:
+      candidate:
+        description: "publish candidate image"
+        default: true
+        type: boolean
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/pine-sports-site
+      - run:
+          name: Publish release<<# parameters.candidate >>-candidate<</ parameters.candidate >>
+          command: |
+            go get -u github.com/sharpsports/ghr
+            make release<<# parameters.candidate >>-candidate<</ parameters.candidate >>
+      - store_artifacts:
+          path: ~/pine-sports-site/dist
+
+
+workflows:
+  ci:
+    jobs:
+      - validate-version:
+          <<: *not-master-filter
+      - build-and-publish:
+          env: "dev"
+          use_version_sha: true
+          context: aws-pine
+          requires:
+            - validate-version
+          <<: *not-master-filter
+      - plan-tf:
+          workspace: "dev"
+          context: terraform
+          use_version_sha: true
+          validate: true
+          requires:
+            - build-and-publish
+          <<: *not-master-filter
+      - approve-tf:
+          type: approval
+          requires:
+            - plan-tf
+          <<: *not-master-filter
+      - publish-github-release:
+          candidate: true
+          context: github
+          requires:
+            - approve-tf
+          <<: *not-master-filter
+
+  dev:
+    jobs:
+      - apply-tf:
+          workspace: "dev"
+          context: terraform
+          use_version_sha: true
+          <<: *ver-sha-tag-filter
+      - approve-promotion:
+          type: approval
+          requires:
+            - apply-tf
+          <<: *ver-sha-tag-filter 
+      - publish-github-release:
+          candidate: false
+          context: github
+          requires:
+            - approve-promotion
+          <<: *ver-sha-tag-filter
+
+  prod:
+    jobs:
+      - build-and-publish:
+          env: "prod"
+          context: aws-pine
+          <<: *master-filter
+      - plan-tf:
+          workspace: "prod"
+          context: terraform
+          validate: true
+          requires:
+            - build-and-publish
+          <<: *master-filter
+      - approve-tf:
+          type: approval
+          requires:
+            - plan-tf
+          <<: *master-filter
+      - apply-tf:
+          workspace: "prod"
+          context: terraform
+          use_version_sha: false
+          requires:
+            - approve-tf
+          <<: *master-filter

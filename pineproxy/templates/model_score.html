@@ -1,0 +1,436 @@
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="The best sports analytics and AI modeling platform on the internet. View the latest sports betting articles from our expert users featuring free picks. Pine users analyze picks for against the spread, over/unders, moneylines, player props, futures, and more bets."/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet" media="screen" onload="this.media='all'">-->
+    <!-- BEGIN VENDOR CSS-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/feather/style.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/feather/style.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/fonts/font-awesome/css/font-awesome.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap-extended.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/app.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/app.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+    <link rel="preload" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/core/menu/menu-types/horizontal-menu.min.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'assets/css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <!-- Start Custom CSS-->
+    <link rel="preload" href="{% static 'css/custom-stories.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom-stories.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/main.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/main.css' %}" media="screen" onload="this.media='all'">
+    <link rel="preload" href="{% static 'blog/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/new-style-2022-05-02.css' %}" media="screen" onload="this.media='all'">
+    <!-- END Custom CSS-->
+
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" as="style">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <!-- Chart.js script -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-MVXEN40PGH');
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-185900750-1">
+    </script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-185900750-1');
+    </script>
+
+</head>
+
+<style>
+
+    @-webkit-keyframes bake-pie {
+      from {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes bake-pie {
+      from {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+      }
+    }
+
+    .pie-chart {
+      font-family: "Open Sans", Arial;
+    }
+
+    .pie-chart--wrapper {
+      max-width: 400px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .pie-chart__pie, .pie-chart__legend {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .pie-chart__pie {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      margin: 10px auto 35px;
+    }
+
+    .pie-chart__pie::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      width: 100px;
+      height: 100px;
+      background: #EEE;
+      border-radius: 50%;
+      top: 50px;
+      left: 50px;
+    }
+
+    .pie-chart__pie::after {
+      content: "";
+      display: block;
+      width: 120px;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+      margin: 220px auto;
+    }
+
+    .slice {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      clip: rect(0px, 200px, 200px, 100px);
+      -webkit-animation: bake-pie 1s;
+              animation: bake-pie 1s;
+    }
+
+    .slice span {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: black;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      clip: rect(0px, 200px, 200px, 100px);
+    }
+
+    .pie-chart__legend {
+      display: block;
+      list-style-type: none;
+      padding: 0;
+      margin: 0 auto;
+      background: #FFF;
+      padding: 0.75em 0.75em 0.05em;
+        padding-bottom: 0.05em;
+      font-size: 13px;
+      box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+      text-align: left;
+      width: 65%;
+      border: 1px solid #eee;
+      padding-bottom: 0.25em;
+    }
+
+    .pie-chart__legend li {
+      height: 1.25em;
+      margin-bottom: 0.7em;
+      padding-left: 0.5em;
+      border-left: 1.25em solid black;
+    }
+
+    .pie-chart__legend em {
+      font-style: normal;
+    }
+
+    .pie-chart__legend span {
+      float: right;
+    }
+
+    .pie-charts {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .model-score-header{
+        font-weight: 700;
+        font-size: 30px;
+        color: rgba(0,0,0,.9);
+        border: none;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin-top:60px;
+        margin-bottom:20px;
+        font-variant: small-caps;
+    }
+
+    input{
+        width: 48px;
+        border-radius: 8px;
+        text-align: center;
+        border: 1px solid #ddd!important;
+        }
+
+    input:active{
+        border: 1px solid #ddd!important;
+        box-shadow:none!important;
+        outline-offset: 0px!important;
+        outline: none!important;
+    }
+
+    input:focus{
+        border: 1px solid #ddd!important;
+        box-shadow:none!important;
+        outline-offset: 0px!important;
+        outline: none!important;
+    }
+
+    .calculate-button{
+        color: #274970;
+        font-weight: 400;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 3px;
+        padding-bottom: 4px;
+        border-radius: 18px;
+        border: 1px solid #274970;
+        cursor:pointer;
+    }
+
+    .calculate-button:hover{
+        background-color: #c0d3e9;
+    }
+
+    @media screen and (max-width: 800px) {
+
+        ..model-score-header{
+            font-size: 24px;
+            font-weight: 700;
+            width: 100%;
+            max-width:360px;
+            font-variant: small-caps;
+        }
+
+    }
+</style>
+{% include "blog/darkmode.html" %}
+<div class="fr-view app-content container-fluid center-layout">
+    <div class="content-wrapper">
+        <div class="content-body"><!-- Description -->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-xs-12">
+                    <div style="margin-top:5px"></div>
+                    <div class="all-content">
+                        <div class="user-post-and-comments">
+                            <div class="user-post row">
+                                <p style="padding-bottom:10px">
+                                    <img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;" class="brand-logo" align="left">
+                                </p>
+                                <center><div class="model-score-header"><center>{{sport_name}} - {{model_type}}<br>Model Score</center></div></center>
+                                <center class="standard-text">
+                                    {% if has_confidence_score %}
+                                    {% if confidence_count > 0 %}
+                                    We back-tested model against <span class="darkmode-flip" style="font-weight:700; color: #274970">{{total}}</span> {{sport_name}} games.<br><br>
+                                    Your model had a confidence score of <span class="darkmode-flip" style="font-weight:700; color: #274970">{{confidence_score}}%</span> or higher in <span class="darkmode-flip" style="font-weight:700; color: #274970">{{confidence_count}}</span> games and got <span class="darkmode-flip style="font-weight:700; color: #274970">{{correct_percent}}%</span> correct.
+                                    {% else %}
+                                    Sorry, your model had no games with a confidence score of <span class="darkmode-flip" style="font-weight:700; color: #274970">{{confidence_score}}%</span> or higher.
+                                    {% endif %}
+                                    {% else %}
+                                    We back-tested your model against <span class="darkmode-flip" style="font-weight:700; color: #274970">{{total}}</span> {{sport_name}} games.<br><br>
+                                    Your model got <span class="darkmode-flip" style="font-weight:700; color: #274970">{{correct_percent}}%</span> of these games correct.
+                                    {% endif %}
+                                    {% if has_confidence_score and confidence_count == 0 %}
+                                    <br><br><br>
+                                    {% else %}
+                                    <div class="pieID--wlt pie-chart--wrapper">
+                                        <div class="pie-chart">
+                                            <div class="pie-chart__pie"></div>
+                                            <ul class="pie-chart__legend">
+                                                <li><em>Correct</em><span>{{correct}}</span></li>
+                                                <li><em>Incorrect</em><span>{{incorrect}}</span></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    {% endif %}
+                                    A strong model should get more games right when it is more confident.<br><br>
+                                    Your model's confidence range is <span class="darkmode-flip" style="font-weight:700; color: #274970">{{confidence_min}}%</span> to <span class="darkmode-flip" style="font-weight:700; color: #274970">{{confidence_max}}%</span><br>
+                                    (note: that this may be less than 50% because your model may account for pushes in close games)<br><br>
+                                    See how your model does at a confidence level.<br>
+                                    (e.g., when your model is 70% or more confident, how often is it right?)
+                                    <br><br>
+                                    <label for="confidence">Confidence level:</label>
+                                    <input type="text" id="confidence" name="confidence" style="width:45px">%
+                                    <br><br>
+                                    <span class="calculate-button darkmode-flip" onclick="calculateConfidence()">Calculate</span>
+                                    <br><br>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function calculateConfidence(){
+        var new_confidence_level = document.getElementById("confidence").value;
+
+        if (new_confidence_level.length > 0){
+            var url = '/predict/Model_Score/{{sport_name}}/{{model_type}}/' + new_confidence_level + '/';
+            window.location.href = decodeURI(url);
+        }
+        else{
+            var url = '/predict/Model_Score/{{sport_name}}/{{model_type}}/'
+            window.location.href = decodeURI(url);
+        }
+    }
+
+    function sliceSize(dataNum, dataTotal) {
+      return (dataNum / dataTotal) * 360;
+    }
+
+    function addSlice(id, sliceSize, pieElement, offset, sliceID, color) {
+      $(pieElement).append(
+        "<div class='slice " + sliceID + "'><span></span></div>"
+      );
+      var offset = offset - 1;
+      var sizeRotation = -179 + sliceSize;
+
+      $(id + " ." + sliceID).css({
+        transform: "rotate(" + offset + "deg) translate3d(0,0,0)"
+      });
+
+      $(id + " ." + sliceID + " span").css({
+        transform: "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+        "background-color": color
+      });
+    }
+
+    function iterateSlices(
+      id,
+      sliceSize,
+      pieElement,
+      offset,
+      dataCount,
+      sliceCount,
+      color
+    ) {
+      var maxSize = 179,
+        sliceID = "s" + dataCount + "-" + sliceCount;
+
+      if (sliceSize <= maxSize) {
+        addSlice(id, sliceSize, pieElement, offset, sliceID, color);
+      } else {
+        addSlice(id, maxSize, pieElement, offset, sliceID, color);
+        iterateSlices(
+          id,
+          sliceSize - maxSize,
+          pieElement,
+          offset + maxSize,
+          dataCount,
+          sliceCount + 1,
+          color
+        );
+      }
+    }
+
+    function createPie(id) {
+      var listData = [],
+        listTotal = 0,
+        offset = 0,
+        i = 0,
+        pieElement = id + " .pie-chart__pie";
+      dataElement = id + " .pie-chart__legend";
+
+      color = [
+        "#4EC48F",
+        "#EA3333",
+        "#274970"
+      ];
+
+      $(dataElement + " span").each(function () {
+        listData.push(Number($(this).html()));
+      });
+
+      for (i = 0; i < listData.length; i++) {
+        listTotal += listData[i];
+      }
+
+      for (i = 0; i < listData.length; i++) {
+        var size = sliceSize(listData[i], listTotal);
+        iterateSlices(id, size, pieElement, offset, i, 0, color[i]);
+        $(dataElement + " li:nth-child(" + (i + 1) + ")").css(
+          "border-color",
+          color[i]
+        );
+        offset += size;
+      }
+    }
+
+    function shuffle(a) {
+      var j, x, i;
+      for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+      }
+
+      return a;
+    }
+
+    function createPieCharts() {
+      createPie(".pieID--wlt");
+    }
+
+    createPieCharts();
+
+</script>
+{% endblock content %}

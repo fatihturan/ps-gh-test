@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+ {% load static %}
+ {% block content %}
+ <head>
+     <!-- BEGIN Multiselect dropdown-->
+     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+     <link rel="preload" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css" as="style">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.css" media="screen" onload="this.media='all'">
+     <script src="https://cdn.jsdelivr.net/gh/bbbootstrap/libraries@main/choices.min.js"></script>
+     <!-- END of Multiselect dropdown-->
+ </head>
+ <div class="container pt-3">
+     {% if messages %}
+         <ul class="messages">
+             {% for message in messages %}
+             <h4><li  {% if message.tags %} class=" {{ message.tags }} text-center" {% endif %}> {{ message }} </li></h4>
+             {% endfor %}
+         </ul>
+         {% endif %}
+     <div class="col-md-12 content-section hovered-tweet">
+         <div class="row d-flex justify-content-center mt-100">
+             <div class="col-md-6">
+                 <form action="{% url 'delete_datafiles_s3' %}" method="post">
+                     <h4 class="text-info">Delete Dataset files</h4>
+                     <select id="choices-multiple-remove-button" placeholder="Select dataset files" name="selected_datafiles" multiple>
+                         {% for i in datafiles %}
+                             <option value="{{i.key}}">{{i.key}}</option>
+                         {% endfor %}
+                     </select>
+                     <h4 class="text-info">Delete Linefiles</h4>
+                     <select id="choices-multiple-remove-button" placeholder="Select Line files" name="selected_linefiles" multiple>
+                         {% for i in linefiles %}
+                             <option value="{{i.key}}">{{i.key}}</option>
+                         {% endfor %}
+                     </select>
+                     <input type="submit" value="Submit" class="btn btn-outline-primary mt-2 ml-5">
+                 </form>
+             </div>
+         </div>
+     </div>
+
+ </div>
+ <script>
+     $(document).ready(function(){
+
+         var multipleCancelButton = new Choices('#choices-multiple-remove-button', {
+         removeItemButton: true,
+         //maxItemCount:5,
+         searchResultLimit:5,
+         //renderChoiceLimit:100
+         });
+         });
+     </script>
+ {% endblock content %}

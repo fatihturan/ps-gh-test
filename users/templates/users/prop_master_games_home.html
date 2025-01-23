@@ -1,0 +1,668 @@
+{% extends "blog/base_prop_master.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <meta name="description" content="Challenge your friends to a heads-up player prop contests."/>
+    <meta name="keywords" content="sports, analytics, artificial intelligence, ai, modeling, betting, fantasy, picks, spread, overs, unders, props, futumoneylineres, bets, nba, nfl, nhl, mlb, basketball, hockey, football, baseball, soccer, cricket, tennis">
+    <link rel="canonical" href="https://www.pine-sports.com/"/>
+
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Pine Sports" />
+    <meta property="og:image" content="{% static 'images/prop-master.svg' %}" />
+
+    <meta name="twitter:site" content="@pine_ai_sports"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Pine Sports | Prop Master"/>
+    <meta name="twitter:description" content="Challenge your friends to a heads-up player prop contests."/>
+    <meta name="twitter:image" content="{% static 'images/prop-master.svg' %}"/>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+    #outer {
+        width: 100%;
+        text-align: center;
+      }      
+
+    #pills-tab {
+        display: inline-block;
+    }
+
+    .pk-image{
+        width:90%;
+        margin-top:20px;
+        margin-bottom:20px;
+    }
+
+    .my-profile{
+        font-size: 30px;
+        font-weight: 700;
+        display: inline-block;
+    }
+
+    .wld{
+        font-size: 19px;
+        font-weight: 400;
+        display: inline-block;
+    }
+
+    .new-game{
+        border: 1px solid #274970;
+        border-radius: 25px;
+        color: #274970;
+        padding-left: 25px;
+        padding-right: 25px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .new-game:hover{
+        background-color:#dee8f3;
+    }
+
+    body {
+      font-family: "Open Sans", Arial;
+      background: #EEE;
+      text-align: center;
+    }
+    body * {
+      font-weight: 300;
+      margin: 0;
+      padding: 0;
+    }
+
+    @-webkit-keyframes bake-pie {
+      from {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes bake-pie {
+      from {
+        transform: rotate(0deg) translate3d(0, 0, 0);
+      }
+    }
+
+    .pie-chart {
+      font-family: "Open Sans", Arial;
+    }
+
+    .pie-chart--wrapper {
+      width: 400px;
+      margin-top: 10px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .pie-chart__pie, .pie-chart__legend {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .pie-chart__pie {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      margin: 10px auto 35px;
+    }
+
+    .pie-chart__pie::before {
+      content: "";
+      display: block;
+      position: absolute;
+      z-index: 1;
+      width: 100px;
+      height: 100px;
+      background: #EEE;
+      border-radius: 50%;
+      top: 50px;
+      left: 50px;
+    }
+
+    .pie-chart__pie::after {
+      content: "";
+      display: block;
+      width: 120px;
+      height: 2px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      box-shadow: 0 0 3px 4px rgba(0, 0, 0, 0.1);
+      margin: 220px auto;
+    }
+
+    .slice {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      clip: rect(0px, 200px, 200px, 100px);
+      -webkit-animation: bake-pie 1s;
+              animation: bake-pie 1s;
+    }
+
+    .slice span {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: black;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      clip: rect(0px, 200px, 200px, 100px);
+    }
+
+    .pie-chart__legend {
+      display: block;
+      list-style-type: none;
+      padding: 0;
+      margin: 0 auto;
+      background: #FFF;
+      padding: 0.75em 0.75em 0.05em;
+        padding-bottom: 0.05em;
+      font-size: 13px;
+      box-shadow: 1px 1px 0 #DDD, 2px 2px 0 #BBB;
+      text-align: left;
+      width: 65%;
+      border: 1px solid #eee;
+      padding-bottom: 0.25em;
+    }
+
+    .pie-chart__legend li {
+      height: 1.25em;
+      margin-bottom: 0.7em;
+      padding-left: 0.5em;
+      border-left: 1.25em solid black;
+    }
+
+    .pie-chart__legend em {
+      font-style: normal;
+    }
+
+    .pie-chart__legend span {
+      float: right;
+    }
+
+    .pie-charts {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .nav-pills .nav-item.open .nav-link, .nav-pills .nav-item.open .nav-link:focus, .nav-pills .nav-item.open .nav-link:hover, .nav-pills .nav-link.active, .nav-pills .nav-link.active:focus, .nav-pills .nav-link.active:hover {
+      color: black!important;
+      cursor: default;
+      background-color: #dee8f3!important;
+      border: 1px solid #274970 !important;
+      border-radius:25px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    th{
+        text-align:center!important;
+        padding-left:5px!important;
+        padding-right:5px!important;
+        padding-top:5px!important;
+        padding-bottom:5px!important;
+    }
+
+    td{
+        text-align:center!important;
+        padding-left:2px!important;
+        padding-right:2px!important;
+        padding-top:5px!important;
+        padding-bottom:5px!important;
+    }
+
+    table{
+        font-size:13px;
+    }
+
+    .intro{
+        display: inline-block;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    @media (max-width: 500px) {
+      .pie-charts {
+        flex-direction: column;
+      }
+    }
+
+    .games-button{
+        font-size:14px;
+    }
+
+    .live-button{
+        padding-left:34px!important;
+        padding-right:34px!important;
+    }
+
+    .upcoming-button{
+        padding-left:17px!important;
+        padding-right:17px!important;
+    }
+
+    .lds-spinner {
+      color: official;
+      display: inline-block;
+      position: relative;
+      width: 40px;
+      height: 40px;
+    }
+
+    .lds-spinner div {
+      transform-origin: 18px 18px;
+      animation: lds-spinner .8s infinite;
+    }
+
+    .lds-spinner div:after {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 3px;
+      left: 17px;
+      width: 3px;
+      height: 10px;
+      border-radius: 32%;
+      background: #274970;
+    }git
+
+    .lds-spinner div:nth-child(1) {
+      transform: rotate(0deg);
+      animation-delay: -0.7s;
+    }
+    .lds-spinner div:nth-child(2) {
+      transform: rotate(45deg);
+      animation-delay: -0.6s;
+    }
+    .lds-spinner div:nth-child(3) {
+      transform: rotate(90deg);
+      animation-delay: -0.5s;
+    }
+    .lds-spinner div:nth-child(4) {
+      transform: rotate(135deg);
+      animation-delay: -0.4s;
+    }
+    .lds-spinner div:nth-child(5) {
+      transform: rotate(180deg);
+      animation-delay: -0.3s;
+    }
+    .lds-spinner div:nth-child(6) {
+      transform: rotate(225deg);
+      animation-delay: -0.2s;
+    }
+    .lds-spinner div:nth-child(7) {
+      transform: rotate(270deg);
+      animation-delay: -0.1s;
+    }
+    .lds-spinner div:nth-child(8) {
+      transform: rotate(315deg);
+      animation-delay: 0.0s;
+    }
+
+    .page-number{
+        font-size:16px;
+    }
+    @keyframes lds-spinner {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    @media screen and (min-width: 767px) {
+        .pk-image{
+            width:66%;
+            margin-top:20px;
+        }
+        table{
+            font-size:16px;
+        }
+
+        .games-button{
+            font-size:16px;
+        }
+
+        .live-button{
+            padding-left:40px!important;
+            padding-right:40px!important;
+        }
+
+        .upcoming-button{
+            padding-left:19px!important;
+            padding-right:19px!important;
+        }
+    }
+
+    </style>
+
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+<div id="top"></div>
+<div id="top-loading" style="display:none" class="top-loading"><center><div class="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div></center></div>
+
+<div class="all-content">
+    <div class="user-post row">
+
+        <div><center>
+            <img src="{% static 'images/prop-master.svg'%}" alt="prop-master" class="pk-image"><br>
+            <span class="intro">Welcome to Prop Master.  Pick an NBA game tonight, choose your props, and challenge a friend.  BOL!</span><br><br>
+            <span class="new-game"><a href="/prop-master/new/">New Game</a></span><br>
+            {% if total_games > 0 %}
+            <br><hr><br><span style="font-size:35px;color:#4EC48F;font-weight:700">{{user_name}}</span><br>
+            <div class="pieID--wlt pie-chart--wrapper">
+                <div class="pie-chart">
+                    <div class="pie-chart__pie"></div>
+                    <ul class="pie-chart__legend">
+                        <li><em>Wins</em><span>{{wins}}</span></li>
+                        <li><em>Losses</em><span>{{losses}}</span></li>
+                        {% if ties > 0 %}
+                        <li><em>Ties</em><span>{{ties}}</span></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            {% else %}
+            <div><br></div>
+            {% endif %}
+
+        </center></div>
+        <div id="outer">
+            <ul class="nav nav-pills" id="pills-tab" role="tablist">
+                {% if in_progress_game_qs %}
+                <li class="nav-item">
+                    <a class="nav-link active games-button live-button" id="pills-live-tab" data-toggle="pill" href="#pills-live" role="tab" aria-controls="pills-live" aria-selected="true">Live</a>
+                </li>
+                {% endif %}
+                {% if scheduled_game_qs %}
+                <li class="nav-item">
+                    {% if not in_progress_game_qs %}
+                    <a class="nav-link active games-button upcoming-button" id="pills-upcomming-tab" data-toggle="pill" href="#pills-upcomming" role="tab" aria-controls="pills-upcomming" aria-selected="false">Upcoming</a>
+                    {% else %}
+                    <a class="nav-link games-button upcoming-button" id="pills-upcomming-tab" data-toggle="pill" href="#pills-upcomming" role="tab" aria-controls="pills-upcomming" aria-selected="false">Upcoming</a>
+                    {% endif %}
+                </li>
+                {% endif %}
+                {% if completed_games %}
+                <li class="nav-item">
+                    {% if not in_progress_game_qs and not scheduled_game_qs%}
+                    <a class="nav-link active games-button" id="pills-completed-tab" data-toggle="pill" href="#pills-completed" role="tab" aria-controls="pills-completed" aria-selected="false">Complete</a>
+                    {% else %}
+                    <a class="nav-link games-button" id="pills-completed-tab" data-toggle="pill" href="#pills-completed" role="tab" aria-controls="pills-completed" aria-selected="false">Complete</a>
+                    {% endif %}
+                </li>
+                {% endif %}
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <!-- Start Live div -->
+                {% if in_progress_game_qs %}
+                <div class="tab-pane fade active in" id="pills-live" role="tabpanel" aria-labelledby="pills-live-tab" style="margin-top: -20px;">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                        {% if in_progress_game_qs %}
+                        <table class="table table-striped mt-3 text-center" id="props_table_live" >
+                            <thead>
+                            <tr>
+                                <th scope="col" class="text-center"><b>Date</b></th>
+                                <th scope="col" class="text-center"><b>Game</b></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in in_progress_game_qs %}
+                            <tr>
+                                <td><b>{{obj.game_date}}</b></td>
+                                <td><b><a href="{% url 'game_score' uid=obj.uid %}">{{obj.player1_name}} vs. {{obj.player2_name}}<br>({{obj.game_name}})</a></b></td>
+                            </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                        <h3 class="text-danger py-3 my-3">You have no live games.</h3>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-2"></div>
+                </div><!-- End Live div -->
+                {% endif %}
+                <!-- Start Upcomming div -->
+                {% if scheduled_game_qs %}
+                {% if not in_progress_game_qs %}
+                <div class="tab-pane fade active in" id="pills-upcomming" role="tabpanel" aria-labelledby="pills-upcomming-tab" style="margin-top: -20px;">
+                    {% else %}
+                    <div class="tab-pane fade" id="pills-upcomming" role="tabpanel" aria-labelledby="pills-upcomming-tab" style="margin-top: -20px;">
+                        {% endif %}
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            {% if scheduled_game_qs %}
+                            <table class="table table-striped mt-3 text-center" id="props_table_upcoming" >
+                                <thead>
+                                <tr>
+                                    <th scope="col" class="text-center"><b>Date</b></th>
+                                    <th scope="col" class="text-center"><b>Game</b></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for obj in scheduled_game_qs %}
+                                <tr>
+                                    <td><b>{{obj.game_date}}</b></td>
+                                    <td><b><a href="{% url 'game_score' uid=obj.uid %}">{{obj.player1_name}} vs. {{obj.player2_name}}<br>({{obj.game_name}})</a></b></td>
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                            <h3 class="text-danger py-3 my-3">You have no upcoming games</h3>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-2"></div>
+
+                    </div><!-- End Upcomming div -->
+                    {% endif %}
+                    <!-- Start Recent div -->
+                    {% if completed_games %}
+                    {% if not in_progress_game_qs and not scheduled_game_qs%}
+                    <div class="tab-pane fade active in" id="pills-completed" role="tabpanel" aria-labelledby="pills-completed-tab" style="margin-top: -20px;">
+                        {% else %}
+                        <div class="tab-pane fade" id="pills-completed" role="tabpanel" aria-labelledby="pills-completed-tab" style="margin-top: -20px;">
+                            {% endif %}
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                {% if completed_games %}
+                                <table class="table table-striped mt-3 text-center" id="props_table_complete" >
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="text-center"><b>Date</b></th>
+                                        <th scope="col" class="text-center"><b>Game</b></th>
+                                        <th scope="col" class="text-center"><b>Winner</b></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for obj in completed_games %}
+                                    <tr>
+                                        <td><b>{{obj.game_date.date}}</b></td>
+                                        <td><b><a href="{% url 'game_score' uid=obj.uid %}">{{obj.player1_name}} vs. {{obj.player2_name}}<br>({{obj.game_name}})</a></b></td>
+                                        {% if user_name in obj.winner %}
+                                        <td><b><a href="/prop-master/user/{{obj.winner}}/" style="color:#4EC48F;font-weight:400">{{obj.winner}}</a></b></td>
+                                        {% elif obj.player1_name in obj.winner or obj.player2_name in obj.winner %}
+                                        <td><b><a href="/prop-master/user/{{obj.winner}}/" style="color:#EA3333;font-weight:400">{{obj.winner}}</a></b></td>
+                                        {% else %}
+                                        <td style="color:#4274970;font-weight:400"><b>Tie</b></td>
+                                        {% endif %}
+                                    </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                <h1 class="mt-4 mb-3">You have no completed games.</h1>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div><!-- End Recent div -->
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+
+    function sliceSize(dataNum, dataTotal) {
+      return (dataNum / dataTotal) * 360;
+    }
+
+    function addSlice(id, sliceSize, pieElement, offset, sliceID, color) {
+      $(pieElement).append(
+        "<div class='slice " + sliceID + "'><span></span></div>"
+      );
+      var offset = offset - 1;
+      var sizeRotation = -179 + sliceSize;
+
+      $(id + " ." + sliceID).css({
+        transform: "rotate(" + offset + "deg) translate3d(0,0,0)"
+      });
+
+      $(id + " ." + sliceID + " span").css({
+        transform: "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+        "background-color": color
+      });
+    }
+
+    function iterateSlices(
+      id,
+      sliceSize,
+      pieElement,
+      offset,
+      dataCount,
+      sliceCount,
+      color
+    ) {
+      var maxSize = 179,
+        sliceID = "s" + dataCount + "-" + sliceCount;
+
+      if (sliceSize <= maxSize) {
+        addSlice(id, sliceSize, pieElement, offset, sliceID, color);
+      } else {
+        addSlice(id, maxSize, pieElement, offset, sliceID, color);
+        iterateSlices(
+          id,
+          sliceSize - maxSize,
+          pieElement,
+          offset + maxSize,
+          dataCount,
+          sliceCount + 1,
+          color
+        );
+      }
+    }
+
+    function createPie(id) {
+      var listData = [],
+        listTotal = 0,
+        offset = 0,
+        i = 0,
+        pieElement = id + " .pie-chart__pie";
+      dataElement = id + " .pie-chart__legend";
+
+      color = [
+        "#4EC48F",
+        "#EA3333",
+        "#274970"
+      ];
+
+      $(dataElement + " span").each(function () {
+        listData.push(Number($(this).html()));
+      });
+
+      for (i = 0; i < listData.length; i++) {
+        listTotal += listData[i];
+      }
+
+      for (i = 0; i < listData.length; i++) {
+        var size = sliceSize(listData[i], listTotal);
+        iterateSlices(id, size, pieElement, offset, i, 0, color[i]);
+        $(dataElement + " li:nth-child(" + (i + 1) + ")").css(
+          "border-color",
+          color[i]
+        );
+        offset += size;
+      }
+    }
+
+    function shuffle(a) {
+      var j, x, i;
+      for (i = a.length; i; i--) {
+        j = Math.floor(Math.random() * i);
+        x = a[i - 1];
+        a[i - 1] = a[j];
+        a[j] = x;
+      }
+
+      return a;
+    }
+
+    function createPieCharts() {
+      createPie(".pieID--wlt");
+    }
+
+    createPieCharts();
+
+  $(document).ready(function(){
+        $('#props_table_complete').after('<div id="nav"></div>');
+        var rowsShown = 100;
+        var rowsTotal = $('#props_table_complete tbody tr').length;
+        var numPages = rowsTotal/rowsShown;
+        if(numPages >1){
+            for(i = 0;i < numPages;i++) {
+                var pageNum = i + 1;
+                $('#nav').append('<a href="#" rel="'+i+'" style="page-number">'+pageNum+'</a> ');
+            }
+        }
+        $('#props_table_complete tbody tr').hide();
+        $('#props_table_complete tbody tr').slice(0, rowsShown).show();
+        $('#nav a:first').addClass('active');
+        $('#nav a').bind('click', function(){
+
+            $('#nav a').removeClass('active');
+            $(this).addClass('active');
+            var currPage = $(this).attr('rel');
+            var startItem = currPage * rowsShown;
+            var endItem = startItem + rowsShown;
+            $('#props_table_complete tbody tr').css('opacity','0.0').hide().slice(startItem, endItem).
+                    css('display','table-row').animate({opacity:1}, 300);
+        });
+    });
+
+    document.addEventListener('scroll', function () {
+
+        top_div = document.getElementById("top").getBoundingClientRect();
+
+        if ($(window).width() < 690) {
+
+            if (top_div.top > 120){
+                document.getElementById("top-loading").style.display = "inline";
+                $('.top-loading').show();
+                location.reload();
+             }
+        }
+    }, {
+        passive: true
+    });
+</script>
+
+{% endblock content %}

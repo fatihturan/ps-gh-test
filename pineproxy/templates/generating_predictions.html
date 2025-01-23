@@ -1,0 +1,82 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" data-textdirection="ltr" class="loading">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+      <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/bootstrap.min.css' %}">
+   </head>
+
+   <style>
+
+     .generating-css {
+       font-weight: 400;
+       text-align: center;
+       font-size: 46px;
+       font-family: Roboto, sans-serif;
+       background: linear-gradient(90deg, #fff, #4EC48F, #fff);
+       -webkit-background-clip: text;
+       background-clip: text;
+       -webkit-text-fill-color: transparent;
+       background-repeat: no-repeat;
+       background-size: 80%;
+       animation: shine 3.4s linear infinite;
+       position: relative;
+       display: inline-block;
+       padding-top:20px;
+       padding-bottom:20px;
+     }
+
+     @keyframes shine {
+       0% {
+         background-position-x: -500%;
+       }
+       100% {
+         background-position-x: 500%;
+       }
+     }
+
+     @media screen and (max-width: 800px) {
+         .generating-css-mobile {
+             text-align: center;
+             font-family: Roboto, sans-serif;
+             font-size:20px;
+             position: relative;
+             display: inline-block;
+             padding-top:20px;
+             padding-bottom:20px;
+             color: #4EC48F;
+         }
+     }
+
+   </style>
+{% include "blog/darkmode.html" %}
+{# <div>{% include "banner.html" %}</div> #}
+      <script>
+            setTimeout(function(){
+               window.location.href = '{% url 'predict_results' sport_name predict_type %}';
+            }, 400);
+      </script>
+
+   <body data-open="click" data-menu="horizontal-menu" data-col="2-columns" class="horizontal-layout horizontal-menu 2-columns">
+      <div style="background-color:#ffffff;width:100%;height:100%; padding-right:10px; padding-left:10px; margin-top:-15px">
+      <p style="padding-top:30px"><img alt="Pine" src="{% static 'images/PineSportsLogoSmall.svg' %}" style="height:46px;" class="brand-logo" align="left"></p>
+         <div class="hidden-sm-down">
+            <br>
+            <center>
+               <span class="generating-css">Generating your predictions...</span>
+               <img class="darkmode-double-flip" src="{% static 'images/pine_chip.webp'%}" style="width:60%;">
+            </center>
+         </div>
+         <div class="hidden-md-up">
+            <br><br>
+            <center>
+               <span class="generating-css-mobile">Generating your predictions...</span>
+               <br><img class="darkmode-double-flip" src="{% static 'images/pine_chip.webp'%}" style="width:90%;">
+            </center>
+         </div>
+         <br><br><br><br><br><br><br><br><br><br><br><br>
+      </div>
+   </body>
+
+</html>

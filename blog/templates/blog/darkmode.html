@@ -1,0 +1,395 @@
+<style>
+
+    @media (prefers-color-scheme: light) {
+        .black-chart{
+            filter: invert(1) hue-rotate(180deg) brightness(105%) contrast(105%);
+        }
+    }
+    @media (prefers-color-scheme: dark) {
+        html {
+            filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(95%);
+        }
+
+        img {
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .prop-searches{
+            filter:invert(0.05) hue-rotate(-10deg);
+        }
+
+        .darkmode-flip {
+            filter: invert(100%) hue-rotate(180deg) contrast(90%);
+
+        }
+
+        .profile-icon rounded-circle {
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .profile-icon{
+            border:none;
+        }
+
+        .original_content {
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .original_analysis {
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .red-button{
+            filter: invert(100%) hue-rotate(180deg) contrast(80%);
+
+        }
+        .red-button:hover{
+            background-color:#111;
+        }
+
+        .green-button{
+            filter: invert(100%) hue-rotate(180deg) contrast(80%);
+        }
+
+        .green-button:hover{
+            background-color:#111;
+        }
+
+        .darkmode-double-flip{
+            filter: inherit;
+        }
+
+        .full-post-summary{
+            border: 1px solid #d6d6d6;
+        }
+
+        .user-post{
+            border: 1px solid #d6d6d6;
+        }
+
+        .sort-tab{
+            border: 1px solid #d6d6d6;
+        }
+
+        .pine-avatar img{
+            border:none;
+        }
+
+        .user-avatar img{
+            border:none;
+        }
+
+        .first-image-projection{
+            filter: inherit;
+        }
+
+        .explore-description{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .explore-data-analytics{
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .csv-link{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .compare-link{
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .compare-link-mobile{
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .analyze-header{
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .search-props{
+            color:#a7ccf7!important;
+            border-color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #nba_project_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #nba_project_player_split{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #nfl_project_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #nfl_project_player_split{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #nhl_project_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #nhl_project_player_split{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #mlb_project_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        #mlb_project_player_split{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .compare-button{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .choices__input{
+            color:#a7ccf7!important;
+        }
+
+        .nba_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .nba_project_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .nba_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .nba_team_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nfl_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nfl_project_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nfl_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nfl_team_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nhl_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nhl_project_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nhl_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        nhl_team_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        mlb_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        mlb_project_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        mlb_dfs_player_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        mlb_team_date_range{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .choices__item{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .choices__button{
+            border-left: 1px solid #a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .choices__list--multiple .choices__item {
+            color:#a7ccf7!important;
+            border:1px solid #a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+
+        .predict-button{
+            filter: contrast(90%);
+            color: #a7ccf7 !important;
+            border: 1px solid #a7ccf7 !important;
+        }
+
+        .model-button{
+            color: #a7ccf7;
+            border: 1px solid #a7ccf7;
+        }
+
+        .save-button{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .ai-modeling{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .ai-description{
+            color:#a7ccf7!important;
+            filter:contrast(80%);
+        }
+
+        .my-models{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .ai-welcome{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .leaderboard{
+            filter: contrast(70%);
+        }
+
+        .selected-button{
+            color: #a7ccf7;
+            border: 1px solid #a7ccf7;
+        }
+
+        .predict-the-title{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .model-name{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .model-type{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .model-score{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .seasons-used{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .stats-used{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .nba-build{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .nfl-build{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .nhl-build{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .mlb-build{
+            filter: invert(100%) hue-rotate(180deg);
+        }
+
+        .dataframe{
+            color: #303234;
+            filter: contrast(95%);
+        }
+
+        .cs-link{
+            color: black!important;
+        }
+
+        .pie-chart{
+            filter:hue-rotate(10deg);
+        }
+
+        .explore-predict-button{
+            color: #a7ccf7;
+            filter: contrast(95%);
+            border: 1px solid #a7ccf7;
+        }
+
+        .pred_title{
+            color: #a7ccf7;
+            filter: contrast(80%);
+        }
+
+        .darkmode-text{
+            color: #303234;
+        }
+
+        #id_predict_type{
+            filter: inherit;
+        }
+
+        .white-chart{
+            filter: brightness(105%) contrast(105%);
+        }
+
+        .user-post-and-comments{
+            filter: brightness(95%);
+        }
+</style>

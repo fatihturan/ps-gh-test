@@ -1,0 +1,34 @@
+{% load vite_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat with JaXon</title>
+    {% vite_hmr_client %} {% vite_css_files 'src/main.tsx' %}
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/javascript">
+      // Chat count variables
+      window.context = {
+        MAX_CHAT_COUNT: "{{ max_chat_count }}",
+        monthlyPeriodEndString: "{{ monthly_period_end_string }}",
+        customerPortalUrl: "{{ customer_portal_url }}",
+        chatSessionId: "{{ chat_session_id }}",
+        currentChatCount: "{{ current_chat_count }}",
+        isJaxonUser: "{{ is_jaxon_user }}",
+        questions: {{ questions|safe }},
+        infobox: {{ infobox|safe }},
+        chatHistory: {{ chat_history|safe }},
+        userSessions: {{ user_sessions|safe }},
+        profile_picture: "{{ profile_picture }}",
+        events: {{ events|safe }},
+        categorized_suggestions: {{ categorized_suggestions|safe }},
+        username: "{{ username }}",
+        surveys: {{ surveys|safe }}
+      };
+    </script>
+    {% vite_js_file 'src/main.tsx' %}
+  </body>
+</html>

@@ -1,0 +1,64 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+
+<head>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet" media="screen" onload="this.media='all'">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet" media="screen" onload="this.media='all'"
+
+    <script asyncsrc="https://www.googletagmanager.com/gtag/js?id=G-MVXEN40PGH"></script>
+
+    <link rel="preload" href="{% static 'app-assets/css/colors.min.css' %}" as="style">
+    <link rel="stylesheet" type="text/css" href="{% static 'app-assets/css/colors.min.css' %}" media="print" onload="this.media='all'">
+</head>
+
+<style>
+
+    .delete-text{
+        font-family: 'open sans', sans-serif;
+        font-size: 18px;
+        font-weight:700
+    }
+
+</style>
+
+<div class="hidden-md-up" style="margin-top:5px"></div>
+
+<div class="all-content" style="max-width:660px!important">
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset style="padding-bottom:15px">
+            <a class="delete-text">Are you sure you want to delete this post?</a>
+        </fieldset>
+        <div class="form-group">
+            <button class="btn btn-danger" type="submit">Yes</button>
+        </div>
+
+        <div class="user-post-and-comments">
+            <div class="user-post row">
+                <div class="post-title-detail">{{ post.title }}</div>
+
+                <img
+                        class="profile-icon rounded-circle mr-2"
+                        src="{{ post.author.profile.image_url }}?v=2"
+                        onError='this.onerror=null;this.src="{% static "images/profile.svg" %}";'
+                >
+
+                <a class="post-author mr-2" href="{% url 'stories:user-posts' post.author %}">
+                    {{ post.author }}
+                </a>
+                <div class="post-content standard-text">
+                    <p>
+                        {{ post.content|safe }}
+                    </p>
+            </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock content %}

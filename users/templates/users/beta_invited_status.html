@@ -1,0 +1,56 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+{% load my_tags %}
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" ></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+</head>
+
+<div class="hidden-sm-down top-buffer"></div>
+
+    <div class="user-post-and-comments">            
+            {% if messages %}
+            <ul class="messages m-0 text-center">
+                {% for message in messages %}
+                    <h3 {% if message.tags %} class="text-{{ message.tags }}" {% endif %}> {{ message }}</h3>
+                {% endfor %}
+            </ul>
+            <br/>
+            {% endif %}
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            <table class="table" style="font-size: 13px">
+                    <thead>
+                        <tr>
+                        <th scope="col">BETACODE</th>
+                        <th scope="col">BETACODE SEND DATE</th>
+                        <th scope="col">USER SENDED</th>
+                        <th scope="col">FLAG BETACODE</th>
+                        <th scope="col">USER SENT EMAIL</th>
+                        <th scope="col">USER MAIL SENT DATE</th>
+                        </tr>
+                    </thead>
+            {% for i in data %}
+                    <tbody>
+                        <tr>
+                        <td>{{i.betacode}}</td>
+                        <td>{{i.sended_date}}</td>
+                        <td>{{i.user_sended}}</td>
+                        <td>{{i.flag_betacode}}</td>
+                        <td>{{i.user_sended_email}}</td>
+                        <td>{{i.user_mail_send_date}}</td>
+                        </tr>
+                    </tbody>                    
+            {% endfor %}
+            </table></div>
+            <div class="col-md-2"></div>
+  </div>
+
+{% endblock content %}
