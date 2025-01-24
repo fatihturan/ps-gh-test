@@ -25,7 +25,7 @@ function CustomRadio({ label, name, id, value }: CustomRadioProps) {
 
                 <label
                     htmlFor={id}
-                    className="text-[12px] font-semibold text-white bg-red"
+                    className="text-[12px] font-semibold text-white bg-blue"
                 >
                     {label}
                 </label>
